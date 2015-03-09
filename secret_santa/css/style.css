@@ -1,5 +1,6 @@
-
+/***********/
 /*GENERAL*/
+/***********/
 
 .fullwidth_wraper {
 	width: 100%;
@@ -12,20 +13,29 @@ body.frontpage{
 	text-align: center;
 }
 
+/***********/
 /*HEADER*/
+/***********/
 .main_nav {
 	margin:0px;
 }
 
-/*BANNER*/
+/***********/
+/*HOME*/
+/***********/
 
-.banner .container #carousel-example-generic .carousel-inner .item img.banner_image {
-	min-width: 930px;
-	min-height: 270px;
+/*BANNER*/
+.banner {
+	width: 100%;
+	height: auto;
+}
+
+.banner img {
+	max-width: 100%;
+	height: auto;
 }
 
 /*MAIN BODY*/
-
 img.step {
 	position:relative;
 	display:block;
@@ -44,8 +54,9 @@ img.step {
 	padding: 10px 60px;
 }
 
-
+/***********/
 /*FOOTER*/
+/***********/
 
 .social_media{
 	position:relative;
