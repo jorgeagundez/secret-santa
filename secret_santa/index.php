@@ -1,6 +1,12 @@
 <?php 
+session_start();
+
+$form_token = md5( uniqid('auth', true) );
+$_SESSION['form_token'] = $form_token;
+
 include '/includes/header.php';
 $template = 'frontpage';
+
 ?>
 			
 	<body class="<?php echo $template ?>">
@@ -28,6 +34,7 @@ $template = 'frontpage';
 										<li>
 											<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Login</a>
 											<ul class="collapse" id="collapseExample">
+												<li><?php if (isset($_GET['error'])){ echo $_GET['error'];}?></li>
 												<li>
 													<label for="username">User</label>
 													<input type="text" name="username" class="form-control" id="username" placeholder="Write here your username" required="true"/>
@@ -61,7 +68,7 @@ $template = 'frontpage';
 			</div> <!-- container -->
 		</section>
 
-		<section class="main_body">
+		<section class="main_body" id="aqui">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4 step_wrapper">
@@ -82,7 +89,7 @@ $template = 'frontpage';
 				</div>
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3 well">
-						<button type="button" class="btn btn-success start_button">Get Start</button>
+						<a href="/secret_santa/subscribe.php" type="button" class="btn btn-success start_button">Get Start</a>
 					</div>
 				</div>
 			</div>
