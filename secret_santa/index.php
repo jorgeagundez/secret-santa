@@ -89,7 +89,7 @@ $template = 'frontpage';
 				</div>
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3 well">
-						<a href="/secret_santa/subscribe.php" type="button" class="btn btn-success start_button">Get Start</a>
+						<a href="/secret_santa/stepOne.php" type="button" class="btn btn-success start_button">Get Start</a>
 					</div>
 				</div>
 			</div>

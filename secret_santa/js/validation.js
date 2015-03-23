@@ -20,6 +20,42 @@ $(document).ready(function(){
                             $(this).addClass('correct');
                         };
                     break;
+                    case 'title':
+                        if ($(this).val() == '' ) {
+                            errors.push('Title is invalid');
+                            $(this).addClass('error');                     
+                        }else{
+                            $(this).removeClass('error');
+                            $(this).addClass('correct');
+                        };
+                    break;
+                    case 'price':
+                        if ($(this).val() == '' && !$(this).isNumeric() ) {
+                            errors.push('Price is invalid, It has to be a number');
+                            $(this).addClass('error');                     
+                        }else{
+                            $(this).removeClass('error');
+                            $(this).addClass('correct');
+                        };
+                    break;
+                    case 'topic':
+                        if ($(this).val() == '' ) {
+                            errors.push('Title is invalid');
+                            $(this).addClass('error');                     
+                        }else{
+                            $(this).removeClass('error');
+                            $(this).addClass('correct');
+                        };
+                    break;
+                     case 'place':
+                        if ($(this).val() == '' ) {
+                            errors.push('Title is invalid');
+                            $(this).addClass('error');                     
+                        }else{
+                            $(this).removeClass('error');
+                            $(this).addClass('correct');
+                        };
+                    break;
                     case 'password':
                         if ($(this).val() == '' || $(this).val().length < 8 || $(this).val().length > 20) {
                             errors.push('Password is invalid');

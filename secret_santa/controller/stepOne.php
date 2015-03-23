@@ -58,41 +58,6 @@ if(isset($_SESSION['user_id']))
 
         $stmt->execute();
 
-        $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT idusuario, nombreusuario, email, userimage FROM user WHERE nombreusuario = :user_name AND password = :user_password");
-        $stmt->bindParam(':user_name', $username, PDO::PARAM_STR);
-        $stmt->bindParam(':user_password', $password, PDO::PARAM_STR, 40);
-        
-        $stmt->execute();
-        $user_id = $stmt->fetchColumn(0);
-
-        $stmt->execute();
-        $user_name = $stmt->fetchColumn(1);
-
-        $stmt->execute();
-        $user_email = $stmt->fetchColumn(2);
-
-        $stmt->execute();
-        $user_image = $stmt->fetchColumn(3);
-        
-        unset( $_SESSION['form_token'] );
-
-        if (!$user_id) {
-
-            $error = 'There is a problem in the server. Please, try again.';
-
-        }else{
-
-            $_SESSION['user_id'] = $user_id;
-            $_SESSION['user_name'] = $user_name;
-            $_SESSION['user_email'] = $user_email;
-            $_SESSION['user_image'] = 'userDefault.png';
-
-            header('Location:/secret_santa/userPages/dashboard.php');
-
-        }
-
     }catch(Exception $e){
             
             if( $e->getCode() == 23000){
@@ -104,11 +69,49 @@ if(isset($_SESSION['user_id']))
             }
 
     }
+
+     try {
+
+        $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $conn->prepare("SELECT idusuario FROM user WHERE nombreusuario = :user_name AND password = :user_password");
+        $stmt->bindParam(':user_name', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':user_password', $password, PDO::PARAM_STR, 40);
+        
+        $stmt->execute();
+        $user_id = $stmt->fetchColumn(0);
+
+        if (!$user_id) {
+
+            $error = $error . ' // There is a problem in the server. Please, try again.';
+
+        }else{
+
+            $_SESSION['user_id'] = $user_id;
+            $_SESSION['user_name'] = $username;
+            $_SESSION['user_email'] = $email;
+
+            header('Location:/secret_santa/stepTwo.php?form_token=' . $_SESSION['form_token']);
+
+        }
+
+    }catch(Exception $e){
+            
+            if( $e->getCode() == 23000){
+                $error = $error . ' // Username already exists';
+            }
+            else{
+                $error2 = $e->getCode();
+                $error = $error . ' // ' . $error2;
+            }
+
+    }
+
 }
 
 if (isset($error)) {
 
-    header('Location:/secret_santa/subscribe.php?error=' . $error);
+    header('Location:/secret_santa/stepOne.php?error=' . $error);
     unset($error);
 }
 
