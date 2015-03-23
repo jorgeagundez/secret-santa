@@ -1,9 +1,9 @@
 <?php 
 session_start();
 
-// if (!isset($_GET['form_token']) || $_GET['form_token']!=$_SESSION['form_token'] ){ 
-//    header('Location:/secret_santa/stepOne.php?error=There was a server problem. Please, try it again.');
-// }
+if (!isset($_GET['form_token']) || $_GET['form_token']!=$_SESSION['form_token'] ){ 
+   header('Location:/secret_santa/stepOne.php?error=There was a server problem. Please, try it again.');
+}
 
 include "includes/header.php";
 ?>

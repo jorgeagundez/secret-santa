@@ -12,7 +12,7 @@ if(!isset($_POST['nFriends'])) {
 
 }else{ 
 
-    $nFriends = $_POST['nFriends'];
+    $nFriends = intval($_POST['nFriends']);
 
     for ($i = 1; $i <= $nFriends; $i++) {
         if(!isset($_POST['friendname' . $i]) || !isset($_POST['friendemail' . $i])) {
@@ -32,9 +32,10 @@ if(!isset($_POST['nFriends'])) {
 
                 $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $conn->prepare("INSERT INTO friend (friendname, friendemail) VALUES (:friend_name, :friend_email)");
+                $stmt = $conn->prepare("INSERT INTO friend (friendname, friendemail, game_idgame) VALUES (:friend_name, :friend_email ,:game_idgame)");
                 $stmt->bindParam(':friend_name', $friendname, PDO::PARAM_STR);
                 $stmt->bindParam(':friend_email', $friendemail, PDO::PARAM_STR);
+                $stmt->bindParam(':game_idgame', $game_id, PDO::PARAM_INT);
                 
 
                 $stmt->execute();
@@ -46,31 +47,33 @@ if(!isset($_POST['nFriends'])) {
             }catch(Exception $e){
                     
                 $error = $e->getCode();
+                $error = $error . ' // ' . $e->getMessage();
 
             }//end try
         }//end if
     }//end for
 
-    // try { 
+    try { 
 
-    //     $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
-    //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //     $stmt = $conn->prepare("INSERT INTO game (gamenumberfriends) VALUES (:numberfriends");
-    //     $stmt->bindParam(':numberfriends',$nFriends , PDO::PARAM_INT);
+        $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $conn->prepare("INSERT INTO game (gamenumberfriends) VALUES (:numberfriends)");
+        $stmt->bindParam(':numberfriends',$nFriends , PDO::PARAM_INT);
 
-    //     $stmt->execute();
+        $stmt->execute();
 
-    //     $_SESSION['numberfriends'] = $nFriends;
+        $_SESSION['numberfriends'] = $nFriends;
 
-    //     unset( $_SESSION['form_token'] );
+        unset( $_SESSION['form_token'] );
 
-    //     header('Location:/secret_santa/userPages/dashboard.php');
+        header('Location:/secret_santa/userPages/dashboard.php');
 
-    // }catch(Exception $e){
+    }catch(Exception $e){
             
-    //     $error = $e->getCode();
+        $error = $e->getCode();
+        $error = $error . ' // ' . $e->getMessage();
 
-    // }//end try
+    }//end try
 }
 
 if (isset($error)) {
