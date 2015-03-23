@@ -13,8 +13,8 @@ if(!isset($_POST['nFriends'])) {
 }else{ 
 
     $nFriends = intval($_POST['nFriends']);
-
     for ($i = 1; $i <= $nFriends; $i++) {
+
         if(!isset($_POST['friendname' . $i]) || !isset($_POST['friendemail' . $i])) {
 
             $error = 'Please enter a valid data';
@@ -43,7 +43,6 @@ if(!isset($_POST['nFriends'])) {
                 $_SESSION['friendname' . $i] = $friendname;
                 $_SESSION['friendemail' . $i] = $friendemail;
 
-
             }catch(Exception $e){
                     
                 $error = $e->getCode();
@@ -51,13 +50,14 @@ if(!isset($_POST['nFriends'])) {
 
             }//end try
         }//end if
-    }//end for
+    }//End for
 
     try { 
 
         $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("INSERT INTO game (gamenumberfriends) VALUES (:numberfriends)");
+        $stmt = $conn->prepare("UPDATE game SET gamenumberfriends = :numberfriends WHERE idgame = :game_idgame");
+        $stmt->bindParam(':game_idgame',$game_id , PDO::PARAM_INT);
         $stmt->bindParam(':numberfriends',$nFriends , PDO::PARAM_INT);
 
         $stmt->execute();
@@ -78,7 +78,7 @@ if(!isset($_POST['nFriends'])) {
 
 if (isset($error)) {
     echo $error;
-    //header('Location:/secret_santa/stepThree.php?form_token=' . $_SESSION['form_token'] . '&error=' . $error);
+    header('Location:/secret_santa/stepThree.php?form_token=' . $_SESSION['form_token'] . '&error=' . $error);
     unset($error);
 }
 

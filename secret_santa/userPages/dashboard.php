@@ -24,18 +24,40 @@ include "../includes/header.php";
           <img alt="user image" class="pull-right" src="/secret_santa/images/users/<?php echo $_SESSION['user_image'] ?>">
         </div>
         <div class="detailsWrapper">
-          <?php echo ( $_SESSION['user_id'] . '<br/>' . $_SESSION['user_name'] . '<br/>' . $_SESSION['user_email']);
+          <?php 
 
+            echo '<h2>User</h2>';
+
+            echo ( '<strong>Id Admin User</strong>:' . $_SESSION['user_id'] . '<br/>' 
+              . '<strong>User Name</strong>: ' . $_SESSION['user_name'] . '<br/>'
+              . '<strong>User Email</strong>: ' . $_SESSION['user_email']);
+
+            echo '<br/>';
+            echo '<br/>';
+
+            echo '<h2>Game Details</h2>';
 
             if(isset($_SESSION['game_id'])) {
-                echo ($_SESSION['game_id'] . '<br/>' . $_SESSION['game_title']  . '<br/>' . $_SESSION['game_description']  . '<br/>' . $_SESSION['game_price']  . '<br/>' . $_SESSION['game_place'] . '<br/>' . $_SESSION['game_date'] . '<br/>' . $_SESSION['game_drawdate'] . '<br/>' . $_SESSION['game_price'] . '<br/>' . $_SESSION['game_user_id'] . '<br/>' . $_SESSION['numberfriends']);
+                echo ('<strong>Game Id</strong>:' . $_SESSION['game_id'] . '<br/>' 
+                  . '<strong>Game Title</strong>: ' . $_SESSION['game_title']  . '<br/>' 
+                  . '<strong>Description</strong>: ' . $_SESSION['game_description']  . '<br/>' 
+                  . '<strong>Price</strong>: ' . $_SESSION['game_price']  . '<br/>' 
+                  . '<strong>Place</strong>: ' . $_SESSION['game_place'] . '<br/>' 
+                  . '<strong>Game Date</strong>: ' . $_SESSION['game_date'] . '<br/>' 
+                  . '<strong>Draw Date</strong>: ' . $_SESSION['game_drawdate'] . '<br/>' 
+                  . '<strong>Id Admin User</strong>: ' . $_SESSION['game_user_id'] . '<br/>' 
+                  . '<strong>Num of Friends</strong>: ' . $_SESSION['numberfriends']);
             }
+
+            echo '<br/>';
+            echo '<br/>';
+
+            echo '<h2>Friends List</h2>';
+
 
             if(isset($_SESSION['friendname1'])){
               for ($i = 1; $i <= $_SESSION['numberfriends']; $i++) {
-                  echo $_SESSION['friendname' . $i];
-                  echo '<br/>';
-                  echo $_SESSION['friendemail' . $i];
+                  echo '<strong>Name</strong>: ' . $_SESSION['friendname' . $i] . ' <strong>Email</strong>: ' . $_SESSION['friendemail' . $i] . '<br/>';
               }
             }
 
