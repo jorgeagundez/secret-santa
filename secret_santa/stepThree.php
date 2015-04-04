@@ -40,7 +40,7 @@ include "includes/header.php";
               <button type="button" class="btn btn-info addFriend pull-left"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> FRIEND</button>
               <input type="hidden" name="form_token" value="<?php echo $_SESSION['form_token']; ?>" />
               <input type="hidden" class="nFriends" name="nFriends"/>
-              <button type="submit" class="btn btn-default pull-right">Next Step</button>
+              <button type="submit" class="btn btn-default pull-right">Send invitations</button>
             </div>
           </div>
         </div>

@@ -18,7 +18,9 @@ if(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplac
     $gameplace = filter_var($_POST['gameplace'],FILTER_SANITIZE_STRING);
     $gamedate = filter_var($_POST['gamedate'],FILTER_SANITIZE_STRING);
     $drawdate = filter_var($_POST['drawdate'],FILTER_SANITIZE_STRING);
+
     $user_id = $_SESSION['user_id'];
+    $gamekey = md5($_SESSION['user_id']);
 
     require_once "/conexionDb.php";
 
@@ -26,7 +28,7 @@ if(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplac
 
         $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("INSERT INTO game (title, description, price, gameplace, gamedate, drawdate, user_idusuario ) VALUES (:game_title, :game_description, :game_price, :game_place, :game_date, :draw_date, :user_id )");
+        $stmt = $conn->prepare("INSERT INTO game (title, description, price, gameplace, gamedate, drawdate, user_idusuario, gamekey ) VALUES (:game_title, :game_description, :game_price, :game_place, :game_date, :draw_date, :user_id, :game_key )");
         $stmt->bindParam(':game_title', $title, PDO::PARAM_STR);
         $stmt->bindParam(':game_description', $description, PDO::PARAM_STR);
         $stmt->bindParam(':game_price', $price, PDO::PARAM_STR);
@@ -34,6 +36,7 @@ if(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplac
         $stmt->bindParam(':game_date', $gamedate, PDO::PARAM_STR);
         $stmt->bindParam(':draw_date', $drawdate, PDO::PARAM_STR);
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindParam(':game_key', $gamekey, PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -46,7 +49,7 @@ if(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplac
 
         $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT idgame, title, description, price, gameplace, gamedate, drawdate, user_idusuario FROM game WHERE title = :game_title");
+        $stmt = $conn->prepare("SELECT idgame, title, description, price, gameplace, gamedate, drawdate, user_idusuario, gamekey FROM game WHERE title = :game_title");
         $stmt->bindParam(':game_title', $title, PDO::PARAM_STR);
 
         $stmt->execute();
@@ -73,6 +76,9 @@ if(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplac
         $stmt->execute();
         $game_user_id = $stmt->fetchColumn(7);
 
+        $stmt->execute();
+        $game_key = $stmt->fetchColumn(8);
+
         if (!$game_id) {
 
             $error = $error . ' // There is a problem in the server. Please, try again.';
@@ -90,6 +96,7 @@ if(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplac
             $_SESSION['game_drawdate'] = $game_drawdate;
             $_SESSION['game_price'] = $game_description;
             $_SESSION['game_user_id'] = $game_user_id;
+            $_SESSION['game_key'] = $game_key;
 
             header('Location:/secret_santa/stepThree.php?form_token=' . $_SESSION['form_token']);
 

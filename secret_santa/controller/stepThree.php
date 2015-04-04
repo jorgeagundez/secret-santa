@@ -32,16 +32,20 @@ if(!isset($_POST['nFriends'])) {
 
                 $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $conn->prepare("INSERT INTO friend (friendname, friendemail, game_idgame) VALUES (:friend_name, :friend_email ,:game_idgame)");
+                $stmt = $conn->prepare("INSERT INTO friend (friendname, friendemail, game_idgame, gamekey) VALUES (:friend_name, :friend_email ,:game_idgame, :game_key)");
                 $stmt->bindParam(':friend_name', $friendname, PDO::PARAM_STR);
                 $stmt->bindParam(':friend_email', $friendemail, PDO::PARAM_STR);
                 $stmt->bindParam(':game_idgame', $game_id, PDO::PARAM_INT);
+                $stmt->bindParam(':game_key', $_SESSION['game_key'], PDO::PARAM_STR);
                 
 
                 $stmt->execute();
 
                 $_SESSION['friendname' . $i] = $friendname;
                 $_SESSION['friendemail' . $i] = $friendemail;
+                $_SESSION['friendinvitation' . $i] = false;
+                $_SESSION['friendconfirmation' . $i] = false;
+
 
             }catch(Exception $e){
                     
@@ -66,7 +70,7 @@ if(!isset($_POST['nFriends'])) {
 
         unset( $_SESSION['form_token'] );
 
-        header('Location:/secret_santa/userPages/dashboard.php');
+        header('Location:/secret_santa/controller/invitations.php');
 
     }catch(Exception $e){
             
@@ -74,6 +78,31 @@ if(!isset($_POST['nFriends'])) {
         $error = $error . ' // ' . $e->getMessage();
 
     }//end try
+
+     try { 
+
+        $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $conn->prepare("SELECT idfriend FROM friend WHERE game_idgame = :game_id");
+        $stmt->bindParam(':game_id', $game_id, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $i = 1;
+        while( $datos = $stmt->fetch() ) {
+            $_SESSION['idfriend' . $i] = $datos[0];
+            $i++;
+        };
+            
+        }catch(Exception $e){
+                
+                if( $e->getCode() == 23000){
+                    $error = $error;
+                }
+                else{
+                    $error = $e->getCode();
+                }
+        }//End Try
 }
 
 if (isset($error)) {

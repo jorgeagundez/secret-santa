@@ -2,13 +2,11 @@
 
 session_start();
 
-// if(isset($_SESSION['user_id']))
-// {
-//     header('Location:/secret_santa/userPages/dashboard.php');
+if(isset($_SESSION['user_id']))
+{
+    header('Location:/secret_santa/controller/logout.php');
 
-// }else
-
-if(!isset( $_POST['username'],$_POST['password'])){
+}elseif(!isset( $_POST['username'],$_POST['password'])){
 
 	$error = 'Please enter a valid username and password';
 
@@ -44,7 +42,7 @@ if(!isset( $_POST['username'],$_POST['password'])){
 
         $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT idusuario, nombreusuario, email, userimage FROM user WHERE nombreusuario = :user_name AND password = :user_password");
+        $stmt = $conn->prepare("SELECT idusuario, nombreusuario, email FROM user WHERE nombreusuario = :user_name AND password = :user_password");
         $stmt->bindParam(':user_name', $username, PDO::PARAM_STR);
         $stmt->bindParam(':user_password', $password, PDO::PARAM_STR, 40);
         
@@ -57,9 +55,6 @@ if(!isset( $_POST['username'],$_POST['password'])){
         $stmt->execute();
         $user_email = $stmt->fetchColumn(2);
 
-        $stmt->execute();
-        $user_image = $stmt->fetchColumn(3);
-
         unset( $_SESSION['form_token'] );
 
         if (!$user_id) {
@@ -71,7 +66,6 @@ if(!isset( $_POST['username'],$_POST['password'])){
             $_SESSION['user_id'] = $user_id;
             $_SESSION['user_name'] = $user_name;
             $_SESSION['user_email'] = $user_email;
-            $_SESSION['user_image'] = $user_image;
 
 
             try { 
@@ -127,7 +121,7 @@ if(!isset( $_POST['username'],$_POST['password'])){
 
                         $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
                         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $stmt = $conn->prepare("SELECT idfriend, friendname, friendemail FROM friend WHERE game_idgame = :game_id");
+                        $stmt = $conn->prepare("SELECT idfriend, friendname, friendemail, invitation, confirmation  FROM friend WHERE game_idgame = :game_id");
                         $stmt->bindParam(':game_id', $game_id, PDO::PARAM_INT);
 
                         $stmt->execute();
@@ -137,6 +131,8 @@ if(!isset( $_POST['username'],$_POST['password'])){
                                 $_SESSION['idfriend' . $i] = $datos[0];
                                 $_SESSION['friendname' . $i] = $datos[1];
                                 $_SESSION['friendemail' . $i] = $datos[2];
+                                $_SESSION['friendinvitation' . $i] = $datos[3];
+                                $_SESSION['friendconfirmation' . $i] = $datos[4];
                                 $i++;
                             };
 
