@@ -3,8 +3,9 @@
 session_start();
 
 if ( !isset($_GET['gameKey']) || !isset($_GET['friendemail']) ){ 
-  echo 'error uno';
-   //header('Location:/secret_santa/');
+  
+  header('Location:/secret_santa/');
+  
 }else{
 
   require_once "/controller/conexionDb.php";

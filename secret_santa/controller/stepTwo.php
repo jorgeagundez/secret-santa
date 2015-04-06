@@ -12,107 +12,18 @@ if(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplac
 
 }else{
 
-  	$title = filter_var($_POST['title'],FILTER_SANITIZE_STRING);
-    $description = filter_var($_POST['description'],FILTER_SANITIZE_STRING);
-    $price = filter_var($_POST['price'],FILTER_SANITIZE_STRING);
-    $gameplace = filter_var($_POST['gameplace'],FILTER_SANITIZE_STRING);
-    $gamedate = filter_var($_POST['gamedate'],FILTER_SANITIZE_STRING);
-    $drawdate = filter_var($_POST['drawdate'],FILTER_SANITIZE_STRING);
+  	$_SESSION['game_title'] = filter_var($_POST['title'],FILTER_SANITIZE_STRING);
+    $_SESSION['game_description'] = filter_var($_POST['description'],FILTER_SANITIZE_STRING);
+    $_SESSION['game_price'] = filter_var($_POST['price'],FILTER_SANITIZE_STRING);
+    $_SESSION['game_place'] = filter_var($_POST['gameplace'],FILTER_SANITIZE_STRING);
+    $_SESSION['game_date'] = filter_var($_POST['gamedate'],FILTER_SANITIZE_STRING);
+    $_SESSION['game_drawdate'] = filter_var($_POST['drawdate'],FILTER_SANITIZE_STRING);
+    
+    $form_token = md5( uniqid('auth', true) );
+    $_SESSION['form_token'] = $form_token;
 
-    $user_id = $_SESSION['user_id'];
-    $gamekey = md5($_SESSION['user_id']);
+    header('Location:/secret_santa/stepThree.php?form_token=' . $_SESSION['form_token']);
 
-    require_once "/conexionDb.php";
-
-    try { 
-
-        $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("INSERT INTO game (title, description, price, gameplace, gamedate, drawdate, user_idusuario, gamekey ) VALUES (:game_title, :game_description, :game_price, :game_place, :game_date, :draw_date, :user_id, :game_key )");
-        $stmt->bindParam(':game_title', $title, PDO::PARAM_STR);
-        $stmt->bindParam(':game_description', $description, PDO::PARAM_STR);
-        $stmt->bindParam(':game_price', $price, PDO::PARAM_STR);
-        $stmt->bindParam(':game_place', $gameplace, PDO::PARAM_STR);
-        $stmt->bindParam(':game_date', $gamedate, PDO::PARAM_STR);
-        $stmt->bindParam(':draw_date', $drawdate, PDO::PARAM_STR);
-        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-        $stmt->bindParam(':game_key', $gamekey, PDO::PARAM_INT);
-
-        $stmt->execute();
-
-    }catch(Exception $e){
-            
-            $error = $e->getCode();
-    }
-
-    try { 
-
-        $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT idgame, title, description, price, gameplace, gamedate, drawdate, user_idusuario, gamekey FROM game WHERE title = :game_title");
-        $stmt->bindParam(':game_title', $title, PDO::PARAM_STR);
-
-        $stmt->execute();
-        $game_id = $stmt->fetchColumn(0);
-
-        $stmt->execute();
-        $game_title = $stmt->fetchColumn(1);
-
-        $stmt->execute();
-        $game_description = $stmt->fetchColumn(2);
-
-        $stmt->execute();
-        $game_price = $stmt->fetchColumn(3);
-
-        $stmt->execute();
-        $game_place = $stmt->fetchColumn(4);
-
-        $stmt->execute();
-        $game_date = $stmt->fetchColumn(5);
-
-        $stmt->execute();
-        $game_drawdate = $stmt->fetchColumn(6);
-
-        $stmt->execute();
-        $game_user_id = $stmt->fetchColumn(7);
-
-        $stmt->execute();
-        $game_key = $stmt->fetchColumn(8);
-
-        if (!$game_id) {
-
-            $error = $error . ' // There is a problem in the server. Please, try again.';
-
-        }else{
-
-            $form_token = md5( uniqid('auth', true) );
-            $_SESSION['form_token'] = $form_token;
-            $_SESSION['game_id'] = $game_id;
-            $_SESSION['game_title'] = $game_title;
-            $_SESSION['game_description'] = $game_description;
-            $_SESSION['game_price'] = $game_price;
-            $_SESSION['game_place'] = $game_place;
-            $_SESSION['game_date'] = $game_date;
-            $_SESSION['game_drawdate'] = $game_drawdate;
-            $_SESSION['game_price'] = $game_description;
-            $_SESSION['game_user_id'] = $game_user_id;
-            $_SESSION['game_key'] = $game_key;
-
-            header('Location:/secret_santa/stepThree.php?form_token=' . $_SESSION['form_token']);
-
-        }
-
-    }catch(Exception $e){
-            
-            if( $e->getCode() == 23000){
-                $error = $error . ' // Username already exists';
-            }
-            else{
-                $error2 = $e->getCode();
-                $error = $error . ' // ' . $error2;
-            }
-
-    }
 }
 
 if (isset($error)) {

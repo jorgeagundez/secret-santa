@@ -2,9 +2,9 @@
 
 session_start();
 
-
-header('Location:/secret_santa/userPages/update.php');
+echo 'confirmacion';
+//header('Location:/secret_santa/userPages/update.php');
 
 ?>
 
- 
+    

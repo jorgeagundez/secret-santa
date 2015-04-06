@@ -4,11 +4,11 @@ session_start();
 
 if(!isset($_SESSION['user_id'])) {
    header('Location:/secret_santa/index.php?error=' . 'You must be logged in to access dashboard');
-   die();
 }
 
 $_SESSION['id_session'] = session_id();
 
+include "../controller/dashboard.php";
 include "../includes/header.php";
 ?>
 
@@ -42,7 +42,6 @@ include "../includes/header.php";
                   . '<strong>Place</strong>: ' . $_SESSION['game_place'] . '<br/>' 
                   . '<strong>Game Date</strong>: ' . $_SESSION['game_date'] . '<br/>' 
                   . '<strong>Draw Date</strong>: ' . $_SESSION['game_drawdate'] . '<br/>' 
-                  . '<strong>Id Admin User</strong>: ' . $_SESSION['game_user_id'] . '<br/>' 
                   . '<strong>Num of Friends</strong>: ' . $_SESSION['numberfriends']);
             }
 

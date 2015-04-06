@@ -5,17 +5,8 @@ session_start();
 if(!isset($_SESSION['user_id']))
 {
     header('Location:/logout.php');
+    
 }else{
-
-    //PARA PRUEBAS EN SERVIDOR ONLINE
-    // $_SESSION['numberfriends'] = 3;
-    // $_SESSION['friendemail1'] = 'secretsanta.adria@gmail.com';
-    // $_SESSION['friendname1'] = 'Adria';
-    // $_SESSION['friendemail2'] = 'secretsanta.clara@gmail.com';
-    // $_SESSION['friendname2'] = 'Clara';
-    // $_SESSION['friendemail3'] = 'secretsanta.keyvan@gmail.com';
-    // $_SESSION['friendname3'] = 'Keyvan';
-    // $_SESSION['user_name'] = 'Jorge';
 
     require_once 'Mail.php';
     require_once 'Mail/mime.php';
@@ -33,7 +24,7 @@ if(!isset($_SESSION['user_id']))
         $mensaje .= '<body>
                         <h1>Hello ' .    $_SESSION['friendname' . $i] .', you have been invited to join a Secret Santa Game.</h1>
                         <p>If you are agree with the conditions of the game. Please, confirm following this.</p>
-                        <a href="http://localhost/secret_santa/confirmation.php?gameKey='. $_SESSION['game_key'] .'&friendemail=' . $_SESSION['friendemail' . $i] '"> link </a>
+                        <a href="http://localhost/secret_santa/controller/confirmation.php?gameKey='. $_SESSION['game_key'] . '&friendemail=' . $_SESSION['friendemail' . $i] . '"> link </a>
                     </body>
                     </html>';
         $mime = new Mail_mime("\n");
@@ -69,6 +60,7 @@ if(!isset($_SESSION['user_id']))
 
                 $_SESSION['friendinvitation' . $i] = $invitation;
                 $_SESSION['friendconfirmation' . $i] = $confirmation;
+  
             }catch(Exception $e){
                     
                 $error= 'There was a problem sending invitations. Please, try it later.';
@@ -81,5 +73,33 @@ if(!isset($_SESSION['user_id']))
     header('Location:/secret_santa/userPages/dashboard.php');
 
 } //endif
+
+
+
+
+  //   require_once '/vendor/swiftmailer/swiftmailer/lib/swift_required.php';
+
+  //   // Create the message
+  //   $message = Swift_Message::newInstance()
+
+  // // Give the message a subject
+  // ->setSubject('Probando swiftmessage')
+
+  // // Set the From address with an associative array
+  // ->setFrom(array('john@prueba.com' => 'John Doe'))
+
+  // // Set the To addresses with an associative array
+  // ->setTo(array('jamedina97@gmail.com' => 'Jorge'))
+
+  // // Give it a body
+  // ->setBody('Here is the message itself')
+
+  // // And optionally an alternative body
+  // ->addPart('<q>Here is the message itself</q>', 'text/html')
+
+  // // Optionally add any attachments
+  // // ->attach(Swift_Attachment::fromPath('my-document.pdf'))
+  // ;
+
 
 ?>
