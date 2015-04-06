@@ -2,6 +2,9 @@
 
 session_start();
 
+$form_token = md5( uniqid('auth', true) );
+$_SESSION['form_token'] = $form_token;
+
 if ( !isset($_GET['gameKey']) || !isset($_GET['friendemail']) ){ 
   
   header('Location:/secret_santa/');
@@ -14,12 +17,12 @@ if ( !isset($_GET['gameKey']) || !isset($_GET['friendemail']) ){
 
     $conn = new PDO("mysql:host=localhost;dbname=secretsanta", 'root', 'jam19977');
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT friendemail FROM friend WHERE gamekey = :game_key AND friendemail = :friend_email");
+    $stmt = $conn->prepare("SELECT idfriend, friendname, friendemail FROM friend WHERE gamekey = :game_key AND friendemail = :friend_email");
     $stmt->bindParam(':game_key',$_GET['gameKey'], PDO::PARAM_INT);
     $stmt->bindParam(':friend_email',$_GET['friendemail'], PDO::PARAM_STR);
 
     $stmt->execute();
-    $friendemail = $stmt->fetchcolumn(0);
+    $_SESSION['confirmation_friend'] = $stmt->fetch(PDO::FETCH_ASSOC);
 
     }catch(Exception $e){
       
