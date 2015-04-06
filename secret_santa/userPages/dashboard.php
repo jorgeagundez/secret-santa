@@ -48,16 +48,18 @@ include "../includes/header.php";
             echo '<br/>';
             echo '<br/>';
 
-            echo '<h2>Friends List</h2>';
+            echo '<h2>Friends List: (' . $_SESSION['numberfriends'] . ')</h2>';
 
 
             if(isset($_SESSION['friendname1'])){
               for ($i = 1; $i <= $_SESSION['numberfriends']; $i++) {
-                  echo '<strong>Name</strong>: ' . $_SESSION['friendname' . $i] . ' <strong>Email</strong>: ' . $_SESSION['friendemail' . $i] . '<br/>';
-                  echo '<strong>Invitation is sent</strong>: ' .$_SESSION['friendinvitation' . $i]. '<br/>';
-                  echo '<strong>Invitation is confirmed</strong>: ' .$_SESSION['friendconfirmation' . $i]. '<br/>';
-                  echo '<br/><br/>';
-
+                echo $i;
+                echo '<br/>';
+                echo '<strong>Name</strong>: ' . $_SESSION['friendname' . $i] . ' <strong>Email</strong>: ' . $_SESSION['friendemail' . $i] . '<br/>';
+                echo '<strong>Invitation is sent</strong>: ' .$_SESSION['friendinvitation' . $i]. '<br/>';
+                echo '<strong>Invitation is confirmed</strong>: ' .$_SESSION['friendconfirmation' . $i]. '<br/>';
+                echo '<a href="/secret_santa/controller/delete-friend.php?idfriend=' . $_SESSION['idfriend' . $i] . '&number=' . $i . '">Delete friend</a>';
+                echo '<br/><br/>';
               }
             }
 
@@ -73,7 +75,7 @@ include "../includes/header.php";
         <a href="/secret_santa/userPages/update.php" class="btn btn-default" >Update your Details</a>
       </div>
       <div class="col-md-12 well">
-        <a href="/secret_santa/controller/delete.php" class="btn btn-default" >Delete your account</a>
+        <a href="/secret_santa/controller/delete-user.php" class="btn btn-default" >Delete your account</a>
       </div>
       <div class="col-md-12 well">
         <a href="/secret_santa/controller/logout.php" class="btn btn-default" >Logout</a>
