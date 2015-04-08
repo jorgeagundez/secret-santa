@@ -63,7 +63,43 @@ include "../includes/header.php";
               }
             }
 
+            if($_SESSION['groupConfirmed']) {
+              echo 'THIS GROUP HAS BEEN CONFIRMED BY ALL FRIENDS. THE DRAW NAMES HAS BEEN DONE SUCCESSFULLY';
+              echo '<br/><br/>';
+            }
+
           ?>
+
+       <!--  <form role="form" id="addingFriends" method="post" action="../controller/stepThree.php">
+        <div class="col-md-8 well">
+          <div class="row">
+            <div class="col-md-12">
+              <?php if (isset($_GET['error'])){ echo $_GET['error'];}?>
+            </div>
+          </div>
+          <div class="friendList">
+            <div class="row">
+              <div class="col-md-3">
+                <label for="friendname1">Friend</label>
+                <input type="text" name="friendname1" class="form-control" id="friendname1" placeholder="name" required="true"/>
+              </div>
+              <div class="col-md-9">
+                <label for="friendemail1">Email</label>
+                <input type="email" name="friendemail1" class="form-control" id="friendemail1" placeholder="Email" required="true"/>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <hr />
+              <button type="button" class="btn btn-info addFriend pull-left"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> FRIEND</button>
+              <input type="hidden" name="form_token" value="<?php echo $_SESSION['form_token']; ?>" />
+              <input type="hidden" class="nFriends" name="nFriends"/>
+              <button type="submit" class="btn btn-default pull-right">Send invitations</button>
+            </div>
+          </div>
+        </div>
+      </form> -->
          
         </div>
       </div>

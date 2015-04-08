@@ -6,7 +6,7 @@ try {
 
     $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT idgame, title, description, price, gameplace, gamedate, drawdate, gamenumberfriends FROM game WHERE user_idusuario = :user_id");
+    $stmt = $conn->prepare("SELECT idgame, title, description, price, gameplace, gamedate, drawdate, gamenumberfriends, confirmed FROM game WHERE user_idusuario = :user_id");
     $stmt->bindParam(':user_id', $_SESSION['user_id'] , PDO::PARAM_STR);
 
     $stmt->execute();
@@ -33,6 +33,9 @@ try {
     $stmt->execute();
     $nFriends = $stmt->fetchColumn(7);
 
+    $stmt->execute();
+    $confirmed = $stmt->fetchColumn(8);
+
     if (!$game_id) {
 
         $error = $error . ' // There is a problem in the server. Please, try again.';
@@ -47,6 +50,7 @@ try {
         $_SESSION['game_date'] = $game_date;
         $_SESSION['game_drawdate'] = $game_drawdate;
         $_SESSION['numberfriends'] = $nFriends;
+        $_SESSION['groupConfirmed'] = $confirmed;
 
         try { 
 
