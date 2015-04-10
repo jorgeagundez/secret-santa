@@ -36,7 +36,7 @@ if(isset($_SESSION['user_id']))
 	$password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
     $password = sha1( $password );
 
-    require_once "/conexionDb.php";
+    require_once "conexionDb.php";
 
     try {
 

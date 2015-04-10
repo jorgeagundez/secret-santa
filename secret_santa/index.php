@@ -4,7 +4,7 @@ session_start();
 $form_token = md5( uniqid('auth', true) );
 $_SESSION['form_token'] = $form_token;
 
-include '/includes/header.php';
+include 'includes/header.php';
 $template = 'frontpage';
 
 ?>
