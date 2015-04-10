@@ -12,12 +12,13 @@ try {
     $stmt->bindParam(':confirmation', $confirmation , PDO::PARAM_INT);
     $stmt->execute();
 
+
     //Array with list of games with at least one friend confirmed
     $gamesChecked = array();
 
     //Each of the friends
     while($friendRow = $stmt->fetch(PDO::FETCH_ASSOC) ) {
-        
+    
         $idgame = $friendRow['game_idgame'];
         $j = count($gamesChecked);
 
@@ -34,17 +35,19 @@ try {
 
             $conn2 = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
             $conn2->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt2 = $conn2->prepare("SELECT friendname, confirmation FROM friend WHERE game_idgame = :game_idgame");
+            $stmt2 = $conn2->prepare("SELECT idfriend, friendname, friendemail, confirmation FROM friend WHERE game_idgame = :game_idgame");
             $stmt2->bindParam(':game_idgame', $idgame , PDO::PARAM_INT);
+            
+            //To get all confirmation in group
             $stmt2->execute();
-
             $nFriends = 0;
             $groupConfirmation = array();
-            while ( $friend = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+            while ( $friend = $stmt2->fetch(PDO::FETCH_BOTH)) {
                 array_push($groupConfirmation, $friend['confirmation'] );
                 $nFriends = $nFriends + 1;
             }
 
+            //To check if all friends are confirmed
             $groupComplete = true;
             for ($i = 0; $i < $nFriends ; $i++) {
                 if ( $groupConfirmation[$i] == false ) {
@@ -62,7 +65,11 @@ try {
                 $stmt3->bindParam(':confirmed', $confirmed , PDO::PARAM_BOOL);
                 $stmt3->execute();
 
-                echo '<br/> GROUP WITH ID: ' . $idgame . ' is completed. Ready for DRAWNAMES. <br/>';
+                echo '<p>______________________________________________________________</p>';
+                echo 'GROUP WITH ID: ' . $idgame . ' is completed. Ready for DRAWNAMES. <br/>';
+                
+                include 'drawnames.php';
+
             }
 
         }
