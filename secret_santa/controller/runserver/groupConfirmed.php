@@ -65,10 +65,25 @@ try {
                 $stmt3->bindParam(':confirmed', $confirmed , PDO::PARAM_BOOL);
                 $stmt3->execute();
 
+                $conn4 = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
+                $conn4->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stmt4 = $conn4->prepare("SELECT user_idusuario FROM game WHERE idgame = :game_idgame");
+                $stmt4->bindParam(':game_idgame', $idgame , PDO::PARAM_INT);
+                $stmt4->execute();
+                $userid=$stmt4->fetchColumn(0);
+                
+                $conn5 = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
+                $conn5->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stmt5 = $conn5->prepare("SELECT nombreusuario, email FROM user WHERE idusuario = :user_id");
+                $stmt5->bindParam(':user_id', $userid , PDO::PARAM_INT);
+                $stmt5->execute();
+                $username = $stmt5->fetchColumn(0);
+                $stmt5->execute();
+                $useremail = $stmt5->fetchColumn(1);
+         
                 // echo '<p>______________________________________________________________</p>';
                 // echo 'GROUP WITH ID: ' . $idgame . ' is completed. Ready for DRAWNAMES. <br/>';
 
-              
                 include 'drawnames.php';
 
             }
@@ -81,6 +96,7 @@ try {
         
         if( $e->getCode() == 23000){
             $error = $error;
+
         }
         else{
             $error = $e->getCode();
