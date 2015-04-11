@@ -4,7 +4,7 @@ session_start();
 
 if(isset($_SESSION['user_id']))
 {
-    header('Location:/logout.php');
+    header('Location:/secret_santa/controller/logout.php');
 
 }elseif(!isset($_POST['username'],$_POST['password'],$_POST['rPassword'],$_POST['email'],$_POST['rEmail'],$_POST['form_token'])){
 
