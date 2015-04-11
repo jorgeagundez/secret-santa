@@ -65,9 +65,10 @@ try {
                 $stmt3->bindParam(':confirmed', $confirmed , PDO::PARAM_BOOL);
                 $stmt3->execute();
 
-                echo '<p>______________________________________________________________</p>';
-                echo 'GROUP WITH ID: ' . $idgame . ' is completed. Ready for DRAWNAMES. <br/>';
-                
+                // echo '<p>______________________________________________________________</p>';
+                // echo 'GROUP WITH ID: ' . $idgame . ' is completed. Ready for DRAWNAMES. <br/>';
+
+              
                 include 'drawnames.php';
 
             }

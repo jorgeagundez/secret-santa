@@ -2,7 +2,7 @@
 
 try { 
 
-    require_once "/conexionDb.php";
+    require_once "conexionDb.php";
 
     $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

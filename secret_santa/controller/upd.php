@@ -43,7 +43,7 @@ if(!isset($_SESSION['user_id']))
     $email = filter_var($_POST['email'],FILTER_SANITIZE_STRING);
     $user_id = $_SESSION['user_id'];
 
-    require_once "/conexionDb.php";
+    require_once "conexionDb.php";
 
     try {
 

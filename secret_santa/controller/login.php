@@ -79,7 +79,8 @@ if(isset($_SESSION['user_id']))
 }//End Else
 
 if (isset($error)) {
-
+                 echo $error;
+    die();
     header('Location:/secret_santa/index.php?error=' . $error);
     unset($error);
 }

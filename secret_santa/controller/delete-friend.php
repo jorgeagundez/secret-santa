@@ -25,8 +25,6 @@ try {
 
     	$gamenumberfriends = $_SESSION['numberfriends'] - 1;
 
-    	echo $gamenumberfriends;
-
         $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stmt = $conn->prepare("UPDATE game SET gamenumberfriends = :gamenumber_friends WHERE idgame = :id_game");

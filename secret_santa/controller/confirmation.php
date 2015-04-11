@@ -2,13 +2,13 @@
 
 session_start();
 
-if( $_POST['form_token'] != $_SESSION['form_token']){
+if($_POST['form_token'] != $_SESSION['form_token']){
 
     $error = 'There was a problem sending the confirmation. Please, try it later';
 
 }else{
 
-	require_once "/conexionDb.php";
+	require_once "conexionDb.php";
     $confirmation = true;
     $id_friend = $_SESSION['confirmation_friend']['idfriend'];
 

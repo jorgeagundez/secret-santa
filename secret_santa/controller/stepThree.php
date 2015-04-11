@@ -12,7 +12,7 @@ if(!isset($_POST['nFriends'])) {
 
 }else{ 
 
-    require_once "/conexionDb.php";
+    require_once "conexionDb.php";
 
     try {
 

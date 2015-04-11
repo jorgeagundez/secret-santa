@@ -11,11 +11,11 @@ if ( !isset($_GET['gameKey']) || !isset($_GET['friendemail']) ){
   
 }else{
 
-  require_once "/controller/conexionDb.php";
+  require_once "controller/conexionDb.php";
 
   try { 
 
-    $conn = new PDO("mysql:host=localhost;dbname=secretsanta", 'root', 'jam19977');
+    $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $conn->prepare("SELECT idfriend, friendname, friendemail FROM friend WHERE gamekey = :game_key AND friendemail = :friend_email");
     $stmt->bindParam(':game_key',$_GET['gameKey'], PDO::PARAM_INT);
@@ -32,7 +32,7 @@ if ( !isset($_GET['gameKey']) || !isset($_GET['friendemail']) ){
 
 }//EndElse
 
-include "/includes/header.php";
+include "includes/header.php";
 ?>
 
   <body>
@@ -61,7 +61,7 @@ include "/includes/header.php";
     </div>
 
 <?php 
-include "/includes/footer.php";
+include "includes/footer.php";
 ?>
 
  

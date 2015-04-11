@@ -24,7 +24,7 @@ if(!isset($_SESSION['user_id']))
         $mensaje .= '<body>
                         <h1>Hello ' .    $_SESSION['friendname' . $i] .', you have been invited to join a Secret Santa Game.</h1>
                         <p>If you are agree with the conditions of the game. Please, confirm following this.</p>
-                        <a href="http://localhost/secret_santa/controller/confirmation.php?gameKey='. $_SESSION['game_key'] . '&friendemail=' . $_SESSION['friendemail' . $i] . '"> link </a>
+                        <a href="http://www.jorgeagundez.com/secret_santa/confirmation.php?gameKey='. $_SESSION['game_key'] . '&friendemail=' . $_SESSION['friendemail' . $i] . '"> link </a>
                     </body>
                     </html>';
         $mime = new Mail_mime("\n");
@@ -44,7 +44,7 @@ if(!isset($_SESSION['user_id']))
 
         }else{
 
-            require_once "/conexionDb.php";
+            require_once "conexionDb.php";
             $invitation = true;
             $confirmation = 0;
 
