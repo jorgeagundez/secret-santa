@@ -8,27 +8,27 @@ if(isset($_SESSION['user_id']))
 
 }elseif(!isset( $_POST['username'],$_POST['password'])){
 
-	$error = 'Please enter a valid username and password';
+	$_SESSION['error'] = 'Please enter a valid username and password';
 
 }elseif( $_POST['form_token'] != $_SESSION['form_token']){
 
-    $error = 'Invalid form submission, please try again';
+    $_SESSION['error'] = 'Invalid form submission, please try again';
 
 }elseif (strlen( $_POST['username']) < 5 || strlen($_POST['username']) > 20) {
 
-    $error = 'Incorrect Length for Username';
+    $_SESSION['error'] = 'Incorrect Length for Username';
 
 }elseif (strlen( $_POST['password']) < 8 || strlen($_POST['password']) > 20){
 
-    $error = 'Incorrect Length for Password';
+    $_SESSION['error'] = 'Incorrect Length for Password';
 
 }elseif (ctype_alnum($_POST['username']) != true){
  
-    $error = "Username must be alpha numeric";
+    $_SESSION['error'] = "Username must be alpha numeric";
 
 }elseif (ctype_alnum($_POST['password']) != true){
 
-    $error = "Password must be alpha numeric";
+    $_SESSION['error'] = "Password must be alpha numeric";
 
 }else{
 
@@ -59,7 +59,7 @@ if(isset($_SESSION['user_id']))
 
         if (!$user_id) {
 
-            $error = 'There is no user with "' . $username . '" as an username. Please, try again.';
+            $_SESSION['error'] = 'There is no user with "' . $username . '" as an username. Please, try again.';
 
         }else{
 
@@ -73,16 +73,15 @@ if(isset($_SESSION['user_id']))
 
     }catch(Exception $e){
             
-            $error = $e . ' We are unable to process your request. Please try again later';
+            $_SESSION['error'] = $e . ' We are unable to process your request. Please try again later';
 
     }//End Try
 }//End Else
 
-if (isset($error)) {
-                 echo $error;
-    die();
-    header('Location:/secret_santa/index.php?error=' . $error);
-    unset($error);
+if (isset($_SESSION['error'])) {
+
+    header('Location:/secret_santa/index.php');
+
 }
 
 ?>

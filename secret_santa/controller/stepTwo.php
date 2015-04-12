@@ -2,13 +2,14 @@
 
 session_start();
 
-if(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplace'],$_POST['gamedate'],$_POST['drawdate'])){
+if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_token'] != $_SESSION['form_token']) {
 
-	$error = 'Please enter a valid data';
+    // $_SESSION['error'] = 'There was a problem, please start again or login if you have an account already';
+    header('Location:/secret_santa/controller/logout.php');
 
-}elseif( $_POST['form_token'] != $_SESSION['form_token']){
+}elseif(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplace'],$_POST['gamedate'],$_POST['drawdate'])){
 
-    $error = 'Invalid form submission, please try again';
+	$_SESSION['error'] = 'Please enter a valid data';
 
 }else{
 
@@ -22,14 +23,13 @@ if(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplac
     $form_token = md5( uniqid('auth', true) );
     $_SESSION['form_token'] = $form_token;
 
-    header('Location:/secret_santa/stepThree.php?form_token=' . $_SESSION['form_token']);
+    header('Location:/secret_santa/stepThree.php');
 
 }
 
-if (isset($error)) {
+if (isset($_SESSION['error'])) {
     
-    header('Location:/secret_santa/stepTwo.php?form_token=' . $_SESSION['form_token'] . '&error=' . $error);
-    unset($error);
+    header('Location:/secret_santa/stepTwo.php');
 }
 
 ?>

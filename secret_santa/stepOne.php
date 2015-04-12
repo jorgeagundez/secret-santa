@@ -15,11 +15,11 @@ include "includes/header.php";
       </header>
     </div>
     <div class="container">
-      <form role="form" id="subscribe_form" method="post" action="controller/stepOne.php">
+      <form role="form" id="stepOne" method="post" action="controller/stepOne.php">
         <div class="col-md-5 well">
           <div class="row">
             <div class="col-md-12">
-              <?php if (isset($_GET['error'])){ echo $_GET['error'];}?>
+              <?php if (isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?>
             </div>
           </div>
           <div class="row">

@@ -34,7 +34,6 @@ $template = 'frontpage';
 										<li>
 											<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Login</a>
 											<ul class="collapse" id="collapseExample">
-												<li><?php if (isset($_GET['error'])){ echo $_GET['error'];}?></li>
 												<li>
 													<label for="username">User</label>
 													<input type="text" name="username" class="form-control" id="username" placeholder="Write here your username" required="true"/>
@@ -67,6 +66,10 @@ $template = 'frontpage';
 				</div>
 			</div> <!-- container -->
 		</section>
+
+		<div class="well">
+			<?php if (isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?>
+		</div>
 
 		<section class="main_body" id="aqui">
 			<div class="container">

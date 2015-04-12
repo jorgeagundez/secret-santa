@@ -1,10 +1,12 @@
 <?php 
 session_start();
 
-if (!isset($_GET['form_token']) || $_GET['form_token']!=$_SESSION['form_token'] ){ 
-
+if (!isset($_SESSION['form_token']) ){
   header('Location:/secretsanta/controller/logout.php');
 }
+
+$form_token = md5( uniqid('auth', true) );
+$_SESSION['form_token'] = $form_token;
 
 include "includes/header.php";
 ?>
@@ -20,7 +22,7 @@ include "includes/header.php";
         <div class="col-md-8 well">
           <div class="row">
             <div class="col-md-12">
-              <?php if (isset($_GET['error'])){ echo $_GET['error'];}?>
+              <?php if (isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?>
             </div>
           </div>
           <div class="friendList">
@@ -39,7 +41,7 @@ include "includes/header.php";
             <div class="col-md-12">
               <hr />
               <button type="button" class="btn btn-info addFriend pull-left"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> FRIEND</button>
-              <input type="hidden" name="form_token" value="<?php echo $_SESSION['form_token']; ?>" />
+              <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
               <input type="hidden" class="nFriends" name="nFriends"/>
               <button type="submit" class="btn btn-default pull-right">Send invitations</button>
             </div>

@@ -4,12 +4,13 @@ session_start();
 
 if(!isset($_POST['nFriends'])) {
 
-    $error = 'Try again';
+    header('Location:/secret_santa/controller/logout.php');
 
-}elseif( $_POST['form_token'] != $_SESSION['form_token']){
+}elseif( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_token'] != $_SESSION['form_token']){
 
-    $error = 'Invalid form submission, please try again';
-
+    // $_SESSION['error'] = 'There was a problem, please start again or login if you have an account already';
+    header('Location:/secret_santa/controller/logout.php');
+    
 }else{ 
 
     require_once "conexionDb.php";
@@ -58,7 +59,7 @@ if(!isset($_POST['nFriends'])) {
                 $_SESSION['game_id'] = intval($_SESSION['game_id']);
 
                 // if(!isset($_POST['friendname' . $i]) || !isset($_POST['friendemail' . $i])) {
-                //     $error = 'Please enter a valid data';
+                //     $_SESSION['error'] = 'Please enter a valid data';
                 // }
 
                 try { 
@@ -82,7 +83,7 @@ if(!isset($_POST['nFriends'])) {
 
                 }catch(Exception $e){
                         
-                    $error = $e->getCode();
+                    $_SESSION['error'] = $e->getCode();
 
                 }//end try
                
@@ -93,19 +94,19 @@ if(!isset($_POST['nFriends'])) {
                
         }catch(Exception $e){
                     
-            $error = $e->getCode();
+            $_SESSION['error'] = $e->getCode();
         }
 
     }catch(Exception $e){
 
-        $error = $e->getCode();
+        $_SESSION['error'] = $e->getCode();
     }
 }
 
-if (isset($error)) {
-    echo $error;
-    header('Location:/secret_santa/stepThree.php?form_token=' . $_SESSION['form_token'] . '&error=' . $error);
-    unset($error);
+if (isset($_SESSION['error'])) {
+    
+    header('Location:/secret_santa/stepThree.php');
+   
 }
 
 

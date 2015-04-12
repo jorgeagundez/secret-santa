@@ -23,6 +23,8 @@ if(!isset($_SESSION['user_id']))
                     "\n";
         $mensaje .= '<body>
                         <h1>Hello ' .    $_SESSION['friendname' . $i] .', you have been invited to join a Secret Santa Game.</h1>
+                        <p>This is the message of ' . $_SESSION['user_name'] . 'to you:  </p>
+                        <p>' . $_SESSION['game_description'] . '</p>
                         <p>If you are agree with the conditions of the game. Please, confirm following this.</p>
                         <a href="http://www.jorgeagundez.com/secret_santa/confirmation.php?gameKey='. $_SESSION['game_key'] . '&friendemail=' . $_SESSION['friendemail' . $i] . '"> link </a>
                     </body>

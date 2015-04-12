@@ -3,7 +3,7 @@
 session_start();
 
 if(!isset($_SESSION['user_id'])) {
-   header('Location:/secret_santa/index.php?error=' . 'You must be logged in to access dashboard');
+  header('Location:/secret_santa/controller/logout.php');
 }
 
 $_SESSION['id_session'] = session_id();
