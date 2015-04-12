@@ -68,7 +68,7 @@ $template = 'frontpage';
 		</section>
 
 		<div class="well">
-			<?php if (isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?>
+			<?php if (isset($_SESSION['error'])){ echo htmlspecialchars($_SESSION['error']); unset($_SESSION['error']);}?>
 		</div>
 
 		<section class="main_body" id="aqui">

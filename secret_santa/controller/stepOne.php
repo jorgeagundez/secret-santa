@@ -42,10 +42,14 @@ if(isset($_SESSION['user_id']))
 
 }else{
 
-  	$_SESSION['user_name'] = filter_var($_POST['username'],FILTER_SANITIZE_STRING);
-	$password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
+    $username = strip_tags($_POST['username']);
+    $password = strip_tags($_POST['password']);
+    $email = strip_tags($_POST['email'])
+
+  	$_SESSION['user_name'] = filter_var($username,FILTER_SANITIZE_STRING);
+	$password = filter_var($password,FILTER_SANITIZE_STRING);
     $_SESSION['user_password'] = sha1( $password );
-    $_SESSION['user_email'] = filter_var($_POST['email'],FILTER_SANITIZE_STRING);
+    $_SESSION['user_email'] = filter_var($email,FILTER_SANITIZE_EMAIL);
 
     header('Location:/secret_santa/stepTwo.php');
 

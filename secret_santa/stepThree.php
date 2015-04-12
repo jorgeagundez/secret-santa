@@ -22,7 +22,7 @@ include "includes/header.php";
         <div class="col-md-8 well">
           <div class="row">
             <div class="col-md-12">
-              <?php if (isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?>
+              <?php if (isset($_SESSION['error'])){ echo htmlspecialchars($_SESSION['error']); unset($_SESSION['error']);}?>
             </div>
           </div>
           <div class="friendList">

@@ -11,7 +11,7 @@ $_SESSION['id_session'] = session_id();
 include "../controller/dashboard.php";
 include "../includes/header.php";
 ?>
-
+<!-- htmlspecialchars($_SESSION['error']) -->
   <body>
     <div class="container">
       <header>
