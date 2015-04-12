@@ -44,7 +44,7 @@ if(isset($_SESSION['user_id']))
 
     $username = strip_tags($_POST['username']);
     $password = strip_tags($_POST['password']);
-    $email = strip_tags($_POST['email'])
+    $email = strip_tags($_POST['email']);
 
   	$_SESSION['user_name'] = filter_var($username,FILTER_SANITIZE_STRING);
 	$password = filter_var($password,FILTER_SANITIZE_STRING);
