@@ -3,7 +3,8 @@
 session_start();
 
 if(!isset($_SESSION['user_id'])) {
-  header('Location:/secret_santa/controller/logout.php');
+  $_SESSION['error'] = 'You must be logged in to visit this page';
+  header('Location:/secret_santa/index.php');
 }
 
 $_SESSION['id_session'] = session_id();
@@ -104,8 +105,9 @@ include "../includes/header.php";
         </div>
       </div>
       <div class="col-md-12">
-         <?php if (isset($_GET['error'])){ echo $_GET['error'];}?>
-         <?php if (isset($_GET['info'])){ echo $_GET['info'];}?>
+        <?php if (isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?>
+        <?php if (isset($_SESSION['info'])){ echo $_SESSION['info']; unset($_SESSION['info']);}?>
+        <?php if (isset($error)){ echo $error; unset($error);}?>
       </div>
       <div class="col-md-12 well">
         <a href="/secret_santa/userPages/update.php" class="btn btn-default" >Update your Details</a>

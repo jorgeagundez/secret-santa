@@ -4,37 +4,38 @@ session_start();
 
 if(!isset($_SESSION['user_id']))
 {
-    header('Location:/secret_santa/index.php?error=' . 'You must be logged in to updated your details');
-    die();
+    $_SESSION['error'] = 'You must be logged in to updated your details';
+    header('Location:/secret_santa/index.php');
+   
 
 }elseif($_SESSION['id_session'] != session_id()){
 
-    echo 'There was a mistake in the session, please, login again <a href="/secret_santa/controller/logout.php">here</a>';
-    die();
+    $_SESSION['error'] = 'There was a mistake in the session, please, login again';
+    header('Location:/secret_santa/index.php');
 
 }elseif(!isset($_POST['password'],$_POST['rPassword'],$_POST['email'],$_POST['rEmail'],$_POST['form_token'])){
 
-    $error = 'Please enter a valid data';
+    $_SESSION['error'] = 'Please enter a valid data';
 
 }elseif( $_POST['form_token'] != $_SESSION['form_token']){
 
-    $error = 'Invalid form update, please try again <a href="/ejemplos-php/practicas/ejemplo_autentificacion2/update.php">here</a>';
+    $_SESSION['error'] = 'Invalid form update, please try again <a href="/ejemplos-php/practicas/ejemplo_autentificacion2/update.php">here</a>';
 
 }elseif (strlen( $_POST['password']) < 8 || strlen($_POST['password']) > 20){
 
-    $error = 'Incorrect Length for Password';
+    $_SESSION['error'] = 'Incorrect Length for Password';
 
 }elseif ($_POST['password'] != $_POST['rPassword']){
 
-    $error = 'The passwords have to be the same. Please, try again.';
+    $_SESSION['error'] = 'The passwords have to be the same. Please, try again.';
 
 }elseif ($_POST['email'] != $_POST['rEmail']){
 
-    $error = 'The emailes have to be the same. Please, try again';
+    $_SESSION['error'] = 'The emailes have to be the same. Please, try again';
 
 }elseif (ctype_alnum($_POST['password']) != true){
 
-    $error = "Password must be alpha numeric";
+    $_SESSION['error'] = "Password must be alpha numeric";
 
 }else{
 
@@ -60,7 +61,7 @@ if(!isset($_SESSION['user_id']))
 
         if (!$user_id) {
 
-            $error = 'There is a problem in the server. Please, try again.';
+            $_SESSION['error'] = 'There is a problem in the server. Please, try again.';
 
         }else{
 
@@ -72,20 +73,20 @@ if(!isset($_SESSION['user_id']))
     }catch(Exception $e){
             
             if( $e->getCode() == 23000){
-                $error = 'The Email is already used by an other user. Please, insert a new one';
+                $_SESSION['error'] = 'The Email is already used by an other user. Please, insert a new one';
             }
             else{
-                $error = $e->getCode();
-                print_r( $error );
+                $_SESSION['error'] = $e->getCode();
+                print_r( $_SESSION['error'] );
             }
 
     }
 }
 
-if (isset($error)) {
+if (isset($_SESSION['error'])) {
 
-    header('Location:/secret_santa/userPages/update.php?error=' . $error);
-    unset($error);
+    header('Location:/secret_santa/userPages/update.php');
+
 }
 
 ?>

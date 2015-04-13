@@ -2,11 +2,11 @@
 session_start();
 
 if(!isset($_SESSION['user_id'])) {
-  header('Location:/secret_santa/index.php?error=' . 'You must be logged in to access dashboard');
-  die();
+  $_SESSION['error'] = 'You must be logged in to visit this page';
+  header('Location:/secret_santa/index.php');
 }else if($_SESSION['id_session'] != session_id()) {
-  echo 'There was a mistake in the session, please, login again <a href="/secret_santa/controller/logout.php">here</a>';
-  die();
+  $_SESSION['error'] = 'There was a mistake in the session, please, login again';
+  header('Location:/secret_santa/index.php');;
 }
 
 $form_token = md5( uniqid('auth', true) );
@@ -56,7 +56,7 @@ include "../includes/header.php";
             <button type="submit" class="btn btn-default">Update</button>
           </div>
           <div class="col-md-12">
-              <?php if (isset($_GET['error'])){ echo $_GET['error'];}?>
+              <?php if (isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?>
           </div>
         </div>
       </form>

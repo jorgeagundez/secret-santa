@@ -41,8 +41,7 @@ if(!isset($_SESSION['user_id']))
 
         if (PEAR::isError($res)) {  
 
-            $error= 'There was a problem sending invitations. Please, try it later.';
-            header('Location:/secret_santa/userPages/dashboard.php?&error=' . $error);
+            $_SESSION['error'] = 'There was a problem sending invitations. Please, try it later.';
 
         }else{
 
@@ -65,8 +64,7 @@ if(!isset($_SESSION['user_id']))
   
             }catch(Exception $e){
                     
-                $error= 'There was a problem sending invitations. Please, try it later.';
-                header('Location:/secret_santa/userPages/dashboard.php?&error=' . $error);
+                $_SESSION['info']= 'There was a problem updating the database about invitations';
 
             }//end try
         }

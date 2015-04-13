@@ -4,12 +4,14 @@ session_start();
 
 if (!isset($_GET['idfriend']) || !isset($_SESSION['user_id']) || !isset($_GET['number'])) {
 
-	header('Location:/secret_santa/userPages.php?&error= Something was wrong, try it later please.');
+    $_SESSION['error'] = 'Something was wrong, try it later please';
+    header('Location:/secret_santa/userPages/dashboard.php');
 }
 
 $i = $_GET['number'];
 $friend_id = $_GET['idfriend'];
 
+die();
 try {
 
 	require_once "conexionDb.php";

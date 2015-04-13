@@ -20,8 +20,9 @@ try {
 
 }catch(Exception $e){
         
-    echo 'We are unable to process your request. Please try again later';
-    echo '<a href="/secret_santa/userPages/dashboard.php" class="btn btn-default" >Go back to the member page</a>';
+    $_SESSION['error'] = 'We are unable to process your request. Please try again later';
+    header('Location:/secret_santa/userPages/dashboard.php');
+
 
 }
 ?>

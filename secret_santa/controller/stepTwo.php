@@ -11,7 +11,7 @@ if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_
 
 	$_SESSION['error'] = 'Please enter a valid data';
 
-}elseif(ctype_alnum($_POST['title']) != true || ctype_alnum($_POST['description']) != true  || ctype_digit($_POST['price']) != true || ctype_alnum($_POST['gameplace']) != true){
+}elseif(ctype_digit($_POST['price']) != true ){
 
     $_SESSION['error'] = 'Please enter a valid data, It must be alpha numeric';
 

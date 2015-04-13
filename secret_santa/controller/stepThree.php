@@ -6,7 +6,23 @@ if(!isset($_POST['nFriends'])) {
 
     header('Location:/secret_santa/controller/logout.php');
 
-}elseif( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_token'] != $_SESSION['form_token']){
+}else {
+
+    $nFriends = intval($_POST['nFriends']);
+}
+
+
+for ($i = 1; $i <= $nFriends; $i++) {
+
+    if ( !isset($_POST['friendname' . $i]) || !isset($_POST['friendemail' . $i]) ) {
+
+       $_SESSION['error'] = 'Please enter a valid data';
+       header('Location:/secret_santa/stepThree.php');
+    }
+}
+
+
+if(isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_token'] != $_SESSION['form_token']){
 
     // $_SESSION['error'] = 'There was a problem, please start again or login if you have an account already';
     header('Location:/secret_santa/controller/logout.php');
@@ -32,7 +48,6 @@ if(!isset($_POST['nFriends'])) {
         
         try { 
 
-            $nFriends = intval($_POST['nFriends']);
             $_SESSION['numberfriends'] = $nFriends;
 
             $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
@@ -55,12 +70,8 @@ if(!isset($_POST['nFriends'])) {
             for ($i = 1; $i <= $nFriends; $i++) {
 
                 $friendname = filter_var($_POST['friendname' . $i],FILTER_SANITIZE_STRING);
-                $friendemail = filter_var($_POST['friendemail' . $i],FILTER_SANITIZE_STRING);
+                $friendemail = filter_var($_POST['friendemail' . $i],FILTER_SANITIZE_EMAIL);
                 $_SESSION['game_id'] = intval($_SESSION['game_id']);
-
-                // if(!isset($_POST['friendname' . $i]) || !isset($_POST['friendemail' . $i])) {
-                //     $_SESSION['error'] = 'Please enter a valid data';
-                // }
 
                 try { 
 
@@ -103,11 +114,6 @@ if(!isset($_POST['nFriends'])) {
     }
 }
 
-if (isset($_SESSION['error'])) {
-    
-    header('Location:/secret_santa/stepThree.php');
-   
-}
 
 
 ?>
