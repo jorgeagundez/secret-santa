@@ -16,8 +16,9 @@ $extrabold:700;
 // Base Font
 $base-font-family:'Open Sans', sans-serif;
 $base-font-weight: $regular;
-$base-font-size: 16px;
+$base-font-size: 18px;
 $base-line-height: 1.4;
+$base-color: $blue;
 
 // Fixed Font
 $fixed-font-family: monospace;
@@ -40,9 +41,14 @@ $header-font-weight: $bold;
 	padding:0px;
 }
 
+.fullwidth_wraper.white {
+	background: white;
+}
+
 body {
 	font-family: $base-font-family;
 	font-size: $base-font-size;
+	color: $base-color;
 }
 
 span.white {
@@ -55,15 +61,36 @@ span.red {
 
 span.blue {
 	color: $blue;
+	background: transparent;
 }
 
 span.sky {
 	color: $sky;
 }
 
+span.gray {
+	color: $darkgray;
+}
+
 .btn-red {
 	background: $red;
 	color: white;
+	display: block;
+	margin: 0 auto;
+	border: none;
+}
+
+.btn-yellow {
+	background: $yellow;
+	color: white;
+	display: block;
+	margin: 0 auto;
+	border: none;
+}
+
+.btn-sky {
+	background: $sky;
+	color: $blue;
 	display: block;
 	margin: 0 auto;
 	border: none;
@@ -81,6 +108,32 @@ p.bold {
 	margin: 0 auto;
 }
 
+.top_bar{
+	float: left;
+	height: 50px;
+	padding: 15px 15px;
+	font-size: 18px;
+	line-height: 20px;
+	font-weight: $bold; 
+}
+
+	p.top_bar {
+		margin:0;
+	}
+
+.yellow {
+	background: $yellow;
+}
+
+.blue {
+	background: $blue;
+}
+
+.input_wrapper {
+	padding: 8px;
+}
+
+
 // ========================
 // ========================
 // 	   COMMON ELEMENTS
@@ -92,22 +145,12 @@ p.bold {
 /***********/
 header {
 
-	background: $yellow;
-
-	.fullwidth_wraper {
-		background: white;
-	}
-
 	.main_nav {
 		margin:0px;
 
 		a {
 			color: $blue;
 			font-weight: $bold;
-
-			span{
-				color: $red;
-			}
 
 			small {
 				color: $darkgray;
@@ -125,7 +168,6 @@ header {
 			padding-left: 40%;
 			font-size: 25px;
 			text-align: left;
-			color: $blue;
 			font-weight: $bold;
 
 			span.red {
@@ -173,15 +215,53 @@ header {
 			}
 		}
 
-		.input_wrapper {
-			padding: 8px;
-
-			button {
-				display: block;
-				margin: 0 auto;
-				width: 50%;
-			}
+		button {
+			display: block;
+			margin: 0 auto;
+			width: 50%;
 		}
+	
+	}
+
+}
+
+/***********/
+/*FOOTER*/
+/***********/
+footer {
+
+	background: $sky;
+
+	.social_media{
+		position:relative;
+		display:table;
+		margin:0 auto;
+		list-style: none;
+		padding: 20px 0px;
+
+		li{
+			display:table-cell;
+			padding: 0px 10px;
+		
+			a {
+				color: white;
+
+				.fa{
+					font-size: 25px;
+				}
+			}
+
+			a.twitter:hover {
+				color: $blue;
+				}
+			a.linkedin:hover {
+				color: $red;
+				}
+			a.github:hover {
+				color: $yellow;
+				}
+		}
+
 	}
 
 }
@@ -223,7 +303,6 @@ header {
 	text-align: center;
 	color: $blue;
 	height: auto;
-	margin-bottom: 30px;
 
 	.icon:before {
 		content: "";
@@ -246,6 +325,8 @@ header {
 }
 
 .steps {
+
+	padding: 30px 0;
 
 	.step_wrap {
 		text-align: center;
@@ -270,11 +351,11 @@ header {
 			border-radius: 50%;
 		}
 
-		.step_one{
+		.pluma{
 			background: $blue;
 		}
 
-		.step_one:before {
+		.pluma:before {
 			content: "";
 			background: url(../images/pen43.png);
 			width: 80px;
@@ -286,11 +367,11 @@ header {
 			position: absolute;		
 		}
 
-		.step_two{
+		.puzzle{
 			background: $red;
 		}
 
-		.step_two:before {
+		.puzzle:before {
 			content: "";
 			background: url(../images/puzzle2.png);
 			width: 80px;
@@ -302,11 +383,11 @@ header {
 			position: absolute;		
 		}
 
-		.step_three{
+		.ninos{
 			background: $yellow;
 		}
 
-		.step_three:before {
+		.ninos:before {
 			content: "";
 			background: url(../images/friends.png);
 			width: 80px;
@@ -317,51 +398,64 @@ header {
 			left: 20px;
 			position: absolute;		
 		}
+
+		.ciervo{
+			background: white;
+		}
+
+		.ciervo:before{
+			content: "";
+			background: url(../images/reindeer4blue.png);
+			width: 80px;
+			height: 80px;
+			background-size: 100%;
+			background-repeat: no-repeat;
+			top: 23px;
+			left: 20px;
+			position: absolute;
+		}
+
 	}
 
 	
 }
 
-/***********/
-/*FOOTER*/
-/***********/
-footer {
-	margin-top: 30px;
-	background: $sky;
+// ========================
+// ========================
+//        STEP PAGES
+// ========================
+// ========================
 
-	.social_media{
-		position:relative;
-		display:table;
-		margin:0 auto;
-		list-style: none;
-		padding: 20px 0px;
 
-		li{
-			display:table-cell;
-			padding: 0px 10px;
-		
-			a {
-				color: white;
+.go_back {
 
-				.fa{
-					font-size: 20px;
-				}
-			}
+	padding: 20px 0 0;
 
-			a.twitter:hover {
-				color: $blue;
-				}
-			a.linkedin:hover {
-				color: $red;
-				}
-			a.github:hover {
-				color: $yellow;
-				}
-		}
-
+	p {
+		text-align: center;
+		color: white;
+		margin: 0;
+		color: $regulargray;
+		font-size: 14px;
 	}
 
 }
+.form_step_wrapper {
+
+	.input_wrapper {
+
+		label {
+			color: white;
+			font-size: 16px;
+			text-align: left;
+			float: left;
+		}
+	}
+
+	
+
+}
+
 
 
 // Partials
