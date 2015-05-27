@@ -1,0 +1,228 @@
+.fullwidth_wraper {
+  width: 100%;
+  max-width: 100%;
+  padding: 0px; }
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px; }
+
+span.white {
+  color: white; }
+
+span.red {
+  color: #EC6645; }
+
+span.blue {
+  color: #0F3E5A; }
+
+span.sky {
+  color: #ABD0CD; }
+
+.btn-red {
+  background: #EC6645;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  border: none; }
+
+p.bold {
+  font-weight: 600; }
+
+.icon {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  display: block;
+  margin: 0 auto; }
+
+/***********/
+/*HEADER*/
+/***********/
+header {
+  background: #F0B323; }
+  header .fullwidth_wraper {
+    background: white; }
+  header .main_nav {
+    margin: 0px; }
+    header .main_nav a {
+      color: #0F3E5A;
+      font-weight: 600; }
+      header .main_nav a span {
+        color: #EC6645; }
+      header .main_nav a small {
+        color: #DDDEDD; }
+  header .logo {
+    display: block;
+    margin: 0 auto;
+    position: relative; }
+    header .logo h1 {
+      padding-left: 40%;
+      font-size: 25px;
+      text-align: left;
+      color: #0F3E5A;
+      font-weight: 600; }
+      header .logo h1 span.red {
+        font-size: 30px; }
+      header .logo h1 span.white {
+        text-transform: uppercase;
+        font-size: 20px; }
+  header .logo:before {
+    content: "";
+    background: url(../images/santa-claus4_1.png);
+    width: 100px;
+    height: 105px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    top: 4px;
+    left: 11px;
+    position: absolute; }
+  header .login {
+    background: #FAF9F9;
+    border-radius: 6px;
+    margin: 20px 0;
+    padding: 0;
+    color: #0F3E5A;
+    overflow: hidden; }
+    header .login .login_header h3 {
+      margin: 0;
+      text-align: center;
+      font-weight: 600;
+      color: white;
+      background: #0F3E5A;
+      padding-top: 6px;
+      padding-bottom: 10px; }
+    header .login .input_wrapper {
+      padding: 8px; }
+      header .login .input_wrapper button {
+        display: block;
+        margin: 0 auto;
+        width: 50%; }
+
+.arrow {
+  background: #0F3E5A;
+  padding: 5px 0;
+  text-align: center; }
+  .arrow .icon {
+    width: 50px;
+    height: 50px; }
+  .arrow .icon:before {
+    content: "";
+    background: url(../images/down139.png);
+    width: 50px;
+    height: 50px;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    top: 5px;
+    left: 5px;
+    position: absolute; }
+
+.info {
+  padding: 20px 10px 30px;
+  background: #ABD0CD;
+  text-align: center;
+  color: #0F3E5A;
+  height: auto;
+  margin-bottom: 30px; }
+  .info .icon:before {
+    content: "";
+    background: url(../images/present31.png);
+    width: 80px;
+    height: 80px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    top: 20px;
+    left: 20px;
+    position: absolute; }
+  .info h2 {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: white;
+    font-weight: 400; }
+
+.steps .step_wrap {
+  text-align: center;
+  color: #0F3E5A;
+  padding: 20px 0;
+  height: auto; }
+  .steps .step_wrap h2 {
+    margin-bottom: 5px; }
+  .steps .step_wrap p.bold {
+    font-size: 18px; }
+  .steps .step_wrap .step {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%; }
+  .steps .step_wrap .step_one {
+    background: #0F3E5A; }
+  .steps .step_wrap .step_one:before {
+    content: "";
+    background: url(../images/pen43.png);
+    width: 80px;
+    height: 80px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    top: 20px;
+    left: 20px;
+    position: absolute; }
+  .steps .step_wrap .step_two {
+    background: #EC6645; }
+  .steps .step_wrap .step_two:before {
+    content: "";
+    background: url(../images/puzzle2.png);
+    width: 80px;
+    height: 80px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    top: 20px;
+    left: 25px;
+    position: absolute; }
+  .steps .step_wrap .step_three {
+    background: #F0B323; }
+  .steps .step_wrap .step_three:before {
+    content: "";
+    background: url(../images/friends.png);
+    width: 80px;
+    height: 80px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    top: 23px;
+    left: 20px;
+    position: absolute; }
+
+/***********/
+/*FOOTER*/
+/***********/
+footer {
+  margin-top: 30px;
+  background: #ABD0CD; }
+  footer .social_media {
+    position: relative;
+    display: table;
+    margin: 0 auto;
+    list-style: none;
+    padding: 20px 0px; }
+    footer .social_media li {
+      display: table-cell;
+      padding: 0px 10px; }
+      footer .social_media li a {
+        color: white; }
+        footer .social_media li a .fa {
+          font-size: 20px; }
+      footer .social_media li a.twitter:hover {
+        color: #0F3E5A; }
+      footer .social_media li a.linkedin:hover {
+        color: #EC6645; }
+      footer .social_media li a.github:hover {
+        color: #F0B323; }
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+/* Small devices (tablets, 768px and up) */
+/* Medium devices (desktops, 992px and up) */
+/* Large devices (large desktops, 1200px and up) */
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,368 @@
+//Colors
+$yellow: #F0B323;
+$blue: #0F3E5A;
+$sky: #ABD0CD;
+$red: #EC6645;
+$ligthgray: #FAF9F9;
+$regulargray: #EDEDED;
+$darkgray: #DDDEDD;
+
+// Font weights
+$light: 300;
+$regular: 400;
+$bold: 600;
+$extrabold:700;
+
+// Base Font
+$base-font-family:'Open Sans', sans-serif;
+$base-font-weight: $regular;
+$base-font-size: 16px;
+$base-line-height: 1.4;
+
+// Fixed Font
+$fixed-font-family: monospace;
+$fixed-font-size: 85%;
+$fixed-line-height: $base-line-height;
+
+// Headings
+$header-font-weight: $bold;
+
+
+// ========================
+// ========================
+// 			GENERAL
+// ========================
+// ========================
+
+.fullwidth_wraper {
+	width: 100%;
+	max-width: 100%;
+	padding:0px;
+}
+
+body {
+	font-family: $base-font-family;
+	font-size: $base-font-size;
+}
+
+span.white {
+	color: white;
+}
+
+span.red {
+	color: $red;
+}
+
+span.blue {
+	color: $blue;
+}
+
+span.sky {
+	color: $sky;
+}
+
+.btn-red {
+	background: $red;
+	color: white;
+	display: block;
+	margin: 0 auto;
+	border: none;
+}
+
+p.bold {
+	font-weight: $bold;
+}
+
+.icon {
+	width: 120px;
+	height: 120px;
+	position: relative;
+	display: block;
+	margin: 0 auto;
+}
+
+// ========================
+// ========================
+// 	   COMMON ELEMENTS
+// ========================
+// ========================
+
+/***********/
+/*HEADER*/
+/***********/
+header {
+
+	background: $yellow;
+
+	.fullwidth_wraper {
+		background: white;
+	}
+
+	.main_nav {
+		margin:0px;
+
+		a {
+			color: $blue;
+			font-weight: $bold;
+
+			span{
+				color: $red;
+			}
+
+			small {
+				color: $darkgray;
+			}
+		}
+	}
+
+	.logo {
+
+		display: block;
+  		margin: 0 auto;
+  		position: relative;
+ 
+		h1 {
+			padding-left: 40%;
+			font-size: 25px;
+			text-align: left;
+			color: $blue;
+			font-weight: $bold;
+
+			span.red {
+				font-size: 30px;
+			}
+
+			span.white {
+				text-transform: uppercase;
+				font-size: 20px;
+			}
+		}
+
+	}
+
+	.logo:before {
+		content: "";
+		background: url(../images/santa-claus4_1.png);
+		width: 100px;
+		height: 105px;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		top: 4px;
+		left: 11px;
+		position: absolute;
+	}
+
+	.login {
+		background: $ligthgray;
+		border-radius: 6px;
+		margin: 20px 0;
+		padding: 0;
+		color: $blue;
+		overflow: hidden;
+
+		.login_header {
+
+			h3{
+				margin: 0;
+				text-align: center;
+				font-weight: $bold;
+				color: white;
+				background: #0F3E5A;
+				padding-top: 6px;
+				padding-bottom: 10px;
+			}
+		}
+
+		.input_wrapper {
+			padding: 8px;
+
+			button {
+				display: block;
+				margin: 0 auto;
+				width: 50%;
+			}
+		}
+	}
+
+}
+
+// ========================
+// ========================
+//        HOME PAGE
+// ========================
+// ========================
+.arrow {
+
+	background: $blue;
+	padding: 5px 0;
+	text-align: center;
+
+	.icon {
+		width: 50px;
+		height: 50px;
+	}
+
+	.icon:before {
+		content: "";
+		background: url(../images/down139.png);
+		width: 50px;
+		height: 50px;
+		background-size: 80%;
+		background-repeat: no-repeat;
+		top: 5px;
+		left: 5px;
+		position: absolute;
+	}
+
+}
+
+
+.info {
+	padding: 20px 10px 30px;
+	background: $sky;
+	text-align: center;
+	color: $blue;
+	height: auto;
+	margin-bottom: 30px;
+
+	.icon:before {
+		content: "";
+		background: url(../images/present31.png);
+		width: 80px;
+		height: 80px;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		top: 20px;
+		left: 20px;
+		position: absolute;	
+	}
+
+	h2 {
+		margin-top: 10px;
+		margin-bottom: 30px;
+		color: white;
+		font-weight: $regular;
+	}
+}
+
+.steps {
+
+	.step_wrap {
+		text-align: center;
+		color: $blue;
+		padding: 20px 0;
+		height: auto;
+
+		h2 {
+			margin-bottom: 5px;
+		}
+
+		p.bold {
+			font-size: 18px;
+		}
+
+		.step{
+			width: 120px;
+			height: 120px;
+			position: relative;
+			display: block;
+			margin: 0 auto;
+			border-radius: 50%;
+		}
+
+		.step_one{
+			background: $blue;
+		}
+
+		.step_one:before {
+			content: "";
+			background: url(../images/pen43.png);
+			width: 80px;
+			height: 80px;
+			background-size: 100%;
+			background-repeat: no-repeat;
+			top: 20px;
+			left: 20px;
+			position: absolute;		
+		}
+
+		.step_two{
+			background: $red;
+		}
+
+		.step_two:before {
+			content: "";
+			background: url(../images/puzzle2.png);
+			width: 80px;
+			height: 80px;
+			background-size: 100%;
+			background-repeat: no-repeat;
+			top: 20px;
+			left: 25px;
+			position: absolute;		
+		}
+
+		.step_three{
+			background: $yellow;
+		}
+
+		.step_three:before {
+			content: "";
+			background: url(../images/friends.png);
+			width: 80px;
+			height: 80px;
+			background-size: 100%;
+			background-repeat: no-repeat;
+			top: 23px;
+			left: 20px;
+			position: absolute;		
+		}
+	}
+
+	
+}
+
+/***********/
+/*FOOTER*/
+/***********/
+footer {
+	margin-top: 30px;
+	background: $sky;
+
+	.social_media{
+		position:relative;
+		display:table;
+		margin:0 auto;
+		list-style: none;
+		padding: 20px 0px;
+
+		li{
+			display:table-cell;
+			padding: 0px 10px;
+		
+			a {
+				color: white;
+
+				.fa{
+					font-size: 20px;
+				}
+			}
+
+			a.twitter:hover {
+				color: $blue;
+				}
+			a.linkedin:hover {
+				color: $red;
+				}
+			a.github:hover {
+				color: $yellow;
+				}
+		}
+
+	}
+
+}
+
+
+// Partials
+@import "partials/responsive";
