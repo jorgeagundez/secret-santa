@@ -69,11 +69,17 @@ p.bold {
 p.top_bar {
   margin: 0; }
 
-.yellow {
+section.yellow,
+div.yellow {
   background: #F0B323; }
 
-.blue {
+section.blue,
+div.blue {
   background: #0F3E5A; }
+
+section.red,
+div.red {
+  background: #EC6645; }
 
 .input_wrapper {
   padding: 8px; }
@@ -263,6 +269,30 @@ footer {
       top: 23px;
       left: 20px;
       position: absolute; }
+    .steps .step_wrap .trineo {
+      background: white; }
+    .steps .step_wrap .trineo:before {
+      content: "";
+      background: url(../images/sledred.png);
+      width: 80px;
+      height: 80px;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      top: 32px;
+      left: 24px;
+      position: absolute; }
+    .steps .step_wrap .ginger {
+      background: white; }
+    .steps .step_wrap .ginger:before {
+      content: "";
+      background: url(../images/gingerbreadyellow.png);
+      width: 100px;
+      height: 100px;
+      background-size: 80%;
+      background-repeat: no-repeat;
+      top: 17px;
+      left: 20px;
+      position: absolute; }
 
 .go_back {
   padding: 20px 0 0; }
@@ -274,10 +304,15 @@ footer {
     font-size: 14px; }
 
 .form_step_wrapper .input_wrapper label {
-  color: white;
   font-size: 16px;
   text-align: left;
-  float: left; }
+  float: left;
+  font-weight: 300; }
+.form_step_wrapper .stepOne label {
+  color: white; }
+.form_step_wrapper .stepTwo label {
+  color: white;
+  font-weight: 400; }
 
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */

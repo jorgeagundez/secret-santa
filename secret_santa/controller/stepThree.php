@@ -101,6 +101,8 @@ if(isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_t
             }//End for
 
             unset( $_SESSION['form_token'] );
+            unset( $_SESSION['form_token_step1'] );
+            unset( $_SESSION['form_token_step2'] );
             header('Location:/secret_santa/controller/invitations.php');
                
         }catch(Exception $e){

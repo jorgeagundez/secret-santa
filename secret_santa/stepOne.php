@@ -4,7 +4,6 @@ session_start();
 $form_token = md5( uniqid('auth', true) );
 $_SESSION['form_token'] = $form_token;
 
-
 include "includes/header.php";
 ?>
 
@@ -25,7 +24,7 @@ include "includes/header.php";
         <div class="step_wrap">
             <div class="step ciervo"></div>
             <div class="container">
-                <form role="form" id="stepOne" method="post" action="controller/stepOne.php">
+                <form role="form" class="stepOne" id="stepOne" method="post" action="controller/stepOne.php">
                     <div class="col-xs-12">
                         <div class="row">
                             <div class="col-md-12">
@@ -35,31 +34,31 @@ include "includes/header.php";
                         <div class="row">
                             <div class="col-md-12 input_wrapper">
                                 <label for="username">Usuario</label>
-                                <input type="text" name="username" class="form-control" id="username" placeholder="Elige un nombre de usuario" required="true"/>
+                                <input type="text" name="username" class="form-control" id="username"  required="true"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 input_wrapper">
                                 <label for="email">Email</label>
-                                <input type="email" name="email" class="form-control" id="email" placeholder="Escribe tu email" required="true"/>
+                                <input type="email" name="email" class="form-control" id="email" required="true"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 input_wrapper">
                                 <label for="rEmail">Repite Email</label>
-                                <input type="email" name="rEmail" class="form-control" id="rEmail" placeholder="Repite tu email" required="true"/>
+                                <input type="email" name="rEmail" class="form-control" id="rEmail" required="true"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 input_wrapper">
                                 <label for="password">Password</label>
-                                <input type="password" name="password" class="form-control" id="password" placeholder="Password" required="true"/>
+                                <input type="password" name="password" class="form-control" id="password" required="true"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 input_wrapper">
                                 <label for="rPassword">Repite Password</label>
-                                <input type="password" name="rPassword" class="form-control" id="rPassword" placeholder="Password" required="true"/>
+                                <input type="password" name="rPassword" class="form-control" id="rPassword" required="true"/>
                             </div>
                         </div>
                         <div class="row">
@@ -74,8 +73,13 @@ include "includes/header.php";
             </div>
             <div class="go_back">
                 <p>*Tienes una cuenta?</p>
-                <p>Haz login <a href="/secret_santa/index.php" class="" ><span class="gray">Aquí</span></a></p>
+                <p>Haz login <a href="/secret_santa/controller/logout.php" class="" ><span class="gray">Aquí</span></a></p>
             </div>
+
+            <div class="go_back">
+                <a href="/secret_santa/controller/logout.php" class="" ><span class="gray">Reset</span></a></p>
+            </div>
+            
         </div>
     </section>
 

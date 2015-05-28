@@ -11,64 +11,65 @@ $template = 'frontpage';
 			
 	<body class="<?php echo $template ?>">
 
-		<header class="yellow">
-
-			<div class="fullwidth_wraper white">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12">
-							<nav class="main_nav" role="navigation">
-								<a class="top_bar" href="#">Secret <span class="red">Santa</span></a>
-								<a class="top_bar pull-right" href="#"><small>About</small></a>
-							</nav>
-						</div>
-					</div>	
-				</div><!--/.container-->
-			</div><!--/.fullwidth_wraper-->
-		
-			<section class="logo_wrap">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="logo">
-								<h1><span class="blue">Organiza tu propio amigo invisible en</span><br/><span class="red">60</span><span class="white">segundos!</span></h1>	
+		<header>
+			<div class="yellow">
+				<div class="fullwidth_wraper white">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+								<nav class="main_nav" role="navigation">
+									<a class="top_bar" href="#">Secret <span class="red">Santa</span></a>
+									<a class="top_bar pull-right" href="#"><small>About</small></a>
+								</nav>
+							</div>
+						</div>	
+					</div><!--/.container-->
+				</div><!--/.fullwidth_wraper-->
+			
+				<section class="logo_wrap">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="logo">
+									<h1><span class="blue">Organiza tu propio amigo invisible en</span><br/><span class="red">60</span><span class="white">segundos!</span></h1>	
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</section>
+				</section>
 
-			<section class="login_wrap">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<form role="form" id="login_form" method="post" action="controller/login.php" class="login">
-								<div class="login_header">
-									<h3>Login</h3>
-								</div>
-								<div class="row">
-									<div class="col-xs-10 col-xs-offset-1 input_wrapper">
-										<label for="username">Usuario</label>
-										<input type="text" name="username" class="form-control" id="username" placeholder="username" required="true"/>
+				<section class="login_wrap">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-10 col-xs-offset-1">
+								<form role="form" id="login_form" method="post" action="controller/login.php" class="login">
+									<div class="login_header">
+										<h3>Login</h3>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-10 col-xs-offset-1 input_wrapper">
-						            	<label for="password">Password</label>
-						            	<input type="password" name="password" class="form-control" id="password" placeholder="password" required="true"/></li>
-				         			</div>
-				         		</div>
-				         		<div class="row">
-				         			<div class="col-xs-10 col-xs-offset-1 input_wrapper">
-						            	<input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
-						            	<button type="submit" class="btn btn-red">Go!</button>
-						            </div>
-								</div>
-							</form>
+									<div class="row">
+										<div class="col-xs-10 col-xs-offset-1 input_wrapper">
+											<label for="username">Usuario</label>
+											<input type="text" name="username" class="form-control" id="username" placeholder="username" required="true"/>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-10 col-xs-offset-1 input_wrapper">
+							            	<label for="password">Password</label>
+							            	<input type="password" name="password" class="form-control" id="password" placeholder="password" required="true"/></li>
+					         			</div>
+					         		</div>
+					         		<div class="row">
+					         			<div class="col-xs-10 col-xs-offset-1 input_wrapper">
+							            	<input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
+							            	<button type="submit" class="btn btn-red">Go!</button>
+							            </div>
+									</div>
+								</form>
+					        </div>
 				        </div>
-			        </div>
-			    <div><!-- /container -->
-			</section>
+				    <div><!-- /container -->
+				</section>
+			</div>
 		</header>
 
 		<div class="">
@@ -132,23 +133,5 @@ $template = 'frontpage';
 				</div>
 			</div>
 		</section>
-
-		<script>
-			$(function() {
-				$('a[href*=#]:not([href=#])').click(function() {
-					if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-						var target = $(this.hash);
-						target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-						if (target.length) {
-							$('html,body').animate({
-							scrollTop: target.offset().top
-							}, 1000);
-							return false;
-						}
-					}
-				});
-			});
-
-		</script>
  
 <?php include 'includes/footer.php';?>

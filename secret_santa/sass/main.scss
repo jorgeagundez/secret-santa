@@ -121,17 +121,26 @@ p.bold {
 		margin:0;
 	}
 
-.yellow {
+section.yellow,
+div.yellow {
 	background: $yellow;
 }
 
-.blue {
+section.blue,
+div.blue {
 	background: $blue;
+}
+
+section.red,
+div.red {
+	background: $red;
 }
 
 .input_wrapper {
 	padding: 8px;
 }
+
+
 
 
 // ========================
@@ -415,6 +424,38 @@ footer {
 			position: absolute;
 		}
 
+		.trineo{
+			background: white;
+		}
+
+		.trineo:before{
+			content: "";
+			background: url(../images/sledred.png);
+			width: 80px;
+			height: 80px;
+			background-size: 100%;
+			background-repeat: no-repeat;
+			top: 32px;
+			left: 24px;
+			position: absolute;
+		}
+
+		.ginger{
+			background: white;
+		}
+
+		.ginger:before{
+			content: "";
+			background: url(../images/gingerbreadyellow.png);
+			width: 100px;
+			height: 100px;
+			background-size: 80%;
+			background-repeat: no-repeat;
+			top: 17px;
+			left: 20px;
+			position: absolute;
+		}
+
 	}
 
 	
@@ -445,13 +486,25 @@ footer {
 	.input_wrapper {
 
 		label {
-			color: white;
 			font-size: 16px;
 			text-align: left;
 			float: left;
+			font-weight: $light;
 		}
 	}
 
+	.stepOne label {
+		color: white;
+	}
+
+	.stepTwo label {
+		color: white;
+		font-weight: $regular;
+	}
+
+	.stepTwo {
+
+	}
 	
 
 }

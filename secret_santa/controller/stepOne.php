@@ -51,6 +51,10 @@ if(isset($_SESSION['user_id']))
     $_SESSION['user_password'] = sha1( $password );
     $_SESSION['user_email'] = filter_var($email,FILTER_SANITIZE_EMAIL);
 
+    $form_token = md5( uniqid('auth', true) );
+    $_SESSION['form_token_step1'] = $form_token;
+    $_SESSION['form_token'] = $_SESSION['form_token_step1'];
+    
     header('Location:/secret_santa/stepTwo.php');
 
 }
