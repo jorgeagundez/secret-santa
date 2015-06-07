@@ -11,52 +11,76 @@ body {
   font-size: 18px;
   color: #0F3E5A; }
 
-span.white {
+.quotes {
+  display: block;
+  margin: auto;
+  width: 70%; }
+
+.quotes:before {
+  content: '';
+  background: url(../images/quotesleft.png);
+  width: 50px;
+  height: 50px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0; }
+
+.quotes:after {
+  content: '';
+  background: url(../images/quotesright.png);
+  width: 50px;
+  height: 50px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 0; }
+
+.white {
   color: white; }
 
-span.red {
+.red {
   color: #EC6645; }
 
-span.blue {
-  color: #0F3E5A;
-  background: transparent; }
+.blue {
+  color: #0F3E5A; }
 
-span.sky {
+.sky {
   color: #ABD0CD; }
 
-span.gray {
+.gray {
   color: #DDDEDD; }
+
+.black {
+  color: #535553; }
+
+.button_style, .btn-red, .btn-yellow, .btn-sky, .btn-blue {
+  display: block;
+  margin: 0 auto;
+  border: none; }
 
 .btn-red {
   background: #EC6645;
-  color: white;
-  display: block;
-  margin: 0 auto;
-  border: none; }
+  color: white; }
 
 .btn-yellow {
   background: #F0B323;
-  color: white;
-  display: block;
-  margin: 0 auto;
-  border: none; }
+  color: white; }
 
 .btn-sky {
   background: #ABD0CD;
-  color: #0F3E5A;
-  display: block;
-  margin: 0 auto;
-  border: none; }
+  color: #0F3E5A; }
 
-p.bold {
+.btn-blue {
+  background: #0F3E5A;
+  color: white; }
+
+.btn:hover, .btn:focus {
+  color: white; }
+
+p.bold,
+span.bold {
   font-weight: 600; }
-
-.icon {
-  width: 120px;
-  height: 120px;
-  position: relative;
-  display: block;
-  margin: 0 auto; }
 
 .top_bar {
   float: left;
@@ -71,18 +95,177 @@ p.top_bar {
 
 section.yellow,
 div.yellow {
-  background: #F0B323; }
+  background: #F0B323;
+  color: inherit; }
 
 section.blue,
 div.blue {
-  background: #0F3E5A; }
+  background: #0F3E5A;
+  color: inherit; }
 
 section.red,
 div.red {
-  background: #EC6645; }
+  background: #EC6645;
+  color: inherit; }
+
+section.white,
+div.white {
+  background: white;
+  color: inherit; }
+
+section.sky,
+div.sky {
+  background: #ABD0CD;
+  color: inherit;
+  color: inherit; }
+
+section.ligthgray,
+div.ligthgray {
+  background: #FAF9F9;
+  color: inherit; }
+
+section.regulargray,
+div.regulargray {
+  background: #EDEDED;
+  color: inherit; }
 
 .input_wrapper {
   padding: 8px; }
+
+.figure {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%; }
+
+.figure:before, .pluma:before, .puzzle:before, .ninos:before, .ciervo:before, .trineo:before, .ginger:before, .engranaje:before {
+  content: "";
+  width: 80px;
+  height: 80px;
+  position: absolute; }
+
+.pluma {
+  background: #0F3E5A; }
+
+.pluma:before {
+  background: url(../images/pen43.png);
+  background-size: 100%;
+  top: 20px;
+  left: 20px;
+  background-repeat: no-repeat; }
+
+.puzzle {
+  background: #EC6645; }
+
+.puzzle:before {
+  background: url(../images/puzzle2.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  top: 20px;
+  left: 25px; }
+
+.ninos {
+  background: #F0B323; }
+
+.ninos:before {
+  background: url(../images/friends.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  top: 23px;
+  left: 20px; }
+
+.ciervo {
+  background: white; }
+
+.ciervo:before {
+  background: url(../images/reindeer4blue.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  top: 23px;
+  left: 20px; }
+
+.trineo {
+  background: white; }
+
+.trineo:before {
+  background: url(../images/sledred.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  top: 32px;
+  left: 24px; }
+
+.ginger {
+  background: white; }
+
+.ginger:before {
+  background: url(../images/gingerbreadyellow.png);
+  width: 100px;
+  height: 100px;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  top: 17px;
+  left: 20px; }
+
+.engranaje {
+  background: white; }
+
+.engranaje:before {
+  background: url(../images/cogs3colors.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  top: 22px;
+  left: 16px; }
+
+.arrow {
+  background: none;
+  padding: 5px 0;
+  text-align: center;
+  border-radius: 0;
+  width: 50px;
+  height: 50px; }
+
+.arrow:before {
+  content: "";
+  background: url(../images/down139.png);
+  width: 50px;
+  height: 50px;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  top: 5px;
+  left: 5px;
+  position: absolute; }
+
+.info_area {
+  padding: 20px 10px 30px;
+  text-align: center;
+  height: auto; }
+  .info_area .info_icon, .info_area .present:before, .info_area .engranaje:before, .info_area .engranajecol:before {
+    content: "";
+    width: 80px;
+    height: 80px;
+    top: 20px;
+    left: 20px;
+    position: absolute; }
+  .info_area .present:before {
+    background: url(../images/present31.png);
+    background-size: 100%;
+    background-repeat: no-repeat; }
+  .info_area .engranaje:before {
+    background: url(../images/cogs3.png);
+    background-size: 100%;
+    background-repeat: no-repeat; }
+  .info_area .engranajecol:before {
+    background: url(../images/cogs33colors.png);
+    background-size: 100%;
+    background-repeat: no-repeat; }
+  .info_area h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 400; }
+  .info_area p {
+    margin-top: 20px; }
 
 /***********/
 /*HEADER*/
@@ -163,46 +346,6 @@ footer {
       footer .social_media li a.github:hover {
         color: #F0B323; }
 
-.arrow {
-  background: #0F3E5A;
-  padding: 5px 0;
-  text-align: center; }
-  .arrow .icon {
-    width: 50px;
-    height: 50px; }
-  .arrow .icon:before {
-    content: "";
-    background: url(../images/down139.png);
-    width: 50px;
-    height: 50px;
-    background-size: 80%;
-    background-repeat: no-repeat;
-    top: 5px;
-    left: 5px;
-    position: absolute; }
-
-.info {
-  padding: 20px 10px 30px;
-  background: #ABD0CD;
-  text-align: center;
-  color: #0F3E5A;
-  height: auto; }
-  .info .icon:before {
-    content: "";
-    background: url(../images/present31.png);
-    width: 80px;
-    height: 80px;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    top: 20px;
-    left: 20px;
-    position: absolute; }
-  .info h2 {
-    margin-top: 10px;
-    margin-bottom: 30px;
-    color: white;
-    font-weight: 400; }
-
 .steps {
   padding: 30px 0; }
   .steps .step_wrap {
@@ -214,85 +357,6 @@ footer {
       margin-bottom: 5px; }
     .steps .step_wrap p.bold {
       font-size: 18px; }
-    .steps .step_wrap .step {
-      width: 120px;
-      height: 120px;
-      position: relative;
-      display: block;
-      margin: 0 auto;
-      border-radius: 50%; }
-    .steps .step_wrap .pluma {
-      background: #0F3E5A; }
-    .steps .step_wrap .pluma:before {
-      content: "";
-      background: url(../images/pen43.png);
-      width: 80px;
-      height: 80px;
-      background-size: 100%;
-      background-repeat: no-repeat;
-      top: 20px;
-      left: 20px;
-      position: absolute; }
-    .steps .step_wrap .puzzle {
-      background: #EC6645; }
-    .steps .step_wrap .puzzle:before {
-      content: "";
-      background: url(../images/puzzle2.png);
-      width: 80px;
-      height: 80px;
-      background-size: 100%;
-      background-repeat: no-repeat;
-      top: 20px;
-      left: 25px;
-      position: absolute; }
-    .steps .step_wrap .ninos {
-      background: #F0B323; }
-    .steps .step_wrap .ninos:before {
-      content: "";
-      background: url(../images/friends.png);
-      width: 80px;
-      height: 80px;
-      background-size: 100%;
-      background-repeat: no-repeat;
-      top: 23px;
-      left: 20px;
-      position: absolute; }
-    .steps .step_wrap .ciervo {
-      background: white; }
-    .steps .step_wrap .ciervo:before {
-      content: "";
-      background: url(../images/reindeer4blue.png);
-      width: 80px;
-      height: 80px;
-      background-size: 100%;
-      background-repeat: no-repeat;
-      top: 23px;
-      left: 20px;
-      position: absolute; }
-    .steps .step_wrap .trineo {
-      background: white; }
-    .steps .step_wrap .trineo:before {
-      content: "";
-      background: url(../images/sledred.png);
-      width: 80px;
-      height: 80px;
-      background-size: 100%;
-      background-repeat: no-repeat;
-      top: 32px;
-      left: 24px;
-      position: absolute; }
-    .steps .step_wrap .ginger {
-      background: white; }
-    .steps .step_wrap .ginger:before {
-      content: "";
-      background: url(../images/gingerbreadyellow.png);
-      width: 100px;
-      height: 100px;
-      background-size: 80%;
-      background-repeat: no-repeat;
-      top: 17px;
-      left: 20px;
-      position: absolute; }
 
 .go_back {
   padding: 20px 0 0; }
@@ -313,6 +377,21 @@ footer {
 .form_step_wrapper .stepTwo label {
   color: white;
   font-weight: 400; }
+.form_step_wrapper .stepThree .friend_wrap {
+  padding: 10px 15px 15px;
+  border-bottom: 1px solid #f6d17b; }
+  .form_step_wrapper .stepThree .friend_wrap label {
+    font-weight: 600;
+    color: #0F3E5A; }
+.form_step_wrapper .friendList {
+  margin: 20px 0; }
+
+.game_data p {
+  margin: 0; }
+
+.table.datas tr td {
+  border: none;
+  padding: 0; }
 
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */

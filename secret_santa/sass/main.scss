@@ -1,11 +1,14 @@
 //Colors
 $yellow: #F0B323;
+$lightyellow: #f6d17b;
+$green: #4cae4c;
 $blue: #0F3E5A;
 $sky: #ABD0CD;
 $red: #EC6645;
 $ligthgray: #FAF9F9;
 $regulargray: #EDEDED;
 $darkgray: #DDDEDD;
+$black: #535553;
 
 // Font weights
 $light: 300;
@@ -51,61 +54,106 @@ body {
 	color: $base-color;
 }
 
-span.white {
+.quotes {
+	display: block;
+	margin: auto;
+	width: 70%;
+}
+
+.quotes:before {
+	content: '';
+	background: url(../images/quotesleft.png);
+	width: 50px;
+	height: 50px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	position: absolute;
+	left: 0;
+}
+
+.quotes:after {
+	content: '';
+	background: url(../images/quotesright.png);
+	width: 50px;
+	height: 50px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	position: absolute;
+	right: 0;
+}
+
+// Colours Fonts
+// **************
+
+.white {
 	color: white;
 }
 
-span.red {
+.red {
 	color: $red;
 }
 
-span.blue {
+.blue {
 	color: $blue;
-	background: transparent;
 }
 
-span.sky {
+.sky {
 	color: $sky;
 }
 
-span.gray {
+.gray {
 	color: $darkgray;
 }
 
-.btn-red {
-	background: $red;
-	color: white;
+.black {
+	color: $black;
+}
+
+
+// Buttons colours
+// **************
+
+.button_style {
 	display: block;
 	margin: 0 auto;
 	border: none;
+}
+
+.btn-red {
+	@extend .button_style;
+	background: $red;
+	color: white;
+	
 }
 
 .btn-yellow {
+	@extend .button_style;
 	background: $yellow;
 	color: white;
-	display: block;
-	margin: 0 auto;
-	border: none;
 }
 
 .btn-sky {
+	@extend .button_style;
 	background: $sky;
 	color: $blue;
-	display: block;
-	margin: 0 auto;
-	border: none;
 }
 
-p.bold {
+.btn-blue {
+	@extend .button_style;
+	background: $blue;
+	color: white;
+}
+
+.btn:hover, .btn:focus {
+	color: white;
+}
+
+// Font styles
+// **************
+
+p.bold,
+span.bold {
 	font-weight: $bold;
-}
-
-.icon {
-	width: 120px;
-	height: 120px;
-	position: relative;
-	display: block;
-	margin: 0 auto;
 }
 
 .top_bar{
@@ -121,31 +169,245 @@ p.bold {
 		margin:0;
 	}
 
+
+// Backgrounds
+// ***********
+
 section.yellow,
 div.yellow {
 	background: $yellow;
+	color: inherit;
 }
 
 section.blue,
 div.blue {
 	background: $blue;
+	color: inherit;
 }
 
 section.red,
 div.red {
 	background: $red;
+	color: inherit;
+}
+
+section.white,
+div.white {
+	background: white;
+	color: inherit;
+}
+
+section.sky,
+div.sky {
+	background: $sky;
+	color: inherit;
+	color: inherit;
+}
+
+section.ligthgray,
+div.ligthgray {
+	background: $ligthgray;
+	color: inherit;
+}
+
+section.regulargray,
+div.regulargray {
+	background: $regulargray;
+	color: inherit;
 }
 
 .input_wrapper {
 	padding: 8px;
 }
 
+// ICONS
+// ********
+
+.figure{
+	width: 120px;
+	height: 120px;
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	border-radius: 50%;
+}
+
+.figure:before {
+	content: "";
+	width: 80px;
+	height: 80px;
+	position: absolute;	
+}
+
+.pluma{
+	background: $blue;
+}
+
+.pluma:before {
+	@extend .figure:before; 
+	background: url(../images/pen43.png);
+	background-size: 100%;
+	top: 20px;
+	left: 20px;	
+	background-repeat: no-repeat;
+}
+
+.puzzle{
+	background: $red;
+}
+
+.puzzle:before {
+	@extend .figure:before; 
+	background: url(../images/puzzle2.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	top: 20px;
+	left: 25px;
+}
+
+.ninos{
+	background: $yellow;
+}
+
+.ninos:before {
+	@extend .figure:before; 
+	background: url(../images/friends.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	top: 23px;
+	left: 20px;
+}
+
+.ciervo{
+	background: white;
+}
+
+.ciervo:before{
+	@extend .figure:before; 
+	background: url(../images/reindeer4blue.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	top: 23px;
+	left: 20px;
+}
+
+.trineo{
+	background: white;
+}
+
+.trineo:before{
+	@extend .figure:before; 
+	background: url(../images/sledred.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	top: 32px;
+	left: 24px;
+}
+
+.ginger{
+	background: white;
+}
+
+.ginger:before{
+	@extend .figure:before; 
+	background: url(../images/gingerbreadyellow.png);
+	width: 100px;
+	height: 100px;
+	background-size: 80%;
+	background-repeat: no-repeat;
+	top: 17px;
+	left: 20px;
+}
+
+.engranaje{
+	background: white;
+}
+
+.engranaje:before{
+	@extend .figure:before; 
+	background: url(../images/cogs3colors.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	top: 22px;
+	left: 16px;
+}
+
+.arrow {
+	background: none;
+	padding: 5px 0;
+	text-align: center;
+	border-radius: 0;
+	width: 50px;
+	height: 50px;
+}
+
+.arrow:before {
+	content: "";
+	background: url(../images/down139.png);
+	width: 50px;
+	height: 50px;
+	background-size: 80%;
+	background-repeat: no-repeat;
+	top: 5px;
+	left: 5px;
+	position: absolute;
+}
+
+// Info AREAS
+// *************
+
+.info_area {
+	padding: 20px 10px 30px;
+	text-align: center;
+	height: auto;
+
+	.info_icon {
+		content: "";
+		width: 80px;
+		height: 80px;
+		top: 20px;
+		left: 20px;
+		position: absolute;	
+	}
+
+	.present:before {
+		@extend .info_icon; 
+		background: url(../images/present31.png);
+		background-size: 100%;
+		background-repeat: no-repeat;
+	}
+
+	.engranaje:before {
+		@extend .info_icon; 
+		background: url(../images/cogs3.png);
+		background-size: 100%;
+		background-repeat: no-repeat;
+	}
+
+	.engranajecol:before {
+		@extend .info_icon; 
+		background: url(../images/cogs33colors.png);
+		background-size: 100%;
+		background-repeat: no-repeat;
+	}
+
+	h2 {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		font-weight: $regular;
+	}
+
+	p{
+		margin-top: 20px;
+	}
+}
+
 
 
 
 // ========================
 // ========================
-// 	   COMMON ELEMENTS
+// 	   COMMON AREAS
 // ========================
 // ========================
 
@@ -280,63 +542,9 @@ footer {
 //        HOME PAGE
 // ========================
 // ========================
-.arrow {
-
-	background: $blue;
-	padding: 5px 0;
-	text-align: center;
-
-	.icon {
-		width: 50px;
-		height: 50px;
-	}
-
-	.icon:before {
-		content: "";
-		background: url(../images/down139.png);
-		width: 50px;
-		height: 50px;
-		background-size: 80%;
-		background-repeat: no-repeat;
-		top: 5px;
-		left: 5px;
-		position: absolute;
-	}
-
-}
-
-
-.info {
-	padding: 20px 10px 30px;
-	background: $sky;
-	text-align: center;
-	color: $blue;
-	height: auto;
-
-	.icon:before {
-		content: "";
-		background: url(../images/present31.png);
-		width: 80px;
-		height: 80px;
-		background-size: 100%;
-		background-repeat: no-repeat;
-		top: 20px;
-		left: 20px;
-		position: absolute;	
-	}
-
-	h2 {
-		margin-top: 10px;
-		margin-bottom: 30px;
-		color: white;
-		font-weight: $regular;
-	}
-}
 
 .steps {
-
 	padding: 30px 0;
-
 	.step_wrap {
 		text-align: center;
 		color: $blue;
@@ -350,116 +558,9 @@ footer {
 		p.bold {
 			font-size: 18px;
 		}
-
-		.step{
-			width: 120px;
-			height: 120px;
-			position: relative;
-			display: block;
-			margin: 0 auto;
-			border-radius: 50%;
-		}
-
-		.pluma{
-			background: $blue;
-		}
-
-		.pluma:before {
-			content: "";
-			background: url(../images/pen43.png);
-			width: 80px;
-			height: 80px;
-			background-size: 100%;
-			background-repeat: no-repeat;
-			top: 20px;
-			left: 20px;
-			position: absolute;		
-		}
-
-		.puzzle{
-			background: $red;
-		}
-
-		.puzzle:before {
-			content: "";
-			background: url(../images/puzzle2.png);
-			width: 80px;
-			height: 80px;
-			background-size: 100%;
-			background-repeat: no-repeat;
-			top: 20px;
-			left: 25px;
-			position: absolute;		
-		}
-
-		.ninos{
-			background: $yellow;
-		}
-
-		.ninos:before {
-			content: "";
-			background: url(../images/friends.png);
-			width: 80px;
-			height: 80px;
-			background-size: 100%;
-			background-repeat: no-repeat;
-			top: 23px;
-			left: 20px;
-			position: absolute;		
-		}
-
-		.ciervo{
-			background: white;
-		}
-
-		.ciervo:before{
-			content: "";
-			background: url(../images/reindeer4blue.png);
-			width: 80px;
-			height: 80px;
-			background-size: 100%;
-			background-repeat: no-repeat;
-			top: 23px;
-			left: 20px;
-			position: absolute;
-		}
-
-		.trineo{
-			background: white;
-		}
-
-		.trineo:before{
-			content: "";
-			background: url(../images/sledred.png);
-			width: 80px;
-			height: 80px;
-			background-size: 100%;
-			background-repeat: no-repeat;
-			top: 32px;
-			left: 24px;
-			position: absolute;
-		}
-
-		.ginger{
-			background: white;
-		}
-
-		.ginger:before{
-			content: "";
-			background: url(../images/gingerbreadyellow.png);
-			width: 100px;
-			height: 100px;
-			background-size: 80%;
-			background-repeat: no-repeat;
-			top: 17px;
-			left: 20px;
-			position: absolute;
-		}
-
 	}
-
-	
 }
+
 
 // ========================
 // ========================
@@ -481,10 +582,10 @@ footer {
 	}
 
 }
+
 .form_step_wrapper {
 
 	.input_wrapper {
-
 		label {
 			font-size: 16px;
 			text-align: left;
@@ -493,22 +594,55 @@ footer {
 		}
 	}
 
-	.stepOne label {
-		color: white;
-	}
-
-	.stepTwo label {
-		color: white;
-		font-weight: $regular;
+	.stepOne {
+		label {
+			color: white;
+		}
 	}
 
 	.stepTwo {
+		label {
+			color: white;
+			font-weight: $regular;
+		}
+	}
 
+	.stepThree {
+		.friend_wrap {
+			padding: 10px 15px 15px;
+			border-bottom: 1px solid $lightyellow;
+
+			label {
+				font-weight: $bold;
+				color: $blue;
+			}
+		}
+	}
+
+	.friendList {
+		margin: 20px 0;
 	}
 	
 
 }
 
+// ========================
+// ========================
+//        DASHBOARD
+// ========================
+// ========================
+
+
+.game_data p {
+	margin: 0
+}
+
+// Others
+
+.table.datas tr td{
+	border: none;
+	padding: 0;
+}
 
 
 // Partials

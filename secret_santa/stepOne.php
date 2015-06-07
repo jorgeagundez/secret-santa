@@ -9,7 +9,7 @@ include "includes/header.php";
 
 <body>
     <header>
-        <div class="fullwidth_wraper white">
+        <div class="fullwidth_wraper">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
@@ -22,7 +22,7 @@ include "includes/header.php";
 
     <section class="form_step_wrapper blue steps">
         <div class="step_wrap">
-            <div class="step ciervo"></div>
+            <div class="figure ciervo"></div>
             <div class="container">
                 <form role="form" class="stepOne" id="stepOne" method="post" action="controller/stepOne.php">
                     <div class="col-xs-12">
@@ -76,9 +76,9 @@ include "includes/header.php";
                 <p>Haz login <a href="/secret_santa/controller/logout.php" class="" ><span class="gray">Aquí</span></a></p>
             </div>
 
-            <div class="go_back">
+           <!--  <div class="go_back">
                 <a href="/secret_santa/controller/logout.php" class="" ><span class="gray">Reset</span></a></p>
-            </div>
+            </div> -->
             
         </div>
     </section>

@@ -76,23 +76,23 @@ $template = 'frontpage';
 			<?php if (isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?>
 		</div>
 
-		<section class="arrow">
+		<section class="blue">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12">
-						<a href="#start" class="icon"></a>
+						<a href="#start" class="figure arrow"></a>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<section id="start" class="info">
+		<section id="start" class="info_area sky">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12">
-						<div class="icon"></div>
-						<h2>¿Cómo funciona?</h2>
-						<p>Simple, tan sólo tienes que seguir los tres siguientes sencillos pasos y tendrás acceso a tu propio panel de control</p>
+						<div class="figure present"></div>
+						<h2 class="white"> ¿Cómo funciona?</h2>
+						<p class="blue">Simple, tan sólo tienes que seguir los tres siguientes sencillos pasos y tendrás acceso a tu propio panel de control</p>
 					</div>
 				</div>
 			</div>
@@ -103,7 +103,7 @@ $template = 'frontpage';
 				<div class="row">
 					<div class="col-xs-10 col-xs-offset-1">
 						<div class="step_wrap">
-							<div class="step pluma"></div>
+							<div class="figure pluma"></div>
 							<h2>Paso 1</h2>
 							<p class="bold">Rellena tus datos</p>
 							<p>Tan sólo usando tu dirección de email, elige un usuario y contraseña para comenzar</p>
@@ -111,7 +111,7 @@ $template = 'frontpage';
 					</div>
 					<div class="col-xs-10 col-xs-offset-1">
 						<div class="step_wrap">
-							<div class="step puzzle"></div>
+							<div class="figure puzzle"></div>
 							<h2>Paso 2</h2>
 							<p class="bold">Reglas del Juego</p>
 							<p>Establece las normas de tu grupo, temática, margen de precio, lugar de encuentro y todo lo que quieras!</p>
@@ -119,7 +119,7 @@ $template = 'frontpage';
 					</div>
 					<div class="col-xs-10 col-xs-offset-1">
 						<div class="step_wrap">
-							<div class="step ninos"></div>
+							<div class="figure ninos"></div>
 							<h2>Paso 3</h2>
 							<p class="bold">Invita a tus amigos</p>
 							<p>Hazte con el correo electrónico de tus amigos y tan pronto todos acepten su invitación el sorteo de nombres llegará por email</p>
@@ -128,7 +128,7 @@ $template = 'frontpage';
 				</div>
 				<div class="row">
 					<div class="col-xs-6 col-xs-offset-3">
-						<a href="/secret_santa/stepOne.php" type="button" class="btn btn-success btn-red">Comenzar</a>
+						<a href="/secret_santa/stepOne.php" type="button" class="btn btn-red">Comenzar</a>
 					</div>
 				</div>
 			</div>
