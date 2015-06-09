@@ -14,7 +14,7 @@ include "../includes/header.php";
 ?>
 <!-- htmlspecialchars($_SESSION['error']) -->
 <body>
-     <header>
+    <header class="fixed">
         <div class="fullwidth_wraper">
             <div class="container">
                 <div class="row">
@@ -26,45 +26,71 @@ include "../includes/header.php";
         </div>
     </header>
 
-    <section class="info_area blue ">
+    <section class="info_area blue title">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="figure engranajecol"></div>
-                     <h2 class="white quotes"><span class="bold"><?php echo $_SESSION['game_title']?></span></h2>
+                    <h2 class="white"><span class="bold"><?php echo $_SESSION['game_title']?></span></h2>
                 </div>
             </div>
         </div>
     </section>
 
 
-    <section class="info_area white">
+    <section class="info_area sky">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-                     <div class="game_data text-left">
-                        <table class="table datas">
-                            <tbody>
-                                <tr>
-                                    <td>Usuario:</td>
-                                    <td><span class="bold"><?php echo $_SESSION['user_name']?></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Email:</td>
-                                    <td><span class="bold"><?php echo $_SESSION['user_email']?></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Descripción:</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><span class="bold"><?php echo $_SESSION['game_description']?></span></td>
-                                    <td></td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+                <div class="col-xs-12">
+                    <div class="col-xs-12">
+                        <div class="quotes">
+                            <p class="bold"><?php echo $_SESSION['game_description']?>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu fermentum metus, eu suscipit nisl. Mauris gravida sagittis elementum. Pellentesque vitae fermentum urna. Etiam interdum nisl tortor, vel eleifend urna vulputate eget. Cras viverra ultricies tellus, et maximus ligula bibendum gravida. </p>
+                        </div>
+                        <div class="datas">
+                           <p class="bold white"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Precio Mínimo <span class="blue"><?php echo $_SESSION['game_price']?> &euro; </span></p>
+                           <p class="bold white"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lugar <span class="blue"><?php echo $_SESSION['game_place']?></span></p>
+                           <p class="bold white"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Fecha <span class="blue"><?php echo $_SESSION['game_date']?></span></p>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info_area ligthgray">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                               
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                 <th></th>
+                                  <th></th>
+                                   <th></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <?php if(isset($_SESSION['friendname1'])){
+                                    for ($i = 1; $i <= $_SESSION['numberfriends']; $i++) {
+                                        echo '<tr>';
+                                        // echo '<td>' . $i . '</td>';
+                                        echo '<td>' . $_SESSION['friendname' . $i] . '</td>';
+                                        echo '<td>' . $_SESSION['friendemail' . $i] . '</td>';
+
+                                        echo '<td>' . $_SESSION['friendinvitation' . $i] . $_SESSION['friendconfirmation' . $i] . '</td>';
+                                        echo '<td><a href="/secret_santa/controller/delete-friend.php?idfriend=' . $_SESSION['idfriend' . $i] . '&number=' . $i . '">DEL</a></td>';
+                                        echo '<td><a href="">ASK</a></td>';
+                                        echo '</tr>';
+                                        }
+                                }?>
+                        
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -95,7 +121,6 @@ include "../includes/header.php";
                         . '<strong>Price</strong>: ' . $_SESSION['game_price']  . '<br/>' 
                         . '<strong>Place</strong>: ' . $_SESSION['game_place'] . '<br/>' 
                         . '<strong>Game Date</strong>: ' . $_SESSION['game_date'] . '<br/>' 
-                        . '<strong>Draw Date</strong>: ' . $_SESSION['game_drawdate'] . '<br/>' 
                         . '<strong>Num of Friends</strong>: ' . $_SESSION['numberfriends']);
                 }
 
@@ -105,17 +130,7 @@ include "../includes/header.php";
                 echo '<h2>Friends List: (' . $_SESSION['numberfriends'] . ')</h2>';
 
 
-                if(isset($_SESSION['friendname1'])){
-                    for ($i = 1; $i <= $_SESSION['numberfriends']; $i++) {
-                        echo $i;
-                        echo '<br/>';
-                        echo '<strong>Name</strong>: ' . $_SESSION['friendname' . $i] . ' <strong>Email</strong>: ' . $_SESSION['friendemail' . $i] . '<br/>';
-                        echo '<strong>Invitation is sent</strong>: ' .$_SESSION['friendinvitation' . $i]. '<br/>';
-                        echo '<strong>Invitation is confirmed</strong>: ' .$_SESSION['friendconfirmation' . $i]. '<br/>';
-                        echo '<a href="/secret_santa/controller/delete-friend.php?idfriend=' . $_SESSION['idfriend' . $i] . '&number=' . $i . '">Delete friend</a>';
-                        echo '<br/><br/>';
-                    }
-                }
+               
 
                 if($_SESSION['groupConfirmed']) {
                     echo 'THIS GROUP HAS BEEN CONFIRMED BY ALL FRIENDS. THE DRAW NAMES HAS BEEN DONE SUCCESSFULLY';

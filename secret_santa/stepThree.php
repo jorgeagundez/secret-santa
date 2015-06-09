@@ -2,9 +2,9 @@
 session_start();
 
 
-// if (!isset($_SESSION['form_token_step2'])){
-//   header('Location:/secret_santa/controller/logout.php');
-// }
+if (!isset($_SESSION['form_token_step2'])){
+  header('Location:/secret_santa/controller/logout.php');
+}
 
 $form_token = md5( uniqid('auth', true) );
 $_SESSION['form_token'] = $form_token;

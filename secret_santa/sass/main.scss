@@ -57,29 +57,39 @@ body {
 .quotes {
 	display: block;
 	margin: auto;
-	width: 70%;
+	width: 100%;
+	text-align: center;
+	position: relative;
+	font-style: italic;
+	z-index:999;
 }
 
 .quotes:before {
 	content: '';
 	background: url(../images/quotesleft.png);
-	width: 50px;
-	height: 50px;
+	width: 80px;
+	height: 80px;
 	background-size: 100%;
 	background-repeat: no-repeat;
 	position: absolute;
-	left: 0;
+	left: -30px;
+	top: -15px;
+	z-index: -1;
+	opacity: 0.5;
 }
 
 .quotes:after {
 	content: '';
 	background: url(../images/quotesright.png);
-	width: 50px;
-	height: 50px;
+	width: 80px;
+	height: 80px;
 	background-size: 100%;
 	background-repeat: no-repeat;
 	position: absolute;
-	right: 0;
+	right: -30px;
+	bottom: -15px;
+	z-index: -1;
+	opacity: 0.5;
 }
 
 // Colours Fonts
@@ -632,17 +642,28 @@ footer {
 // ========================
 // ========================
 
-
-.game_data p {
-	margin: 0
+.fixed {
+	position: fixed;
+	top: 0;
+	display: block;
+	background-color: #fff;
+	width: 100%;
+	z-index: 999999999;
 }
 
-// Others
 
-.table.datas tr td{
-	border: none;
-	padding: 0;
+.datas {
+	margin: 50px 0;
+	p {
+		margin: 5px 0;
+	}
 }
+
+.title {
+	margin-top: 50px;
+}
+
+
 
 
 // Partials
