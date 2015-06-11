@@ -54,44 +54,53 @@ include "../includes/header.php";
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="info_area ligthgray">
-        <div class="container">
             <div class="row">
-                <div class="col-xs-12">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                               
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                 <th></th>
-                                  <th></th>
-                                   <th></th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                                <?php if(isset($_SESSION['friendname1'])){
-                                    for ($i = 1; $i <= $_SESSION['numberfriends']; $i++) {
-                                        echo '<tr>';
-                                        // echo '<td>' . $i . '</td>';
-                                        echo '<td>' . $_SESSION['friendname' . $i] . '</td>';
-                                        echo '<td>' . $_SESSION['friendemail' . $i] . '</td>';
+                <?php if(isset($_SESSION['friendname1'])){ for ($i = 1; $i <= $_SESSION['numberfriends']; $i++) { ?>
+                    <div class="col-xs-12  col-md-4 col-md-offset-0">
+                        <div class="friend-wrap ligthgray">
+                            <div class="row">
+                                <div class="col-xs-12 name ligthgray05">
+                                    <h3>
+                                        <span class="text-capitalize blue bold text-center"><?php echo $_SESSION['friendname' . $i] ?></span>
+                                        <a class="btn-sm btn pull-right delete-btn" href="<?php '/secret_santa/controller/delete-friend.php?idfriend=' . $_SESSION['idfriend' . $i] . '&number=' . $i ?>">
+                                            <span class="glyphicon glyphicon-remove white" aria-hidden="true"></span>
+                                        </a>
+                                    </h3>
+                                </div>
+                                 <?php  
+                                    $_SESSION['friendinvitation' . $i] = false ;
+                                    $_SESSION['friendconfirmation' . $i] = false;
+                                ?>
+                                <div class="col-xs-12 email">
+                                    <p><?php echo $_SESSION['friendemail' . $i] ?></p>
+                                    <span class=" glyphicon glyphicon-send blue" aria-hidden="true"></span> 
 
-                                        echo '<td>' . $_SESSION['friendinvitation' . $i] . $_SESSION['friendconfirmation' . $i] . '</td>';
-                                        echo '<td><a href="/secret_santa/controller/delete-friend.php?idfriend=' . $_SESSION['idfriend' . $i] . '&number=' . $i . '">DEL</a></td>';
-                                        echo '<td><a href="">ASK</a></td>';
-                                        echo '</tr>';
-                                        }
-                                }?>
-                        
-                        </tbody>
-                    </table>
-                </div>
+                                    <?php if($_SESSION['friendinvitation' . $i]) { ?>
+                                        <span class="glyphicon glyphicon-ok green" aria-hidden="true"></span>
+                                    <?php }else{ ?>
+                                        <span class="glyphicon glyphicon-exclamation-sign yellow" aria-hidden="true"></span> 
+                                    <?php } ?>
+
+                                    <span class=" glyphicon glyphicon-thumbs-up blue" aria-hidden="true"></span>
+
+                                    <?php if($_SESSION['friendconfirmation' . $i]) { ?>
+                                        <span class="glyphicon glyphicon-ok green" aria-hidden="true"></span>
+                                    <?php }else{ ?>
+                                        <span class="glyphicon glyphicon-exclamation-sign yellow" aria-hidden="true"></span> 
+                                    <?php } ?>
+
+                                    <?php if($_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]) { ?>
+                                        <a class="btn-sm btn btn-default warning-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Recordar</a>
+                                    <?php }elseif (!$_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]){ ?>
+                                        <a class="btn-sm btn btn-default warning-btn" aria-label="Left Align" href=""> Invitar</a>
+                                    <?php }elseif ($_SESSION['friendinvitation' . $i] && $_SESSION['friendconfirmation' . $i]){  ?>
+                                        <span class="bold green">  READY!</span>
+                                    <?php } ?>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                <?php } }?> 
             </div>
         </div>
     </section>
@@ -102,35 +111,6 @@ include "../includes/header.php";
         <div class="col-md-12 well">
             <div class="detailsWrapper">
                 <?php 
-
-                echo '<h2>User</h2>';
-
-                echo ( '<strong>Id Admin User</strong>:' . $_SESSION['user_id'] . '<br/>' 
-                    . '<strong>User Name</strong>: ' . $_SESSION['user_name'] . '<br/>'
-                    . '<strong>User Email</strong>: ' . $_SESSION['user_email']);
-
-                echo '<br/>';
-                echo '<br/>';
-
-                echo '<h2>Game Details</h2>';
-
-                if(isset($_SESSION['game_id'])) {
-                    echo ('<strong>Game Id</strong>:' . $_SESSION['game_id'] . '<br/>' 
-                        . '<strong>Game Title</strong>: ' . $_SESSION['game_title']  . '<br/>' 
-                        . '<strong>Description</strong>: ' . $_SESSION['game_description']  . '<br/>' 
-                        . '<strong>Price</strong>: ' . $_SESSION['game_price']  . '<br/>' 
-                        . '<strong>Place</strong>: ' . $_SESSION['game_place'] . '<br/>' 
-                        . '<strong>Game Date</strong>: ' . $_SESSION['game_date'] . '<br/>' 
-                        . '<strong>Num of Friends</strong>: ' . $_SESSION['numberfriends']);
-                }
-
-                echo '<br/>';
-                echo '<br/>';
-
-                echo '<h2>Friends List: (' . $_SESSION['numberfriends'] . ')</h2>';
-
-
-               
 
                 if($_SESSION['groupConfirmed']) {
                     echo 'THIS GROUP HAS BEEN CONFIRMED BY ALL FRIENDS. THE DRAW NAMES HAS BEEN DONE SUCCESSFULLY';

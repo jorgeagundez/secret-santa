@@ -1,4 +1,5 @@
 //Colors
+$green: #458B00;
 $yellow: #F0B323;
 $lightyellow: #f6d17b;
 $green: #4cae4c;
@@ -9,6 +10,9 @@ $ligthgray: #FAF9F9;
 $regulargray: #EDEDED;
 $darkgray: #DDDEDD;
 $black: #535553;
+
+//Opacity
+$ligthgray05 : rgba(171, 208, 205, 0.5);
 
 // Font weights
 $light: 300;
@@ -119,6 +123,14 @@ body {
 	color: $black;
 }
 
+.yellow {
+	color: $yellow;
+}
+
+.green {
+	color: $green;
+}
+
 
 // Buttons colours
 // **************
@@ -220,9 +232,21 @@ div.ligthgray {
 	color: inherit;
 }
 
+section.ligthgray05,
+div.ligthgray05 {
+	background: $ligthgray05;
+	color: inherit;
+}
+
 section.regulargray,
 div.regulargray {
 	background: $regulargray;
+	color: inherit;
+}
+
+section.darkgray,
+div.darkgray {
+	background: $darkgray;
 	color: inherit;
 }
 
@@ -663,6 +687,37 @@ footer {
 	margin-top: 50px;
 }
 
+
+.friend-wrap {
+	// border: 1px solid $black;
+	border-radius: 6px;
+	padding: 0 10px 10px;
+	margin-bottom: 10px;
+	overflow: hidden;
+
+	.name {
+		h3{
+			margin-top: 10px;
+		}
+
+	}
+
+	
+	.warning-btn {
+		// border: none;
+		background-color: white;
+		font-weight: bold;
+		color: $blue;
+	}
+
+	.delete-btn {
+		font-weight: bold;
+		position: absolute;
+		right: 7px;
+	}
+	
+	
+}
 
 
 

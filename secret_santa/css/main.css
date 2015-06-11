@@ -64,6 +64,12 @@ body {
 .black {
   color: #535553; }
 
+.yellow {
+  color: #F0B323; }
+
+.green {
+  color: #4cae4c; }
+
 .button_style, .btn-red, .btn-yellow, .btn-sky, .btn-blue {
   display: block;
   margin: 0 auto;
@@ -134,9 +140,19 @@ div.ligthgray {
   background: #FAF9F9;
   color: inherit; }
 
+section.ligthgray05,
+div.ligthgray05 {
+  background: rgba(171, 208, 205, 0.5);
+  color: inherit; }
+
 section.regulargray,
 div.regulargray {
   background: #EDEDED;
+  color: inherit; }
+
+section.darkgray,
+div.darkgray {
+  background: #DDDEDD;
   color: inherit; }
 
 .input_wrapper {
@@ -411,6 +427,22 @@ footer {
 
 .title {
   margin-top: 50px; }
+
+.friend-wrap {
+  border-radius: 6px;
+  padding: 0 10px 10px;
+  margin-bottom: 10px;
+  overflow: hidden; }
+  .friend-wrap .name h3 {
+    margin-top: 10px; }
+  .friend-wrap .warning-btn {
+    background-color: white;
+    font-weight: bold;
+    color: #0F3E5A; }
+  .friend-wrap .delete-btn {
+    font-weight: bold;
+    position: absolute;
+    right: 7px; }
 
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
