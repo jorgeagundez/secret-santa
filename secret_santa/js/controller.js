@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	
+
 	// Scroll animation 
 	$(function() {
 		$('a[href*=#]:not([href=#])').click(function() {

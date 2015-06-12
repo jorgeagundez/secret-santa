@@ -1,12 +1,15 @@
+
+
+
 <?php 
 
 try { 
 
-    require_once "conexionDb.php";
+    require_once "../controller/conexionDb.php";
 
     $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT idgame, title, description, price, gameplace, gamedate, drawdate, confirmed, gamekey FROM game WHERE user_idusuario = :user_id");
+    $stmt = $conn->prepare("SELECT idgame, title, description, price, gameplace, gamedate, drawdate, gamenumberfriends, confirmed FROM game WHERE user_idusuario = :user_id");
     $stmt->bindParam(':user_id', $_SESSION['user_id'] , PDO::PARAM_STR);
 
     $stmt->execute();
@@ -31,14 +34,14 @@ try {
     $game_drawdate = $stmt->fetchColumn(6);
 
     $stmt->execute();
-    $confirmed = $stmt->fetchColumn(7);
+    $nFriends = $stmt->fetchColumn(7);
 
     $stmt->execute();
-    $game_key = $stmt->fetchColumn(8);
+    $confirmed = $stmt->fetchColumn(8);
 
     if (!$game_id) {
 
-        $error = ' // There is a problem in the server. Please, try again.';
+        $error = $error . ' // There is a problem in the server. Please, try again.';
 
     }else{
 
@@ -49,8 +52,8 @@ try {
         $_SESSION['game_place'] = $game_place;
         $_SESSION['game_date'] = $game_date;
         $_SESSION['game_drawdate'] = $game_drawdate;
+        $_SESSION['numberfriends'] = $nFriends;
         $_SESSION['groupConfirmed'] = $confirmed;
-        $_SESSION['game_key'] = $game_key;
 
         try { 
 
@@ -69,10 +72,12 @@ try {
                     $_SESSION['friendinvitation' . $i] = $datos[3];
                     $_SESSION['friendconfirmation' . $i] = $datos[4];
                     $i++;
-                };
 
-                $_SESSION['numberfriends'] = $i - 1;
-                
+                    echo '<br/>--------------------<br/>';
+                    echo $_SESSION['idfriend' . $i];
+                    echo $_SESSION['friendname' . $i];
+                    echo '<br/>--------------------<br/>';
+                };
 
         }catch(Exception $e){
                 

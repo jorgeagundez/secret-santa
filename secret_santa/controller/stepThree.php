@@ -48,11 +48,9 @@ if(isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_t
         
         try { 
 
-            $_SESSION['numberfriends'] = $nFriends;
-
             $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->prepare("INSERT INTO game (title, description, price, gameplace, gamedate, drawdate, user_idusuario, gamenumberfriends, gamekey ) VALUES (:game_title, :game_description, :game_price, :game_place, :game_date, :draw_date, :user_id, :numberfriends, :game_key )");
+            $stmt = $conn->prepare("INSERT INTO game (title, description, price, gameplace, gamedate, drawdate, user_idusuario, gamekey ) VALUES (:game_title, :game_description, :game_price, :game_place, :game_date, :draw_date, :user_id, :game_key )");
             $stmt->bindParam(':game_title', $_SESSION['game_title'], PDO::PARAM_STR);
             $stmt->bindParam(':game_description', $_SESSION['game_description'], PDO::PARAM_STR);
             $stmt->bindParam(':game_price', $_SESSION['game_price'], PDO::PARAM_STR);
@@ -60,12 +58,12 @@ if(isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_t
             $stmt->bindParam(':game_date', $_SESSION['game_date'], PDO::PARAM_STR);
             $stmt->bindParam(':draw_date', $_SESSION['game_drawdate'], PDO::PARAM_STR);
             $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-            $stmt->bindParam(':numberfriends',$nFriends , PDO::PARAM_INT);
             $stmt->bindParam(':game_key', $_SESSION['game_key'], PDO::PARAM_INT);
 
             $stmt->execute();
 
             $_SESSION['game_id'] = $conn->lastInsertId();
+            $_SESSION['numberfriends'] = $nFriends;
 
             for ($i = 1; $i <= $nFriends; $i++) {
 
@@ -103,7 +101,7 @@ if(isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_t
             unset( $_SESSION['form_token'] );
             unset( $_SESSION['form_token_step1'] );
             unset( $_SESSION['form_token_step2'] );
-            header('Location:/secret_santa/controller/invitations.php');
+            header('Location:/secret_santa/controller/multiple_invitations.php');
                
         }catch(Exception $e){
                     

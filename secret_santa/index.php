@@ -41,7 +41,7 @@ $template = 'frontpage';
 				<section class="login_wrap">
 					<div class="container">
 						<div class="row">
-							<div class="col-xs-10 col-xs-offset-1">
+							<div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
 								<form role="form" id="login_form" method="post" action="controller/login.php" class="login">
 									<div class="login_header">
 										<h3>Login</h3>
@@ -89,7 +89,7 @@ $template = 'frontpage';
 		<section id="start" class="info_area sky">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-12">
+					<div class="col-xs-12 col-md-4 col-md-offset-4">
 						<div class="figure present"></div>
 						<h2 class="white"> ¿Cómo funciona?</h2>
 						<p class="blue">Simple, tan sólo tienes que seguir los tres siguientes sencillos pasos y tendrás acceso a tu propio panel de control</p>
@@ -101,7 +101,7 @@ $template = 'frontpage';
 		<section class="steps">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-10 col-xs-offset-1">
+					<div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
 						<div class="step_wrap">
 							<div class="figure pluma"></div>
 							<h2>Paso 1</h2>
@@ -109,7 +109,7 @@ $template = 'frontpage';
 							<p>Tan sólo usando tu dirección de email, elige un usuario y contraseña para comenzar</p>
 						</div>
 					</div>
-					<div class="col-xs-10 col-xs-offset-1">
+					<div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
 						<div class="step_wrap">
 							<div class="figure puzzle"></div>
 							<h2>Paso 2</h2>
@@ -117,7 +117,7 @@ $template = 'frontpage';
 							<p>Establece las normas de tu grupo, temática, margen de precio, lugar de encuentro y todo lo que quieras!</p>
 						</div>
 					</div>
-					<div class="col-xs-10 col-xs-offset-1">
+					<div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
 						<div class="step_wrap">
 							<div class="figure ninos"></div>
 							<h2>Paso 3</h2>
