@@ -4,6 +4,7 @@ $yellow: #F0B323;
 $lightyellow: #f6d17b;
 $green: #4cae4c;
 $blue: #0F3E5A;
+$lightblue: #428bca;
 $sky: #ABD0CD;
 $red: #EC6645;
 $ligthgray: #FAF9F9;
@@ -13,6 +14,8 @@ $black: #535553;
 
 //Opacity
 $ligthgray05 : rgba(171, 208, 205, 0.5);
+$ligthgray02 : rgba(171, 208, 205, 0.2);
+$green05:  rgba(76, 174, 76, 1);
 
 // Font weights
 $light: 300;
@@ -91,7 +94,7 @@ body {
 	background-repeat: no-repeat;
 	position: absolute;
 	right: -30px;
-	bottom: -15px;
+	bottom: -25px;
 	z-index: -1;
 	opacity: 0.5;
 }
@@ -129,6 +132,18 @@ body {
 
 .green {
 	color: $green;
+}
+
+.lightblue {
+	color: $lightblue;
+}
+
+.lightyellow {
+	color: $lightyellow;
+}
+
+.darkgray {
+	color: $darkgray;
 }
 
 
@@ -247,6 +262,12 @@ div.regulargray {
 section.darkgray,
 div.darkgray {
 	background: $darkgray;
+	color: inherit;
+}
+
+section.green05,
+div.green05 {
+	background: $green05;
 	color: inherit;
 }
 
@@ -436,6 +457,15 @@ div.darkgray {
 	}
 }
 
+
+
+.btn:focus {
+	outline: none;
+}
+.btn:active {
+	webkit-box-shadow: none;
+	box-shadow: none;
+}
 
 
 
@@ -666,18 +696,74 @@ footer {
 // ========================
 // ========================
 
-.fixed {
+.settings {
+	font-size: 28px;
+	padding: 0;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 3px;
+	right: 30px;
+
+	.icon_set {
+		margin: 0;
+		// opacity: 0.6;
+	}
+}
+
+.dash_header {
 	position: fixed;
 	top: 0;
 	display: block;
 	background-color: #fff;
 	width: 100%;
 	z-index: 999999999;
+
+	.panel-default {
+		border: none;
+		
+		.panel-heading {
+			// overwritting bootstrap
+			color: $blue;
+			background-color: transparent;
+			border: none;
+			padding: 0;
+			height: 50px;
+		}
+
+	}
+
+	.settings {
+		top: 7px;
+		right: 7px;
+		color: black;
+	}
+}
+
+.mobile_nav {
+
+	ul {
+		list-style: none;
+		border: none!important;
+
+		li {
+			height: 50px;
+			line-height: 50px;
+			padding-left: 14px;
+			border-top: 1px solid #ddd;
+			a{
+				color: $blue;
+				padding-left: 10px;
+			}
+		}
+	}
+
 }
 
 
 .datas {
-	margin: 50px 0;
+	margin: 50px 0 20px;
 	p {
 		margin: 5px 0;
 	}
@@ -687,37 +773,54 @@ footer {
 	margin-top: 50px;
 }
 
+.friends_section {
+	padding-bottom: 20px;
+	.wrapper {
+		padding: 0;
+		text-align: left;
+		overflow: hidden;
+		.panel-group {
+			margin-bottom: 2px;
+		}
+	}
+}
 
 .friend-wrap {
-	// border: 1px solid $black;
-	border-radius: 6px;
-	padding: 0 10px 10px;
-	margin-bottom: 10px;
-	overflow: hidden;
+	position: relative;
 
-	.name {
+	.panel-heading {
+		padding: 0;
 		h3{
 			margin-top: 10px;
+			margin-bottom: 10px;
+			font-size: 24px;
+			padding-left: 40px;
+			.icon_friend {
+				font-size: 15px;
+			}
 		}
-
 	}
 
-	
-	.warning-btn {
-		// border: none;
-		background-color: white;
-		font-weight: bold;
-		color: $blue;
+	.name {
+		.icon_status {
+			position: absolute;
+			right: 75px;
+			top: 10px;
+			font-size: 25px;
+		}
 	}
 
-	.delete-btn {
-		font-weight: bold;
-		position: absolute;
-		right: 7px;
+	.email {
+		text-align: center;
+		.ready {
+			padding-bottom: 0;
+			margin-bottom: 7px;
+		}
 	}
-	
-	
 }
+
+
+
 
 
 
