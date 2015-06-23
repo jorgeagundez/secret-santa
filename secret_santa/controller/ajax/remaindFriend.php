@@ -4,20 +4,20 @@ session_start();
 
 if(!isset($_SESSION['user_id']))
 {
-    header('Location:/logout.php');
-    
-};
+    header('Location:../logout.php');
+}
 
 if( isset($_POST["friendid"]) || isset($_POST["friendname"]) || isset($_POST["friendemail"]) ) {
     
-    single_invitation($_POST["friendid"], $_POST["friendname"], $_POST["friendemail"]);
+    send_remaind($_POST["friendid"], $_POST["friendname"], $_POST["friendemail"]);
 
 } else {
     
     die("Solicitud no válida. Intentelo mas tarde");
-};
+}
 
-function single_invitation($friendid, $friendname, $friendemail) {
+
+function send_remaind($friendid, $friendname, $friendemail) {
 
     require_once 'Mail.php';
     require_once 'Mail/mime.php';
@@ -53,43 +53,22 @@ function single_invitation($friendid, $friendname, $friendemail) {
     if (PEAR::isError($res)) {  
 
         $resultado['error'] = true;
-        $resultado['mensaje'] = 'Hubo un problema con el envío de invitaciones. Por favor, Inténtelo mas tarde.';
+        $resultado['mensaje'] = 'Hubo un problema con la solicitud de envío. Inténtelo mas tarde.';
 
-    }else{
+    }else {
+        $resultado['error'] = false;
+        $resultado['mensaje'] = 'Email enviado correctamente';
+    };
 
-
-        require_once "../conexionDb.php";
-        $invitation = true;
-        $confirmation = 0;
-
-        try { 
-
-            $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->prepare("UPDATE friend SET invitation = :invitation WHERE idfriend = :id_friend");
-            $stmt->bindParam(':id_friend', $friendid , PDO::PARAM_INT);
-            $stmt->bindParam(':invitation', $invitation , PDO::PARAM_BOOL );
-
-            $stmt->execute();
-
-            $resultado['error'] = false;
-            $resultado['mensaje'] = 'Email enviado correctamente';
-      
-
-        }catch(Exception $e){
-
-            $resultado['error'] = true;
-            $resultado['mensaje'] = 'Hubo un problema con la base de datos, por favor, inténtelo más tarde';
-
-        }//end try
-
-        
-    }
+  
 
     header('Content-type: application/json; charset=utf-8');
     echo json_encode($resultado, JSON_FORCE_OBJECT);
+    
 }
-   
+
 exit();
+
+
 
 ?>

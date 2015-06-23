@@ -43,7 +43,7 @@
 	
 	.warning-btn {
 		// border: none;
-		background-color: white;
+		
 		font-weight: bold;
 		color: $blue;
 	}
@@ -53,7 +53,19 @@
 		position: absolute;
 		right: 7px;
 	}
-	
+
+		// Buttons
+	.btn.delete_account {
+		width: 170px;
+		border: 1px solid #EC6645;
+		border-radius: 5px;
+		margin: 20px auto 0;
+	}
+
+	.invite {
+		
+	}
+		
 	
 }
 

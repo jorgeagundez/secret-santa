@@ -62,15 +62,20 @@ try {
             $stmt->execute();
 
                 $i = 1;
+                $j = 0;
                 while( $datos = $stmt->fetch() ) {
                     $_SESSION['idfriend' . $i] = $datos[0];
                     $_SESSION['friendname' . $i] = $datos[1];
                     $_SESSION['friendemail' . $i] = $datos[2];
                     $_SESSION['friendinvitation' . $i] = $datos[3];
                     $_SESSION['friendconfirmation' . $i] = $datos[4];
+                        if($_SESSION['friendconfirmation' . $i] == 1){
+                            $j++;
+                        }
                     $i++;
                 };
 
+                $_SESSION['total_confirmed'] = $j;
                 $_SESSION['numberfriends'] = $i - 1;
                 
 

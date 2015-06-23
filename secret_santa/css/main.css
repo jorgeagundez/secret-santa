@@ -79,7 +79,8 @@ body {
 .darkgray {
   color: #DDDEDD; }
 
-.button_style, .btn-red, .btn-yellow, .btn-sky, .btn-blue {
+.button_style, .btn-red, .btn-yellow,
+.btn-yellow:hover, .btn-sky, .btn-blue {
   display: block;
   margin: 0 auto;
   border: none; }
@@ -88,7 +89,8 @@ body {
   background: #EC6645;
   color: white; }
 
-.btn-yellow {
+.btn-yellow,
+.btn-yellow:hover {
   background: #F0B323;
   color: white; }
 
@@ -175,6 +177,14 @@ div.green05 {
 .figure {
   width: 120px;
   height: 120px;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%; }
+
+.figure_small {
+  width: 100px;
+  height: 80px;
   position: relative;
   display: block;
   margin: 0 auto;
@@ -281,10 +291,17 @@ div.green05 {
   padding: 20px 10px 30px;
   text-align: center;
   height: auto; }
-  .info_area .info_icon, .info_area .present:before, .info_area .engranaje:before, .info_area .engranajecol:before {
+  .info_area .info_icon, .info_area .present:before, .info_area .engranaje:before {
     content: "";
     width: 80px;
     height: 80px;
+    top: 20px;
+    left: 20px;
+    position: absolute; }
+  .info_area .info_icon_small, .info_area .engranajecol:before {
+    content: "";
+    width: 60px;
+    height: 60px;
     top: 20px;
     left: 20px;
     position: absolute; }
@@ -434,14 +451,14 @@ footer {
   margin: 20px 0; }
 
 .settings {
-  font-size: 28px;
+  font-size: 18px;
   padding: 0;
   border-radius: 50%;
   width: 40px;
   height: 40px;
   position: absolute;
-  top: 3px;
-  right: 30px; }
+  top: 11px;
+  right: 22px; }
   .settings .icon_set {
     margin: 0; }
 
@@ -463,7 +480,8 @@ footer {
   .dash_header .settings {
     top: 7px;
     right: 7px;
-    color: black; }
+    color: black;
+    font-size: 28px; }
 
 .mobile_nav ul {
   list-style: none;
@@ -505,16 +523,47 @@ footer {
       padding-left: 40px; }
       .friend-wrap .panel-heading h3 .icon_friend {
         font-size: 15px; }
+  .friend-wrap .name .icon_status_inv {
+    position: absolute;
+    right: 103px;
+    top: 14px;
+    font-size: 18px; }
   .friend-wrap .name .icon_status {
     position: absolute;
-    right: 75px;
-    top: 10px;
-    font-size: 25px; }
+    right: 67px;
+    top: 15px;
+    font-size: 18px; }
   .friend-wrap .email {
     text-align: center; }
     .friend-wrap .email .ready {
       padding-bottom: 0;
       margin-bottom: 7px; }
+
+.btn.delete_account {
+  width: 170px;
+  border: 1px solid #EC6645;
+  border-radius: 5px;
+  margin: 20px auto 0; }
+
+.btn.delete,
+.btn.delete:focus,
+.btn.delete:active,
+.btn.delete:hover {
+  font-weight: 600;
+  background: #FAF9F9;
+  color: #535553; }
+
+.btn.invite,
+.btn.invite:focus,
+.btn.invite:active,
+.btn.invite:hover,
+.btn.remaind,
+.btn.remaind:focus,
+.btn.remaind:active,
+.btn.remaind:hover {
+  font-weight: 600;
+  background: #FAF9F9;
+  color: #535553; }
 
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
@@ -539,13 +588,17 @@ footer {
       .friend-wrap .name .settings {
         display: none; }
     .friend-wrap .warning-btn {
-      background-color: white;
       font-weight: bold;
       color: #0F3E5A; }
     .friend-wrap .delete-btn {
       font-weight: bold;
       position: absolute;
-      right: 7px; } }
+      right: 7px; }
+    .friend-wrap .btn.delete_account {
+      width: 170px;
+      border: 1px solid #EC6645;
+      border-radius: 5px;
+      margin: 20px auto 0; } }
 /* Medium devices (desktops, 992px and up) */
 /* Large devices (large desktops, 1200px and up) */
 

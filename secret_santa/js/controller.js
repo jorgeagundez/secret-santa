@@ -21,24 +21,6 @@ $(document).ready(function(){
 
 	// Functions
 
-	function addFriend(name, email){
-        var newfriend = {
-                "name" : name,
-                "email" : email
-        };
-        $.ajax({
-                data:  newfriend,
-                url:   '../controller/ajax/addFriend.php',
-                type:  'post',
-                beforeSend: function () {
-                        $("#result").html("Procesando, espere por favor...");
-                },
-                success:  function (response) {
-                        $("#result").html(response);
-                }
-        });
-    }
-
     function getFriendData(object){
 
 		var thisobject = object;
@@ -61,6 +43,24 @@ $(document).ready(function(){
         $('#activator').click(function(evento){
             evento.preventDefault();
             addFriend('lolita', 'lolita@mail.com');
+
+            function addFriend(name, email){
+                var newfriend = {
+                        "name" : name,
+                        "email" : email
+                };
+                $.ajax({
+                        data:  newfriend,
+                        url:   '../controller/ajax/addFriend.php',
+                        type:  'post',
+                        beforeSend: function () {
+                                $("#result").html("Procesando, espere por favor...");
+                        },
+                        success:  function (response) {
+                                $("#result").html(response);
+                        }
+                });
+            }
         });
 
     // Invite single friend
@@ -68,22 +68,68 @@ $(document).ready(function(){
         $('.invite').click(function(evento){
 
             evento.preventDefault();
+
+            var confirmation = confirm('Se enviará una invitación. ¿Desea continuar?');
             
-            var friendWrap = $(this).parents('div[class^="friend-wrap"]');
-            var friend = getFriendData($(this));
+            if( confirmation ) {
+            
+                var friendWrap = $(this).parents('div[class^="friend-wrap"]');
+                var friend = getFriendData($(this));
 
-            console.log(friend);
+                $.ajax({
+                        data:  friend,
+                        type:  'POST',
+                        dataType: 'json',
+                        url:   '../controller/ajax/singleInvitation.php',
+                        success:  function (response) {
+                            if (response.error){
+                                alert(response.mensaje);
+                            }else{
+                                alert(response.mensaje)
+                                $(friendWrap).find('.invite').remove();
+                                $(friendWrap).find('.panel-body').append('<a id="" class="btn-sm btn btn-default warning-btn remaind" aria-label="Left Align" href=""><span class="glyphicon glyphicon-time yellow" aria-hidden="true"></span> Recordar</a>');
+                                $(friendWrap).find('.panel-body').append('&nbsp;<a id="" class="btn-sm btn btn-default warning-btn delete" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash red" aria-hidden="true"></span> Borrar</a>');
+                                $('.icon_status_inv').remove();
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            alert('Ha ocurrido un error, por favor, intentelo mas tarde');
+                        }
+                });
+            };
+        });
 
-            $.ajax({
-                    data:  friend,
-                    url:   '../controller/ajax/singleInvitation.php',
-                    type:  'post',
-                    success:  function (response) {
-                        $(friendWrap).find('.invite').remove();
-                        $(friendWrap).find('.panel-body').append('<a id="" class="btn-sm btn btn-default warning-btn remaind" aria-label="Left Align" href=""><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Recordar</a>');
-                        $(friendWrap).find('.panel-body').append('<a id="" class="btn-sm btn btn-default warning-btn remaind" aria-label="Left Align" href=""><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Borrar</a>');
-                    }
-            });
+
+    // Remaind single friend
+
+        $('.remaind').click(function(evento){
+
+            evento.preventDefault();
+
+            var confirmation = confirm('Se enviará un mensaje recordatorio. ¿Desea continuar?');
+
+            if( confirmation ) {
+            
+                var friendWrap = $(this).parents('div[class^="friend-wrap"]');
+                var friend = getFriendData($(this));
+
+                $.ajax({
+                        data:  friend,
+                        type:  'POST',
+                        dataType: 'json',
+                        url:   '../controller/ajax/remaindFriend.php',
+                        success:  function (response) {
+                            if (response.error){
+                                alert(response.mensaje);
+                            }else{
+                                alert(response.mensaje);
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            alert('Ha ocurrido un error, por favor, intentelo mas tarde');
+                        }
+                });
+            };
         });
 
 	// Delete Friend
@@ -95,24 +141,55 @@ $(document).ready(function(){
             var friendWrap = $(this).parents('div[class^="friend-wrap"]');
             var friend = getFriendData($(this));
 
-            $.ajax({
-                data:  friend,
-                url:   '../controller/ajax/deleteFriend.php',
-                type:  'post',
-                success:  function (response) {
-                    $(friendWrap).remove();
-                }
-            });
+            var confirmation = confirm('Su amigo será eliminado del juego. ¿Desea continuar?');
+            if( confirmation ) {
+                $.ajax({
+                    data:  friend,
+                    type:  'POST',
+                    dataType: 'json',
+                    url:   '../controller/ajax/deleteFriend.php',
+                    success:  function (response) {
+                            if (response.error){
+                                alert(response.mensaje);
+                            }else{
+                                alert(response.mensaje);
+                                $(friendWrap).fadeOut('slow', function(){
+                                    $(this).remove();
+                                });
+                            }
+                        },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                            alert('Ha ocurrido un error, por favor, intentelo mas tarde');
+                    }
+                });
+            }else{
+                return false;
+            }
         });
+
+
+    //Delete Account
+
+    $('.delete_account').click(function(){
+        var confirmation = confirm('Su cuenta va a ser borrada por completo. Todo los datos de su juego y amigos invitados se perderán. ¿Está de acuerdo?');
+        if( confirmation ) {
+            return true;
+        }else{
+            return false;
+        }
+    })
+
+    
 
     // Style amends
 
     var window_width = $(window).width();
     if (window_width > '768' ) {
-    	$('.friend-wrap').find('.collapse').addClass('in');
+        $('.friend-wrap').find('.collapse').addClass('in');
     }
-
-    
 
 
 });
+
+
+

@@ -163,7 +163,8 @@ body {
 	
 }
 
-.btn-yellow {
+.btn-yellow,
+.btn-yellow:hover {
 	@extend .button_style;
 	background: $yellow;
 	color: white;
@@ -184,6 +185,8 @@ body {
 .btn:hover, .btn:focus {
 	color: white;
 }
+
+
 
 // Font styles
 // **************
@@ -281,6 +284,15 @@ div.green05 {
 .figure{
 	width: 120px;
 	height: 120px;
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	border-radius: 50%;
+}
+
+.figure_small {
+	width: 100px;
+	height: 80px;
 	position: relative;
 	display: block;
 	margin: 0 auto;
@@ -425,6 +437,15 @@ div.green05 {
 		position: absolute;	
 	}
 
+	.info_icon_small {
+		content: "";
+		width: 60px;
+		height: 60px;
+		top: 20px;
+		left: 20px;
+		position: absolute;	
+	}
+
 	.present:before {
 		@extend .info_icon; 
 		background: url(../images/present31.png);
@@ -440,7 +461,7 @@ div.green05 {
 	}
 
 	.engranajecol:before {
-		@extend .info_icon; 
+		@extend .info_icon_small; 
 		background: url(../images/cogs33colors.png);
 		background-size: 100%;
 		background-repeat: no-repeat;
@@ -466,6 +487,10 @@ div.green05 {
 	webkit-box-shadow: none;
 	box-shadow: none;
 }
+
+// .ribbon {
+// 	height: 20px;
+// }
 
 
 
@@ -697,20 +722,22 @@ footer {
 // ========================
 
 .settings {
-	font-size: 28px;
+	font-size: 18px;
 	padding: 0;
 	border-radius: 50%;
 	width: 40px;
 	height: 40px;
 	position: absolute;
-	top: 3px;
-	right: 30px;
+	top: 11px;
+	right: 22px;
 
 	.icon_set {
 		margin: 0;
 		// opacity: 0.6;
 	}
 }
+
+// header
 
 .dash_header {
 	position: fixed;
@@ -722,7 +749,7 @@ footer {
 
 	.panel-default {
 		border: none;
-		
+
 		.panel-heading {
 			// overwritting bootstrap
 			color: $blue;
@@ -738,8 +765,11 @@ footer {
 		top: 7px;
 		right: 7px;
 		color: black;
+		font-size: 28px;
 	}
 }
+
+// Nav
 
 .mobile_nav {
 
@@ -773,6 +803,8 @@ footer {
 	margin-top: 50px;
 }
 
+// All friends wrap
+
 .friends_section {
 	padding-bottom: 20px;
 	.wrapper {
@@ -784,6 +816,8 @@ footer {
 		}
 	}
 }
+
+// Each Friend
 
 .friend-wrap {
 	position: relative;
@@ -802,11 +836,18 @@ footer {
 	}
 
 	.name {
+		.icon_status_inv {
+			position: absolute;
+			right: 103px;
+			top: 14px;
+			font-size: 18px;
+		}
+
 		.icon_status {
 			position: absolute;
-			right: 75px;
-			top: 10px;
-			font-size: 25px;
+			right: 67px;
+			top: 15px;
+			font-size: 18px;
 		}
 	}
 
@@ -820,6 +861,35 @@ footer {
 }
 
 
+// Buttons
+.btn.delete_account {
+	width: 170px;
+	border: 1px solid #EC6645;
+	border-radius: 5px;
+	margin: 20px auto 0;
+}
+
+.btn.delete,
+.btn.delete:focus,
+.btn.delete:active,
+.btn.delete:hover {
+	font-weight: $bold;
+	background: $ligthgray;
+	color: $black;
+}
+
+.btn.invite,
+.btn.invite:focus,
+.btn.invite:active,
+.btn.invite:hover, 
+.btn.remaind,
+.btn.remaind:focus,
+.btn.remaind:active,
+.btn.remaind:hover {
+	font-weight: $bold;
+	background: $ligthgray;
+	color: $black;
+}
 
 
 
