@@ -31,30 +31,32 @@ include "includes/header.php";
             <div class="container">
                 <form role="form" class="stepThree" id="stepThree" method="post" action="controller/stepThree.php">
                     <!-- controller/stepThree.php -->
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <?php if (isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?>
-                            </div>
-                        </div>
-                        <div class="friendList">
-                            <div class="row friend_wrap">
-                                <div class="col-md-3 input_wrapper">
-                                    <label for="friendname1">Amigo n&deg;1</label>
-                                    <input type="text" name="friendname1" class="form-control" id="friendname1" placeholder="Nombre" required="true"/>
-                                </div>
-                                <div class="col-md-9 input_wrapper">
-                                    <label for="friendemail1">Email</label>
-                                    <input type="email" name="friendemail1" class="form-control" id="friendemail1" placeholder="Correo Electrónico" required="true"/>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <?php if (isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button type="button" class="btn btn-blue addFriend pull-left"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> AMIGO</button>
-                                <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
-                                <input type="hidden" class="nFriends" name="nFriends"/>
-                                <button type="submit" class="btn btn-red pull-right">Enviar invitaciones</button>
+                            <div class="friendList">
+                                <div class="row friend_wrap">
+                                    <div class="col-md-3 input_wrapper">
+                                        <label for="friendname1">Amigo n&deg;1</label>
+                                        <input type="text" name="friendname1" class="form-control" id="friendname1" placeholder="Nombre" required="true"/>
+                                    </div>
+                                    <div class="col-md-9 input_wrapper">
+                                        <label for="friendemail1">Email</label>
+                                        <input type="email" name="friendemail1" class="form-control" id="friendemail1" placeholder="Correo Electrónico" required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-blue addFriend pull-left"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> AMIGO</button>
+                                    <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
+                                    <input type="hidden" class="nFriends" name="nFriends"/>
+                                    <button type="submit" class="btn btn-red pull-right">Enviar invitaciones</button>
+                                </div>
                             </div>
                         </div>
                     </div>

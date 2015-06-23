@@ -46,6 +46,9 @@ body {
   z-index: -1;
   opacity: 0.5; }
 
+.ribbon p {
+  margin: 15px 0; }
+
 .white {
   color: white; }
 
@@ -503,14 +506,12 @@ footer {
 .title {
   margin-top: 50px; }
 
-.friends_section {
-  padding-bottom: 20px; }
-  .friends_section .wrapper {
-    padding: 0;
-    text-align: left;
-    overflow: hidden; }
-    .friends_section .wrapper .panel-group {
-      margin-bottom: 2px; }
+.friends_section .wrapper {
+  padding: 0;
+  text-align: left;
+  overflow: hidden; }
+  .friends_section .wrapper .panel-group {
+    margin-bottom: 2px; }
 
 .friend-wrap {
   position: relative; }
@@ -537,7 +538,7 @@ footer {
     text-align: center; }
     .friend-wrap .email .ready {
       padding-bottom: 0;
-      margin-bottom: 7px; }
+      margin-bottom: 5px; }
 
 .btn.delete_account {
   width: 170px;
@@ -564,6 +565,17 @@ footer {
   font-weight: 600;
   background: #FAF9F9;
   color: #535553; }
+
+.add-friend-wrap {
+  margin-bottom: 20px; }
+
+.add-friend input.friendemail {
+  width: 69%;
+  float: left; }
+.add-friend button.add {
+  display: inline-block;
+  padding: 7px 10px;
+  width: 31%; }
 
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */

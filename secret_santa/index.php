@@ -40,8 +40,7 @@ $template = 'frontpage';
 
 				<section class="login_wrap">
 					<div class="container">
-						<div class="row">
-							
+						<div class="row">	
 							<div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
 								<form role="form" id="login_form" method="post" action="controller/login.php" class="login">
 									<div class="login_header">
@@ -77,7 +76,7 @@ $template = 'frontpage';
 			<?php if (isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?>
 		</div>
 
-		<section class="blue">
+		<section class="blue ribbon">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12">

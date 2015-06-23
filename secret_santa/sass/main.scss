@@ -99,6 +99,12 @@ body {
 	opacity: 0.5;
 }
 
+.ribbon {
+	p {
+		margin: 15px 0;
+	}
+}
+
 // Colours Fonts
 // **************
 
@@ -737,7 +743,7 @@ footer {
 	}
 }
 
-// header
+// HEADER
 
 .dash_header {
 	position: fixed;
@@ -806,7 +812,6 @@ footer {
 // All friends wrap
 
 .friends_section {
-	padding-bottom: 20px;
 	.wrapper {
 		padding: 0;
 		text-align: left;
@@ -855,7 +860,7 @@ footer {
 		text-align: center;
 		.ready {
 			padding-bottom: 0;
-			margin-bottom: 7px;
+			margin-bottom: 5px;
 		}
 	}
 }
@@ -891,7 +896,23 @@ footer {
 	color: $black;
 }
 
+.add-friend-wrap{
+	margin-bottom: 20px;
+}
 
+.add-friend {
+	input.friendemail {
+		width: 69%;
+		float: left;
+	}
+
+	button.add {
+		display: inline-block;
+		padding: 7px 10px;
+		width: 31%;
+
+	}
+}
 
 
 // Partials

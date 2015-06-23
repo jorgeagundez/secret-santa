@@ -165,6 +165,30 @@ include "../includes/header.php";
                         </div>
                     </div>
                 <?php } }?>
+                <div class="col-xs-12 d col-sm-6 col-md-4 col-md-offset-0 panel-group add-friend-wrap" id="add-friend-wrap"  role="tablist" aria-multiselectable="true">
+                        <div class="friend-wrap ligthgray panel-default" id="">
+                            <div class="row">
+                                <div class="col-xs-12 ligthgray05 panel-heading name" role="tab" id="header_add-friend">
+                                    <h3 class="panel-title">
+                                        <span class="text-capitalize sky bold text-center">Añadir amigo</span>
+                                    </h3>
+                                    <a class="btn settings" role="button" data-toggle="collapse" data-parent="#add-friend-wrap" href="#body_add-friend" aria-expanded="true" aria-controls="body_add-friend">
+                                        <span class="icon_set sky glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </a>
+                                </div>
+                                <div class="col-xs-12 panel-collapse collapse" id="body_add-friend" role="tabpanel" aria-labelledby="header_add-friend">
+                                    <div class="panel-body">
+                                        <form role="form" class="add-friend" id="addFriend" method="post" action=""> 
+                                            <input type="text" name="friendname" class="form-control friendname" id="friendname" placeholder="Nombre" required="true"/>
+                                            <input type="email" name="friendemail" class="form-control friendemail" id="friendemail" placeholder="Correo Electrónico" required="true"/>
+                                            <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
+                                            <button type="submit" id="" class="btn-sm btn btn-default warning-btn add" aria-label="Left Align" href=""><span class="glyphicon glyphicon-plus green" aria-hidden="true"></span> Añadir</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </section>
