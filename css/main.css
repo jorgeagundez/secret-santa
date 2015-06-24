@@ -159,6 +159,11 @@ div.ligthgray05 {
   background: rgba(171, 208, 205, 0.5);
   color: inherit; }
 
+section.yellow05,
+div.yellow05 {
+  background: rgba(240, 179, 35, 0.5);
+  color: inherit; }
+
 section.regulargray,
 div.regulargray {
   background: #EDEDED;
@@ -171,7 +176,7 @@ div.darkgray {
 
 section.green05,
 div.green05 {
-  background: #4cae4c;
+  background: rgba(76, 174, 76, 0.5);
   color: inherit; }
 
 .input_wrapper {
@@ -453,18 +458,6 @@ footer {
 .form_step_wrapper .friendList {
   margin: 20px 0; }
 
-.settings {
-  font-size: 18px;
-  padding: 0;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: 11px;
-  right: 22px; }
-  .settings .icon_set {
-    margin: 0; }
-
 .dash_header {
   position: fixed;
   top: 0;
@@ -481,10 +474,16 @@ footer {
       padding: 0;
       height: 50px; }
   .dash_header .settings {
-    top: 7px;
-    right: 7px;
-    color: black;
-    font-size: 28px; }
+    font-size: 28px;
+    padding: 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 6px;
+    right: 7px; }
+    .dash_header .settings .icon_set {
+      margin: 0; }
 
 .mobile_nav ul {
   list-style: none;
@@ -506,33 +505,32 @@ footer {
 .title {
   margin-top: 50px; }
 
-.friends_section .wrapper {
-  padding: 0;
-  text-align: left;
-  overflow: hidden; }
-  .friends_section .wrapper .panel-group {
-    margin-bottom: 2px; }
+.friends_section {
+  margin: 2px 0; }
+  .friends_section .wrapper {
+    padding: 0;
+    text-align: left;
+    overflow: hidden; }
+    .friends_section .wrapper .panel-group {
+      margin-bottom: 2px; }
 
 .friend-wrap {
   position: relative; }
   .friend-wrap .panel-heading {
     padding: 0; }
-    .friend-wrap .panel-heading h3 {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      font-size: 24px;
-      padding-left: 40px; }
-      .friend-wrap .panel-heading h3 .icon_friend {
-        font-size: 15px; }
-  .friend-wrap .name .icon_status_inv {
-    position: absolute;
-    right: 103px;
-    top: 14px;
-    font-size: 18px; }
+    .friend-wrap .panel-heading .panel-title,
+    .friend-wrap .panel-heading .panel-title:active,
+    .friend-wrap .panel-heading .panel-title:focus {
+      font-size: 16px;
+      line-height: 32px;
+      padding-left: 40px;
+      width: 100%;
+      text-align: left;
+      color: #0F3E5A; }
   .friend-wrap .name .icon_status {
     position: absolute;
-    right: 67px;
-    top: 15px;
+    right: 30px;
+    top: 14px;
     font-size: 18px; }
   .friend-wrap .email {
     text-align: center; }

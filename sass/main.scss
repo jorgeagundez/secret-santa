@@ -15,7 +15,8 @@ $black: #535553;
 //Opacity
 $ligthgray05 : rgba(171, 208, 205, 0.5);
 $ligthgray02 : rgba(171, 208, 205, 0.2);
-$green05:  rgba(76, 174, 76, 1);
+$yellow05: rgba(240, 179, 35, 0.5);
+$green05:  rgba(76, 174, 76, 0.5);
 
 // Font weights
 $light: 300;
@@ -259,6 +260,12 @@ div.ligthgray {
 section.ligthgray05,
 div.ligthgray05 {
 	background: $ligthgray05;
+	color: inherit;
+}
+
+section.yellow05,
+div.yellow05 {
+	background: $yellow05;
 	color: inherit;
 }
 
@@ -727,21 +734,6 @@ footer {
 // ========================
 // ========================
 
-.settings {
-	font-size: 18px;
-	padding: 0;
-	border-radius: 50%;
-	width: 40px;
-	height: 40px;
-	position: absolute;
-	top: 11px;
-	right: 22px;
-
-	.icon_set {
-		margin: 0;
-		// opacity: 0.6;
-	}
-}
 
 // HEADER
 
@@ -768,10 +760,18 @@ footer {
 	}
 
 	.settings {
-		top: 7px;
-		right: 7px;
-		color: black;
 		font-size: 28px;
+		padding: 0;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		position: absolute;
+		top: 6px;
+		right: 7px;
+		.icon_set {
+			margin: 0;
+			// opacity: 0.6;
+		}
 	}
 }
 
@@ -812,6 +812,7 @@ footer {
 // All friends wrap
 
 .friends_section {
+	margin: 2px 0;
 	.wrapper {
 		padding: 0;
 		text-align: left;
@@ -829,29 +830,25 @@ footer {
 
 	.panel-heading {
 		padding: 0;
-		h3{
-			margin-top: 10px;
-			margin-bottom: 10px;
-			font-size: 24px;
+
+		.panel-title,
+		.panel-title:active,
+		.panel-title:focus {
+			font-size: 16px;
+			line-height: 32px;
 			padding-left: 40px;
-			.icon_friend {
-				font-size: 15px;
-			}
+			width: 100%;
+			text-align: left;
+			color: $blue;
 		}
 	}
 
 	.name {
-		.icon_status_inv {
-			position: absolute;
-			right: 103px;
-			top: 14px;
-			font-size: 18px;
-		}
 
 		.icon_status {
 			position: absolute;
-			right: 67px;
-			top: 15px;
+			right: 30px;
+			top: 14px;
 			font-size: 18px;
 		}
 	}
