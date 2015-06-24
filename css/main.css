@@ -485,6 +485,12 @@ footer {
     .dash_header .settings .icon_set {
       margin: 0; }
 
+.btn.delete_account {
+  width: 170px;
+  border: 1px solid #EC6645;
+  border-radius: 5px;
+  margin: 20px auto 0; }
+
 .mobile_nav ul {
   list-style: none;
   border: none !important; }
@@ -514,101 +520,106 @@ footer {
     .friends_section .wrapper .panel-group {
       margin-bottom: 2px; }
 
-.friend-wrap {
-  position: relative; }
-  .friend-wrap .panel-heading {
-    padding: 0; }
-    .friend-wrap .panel-heading .panel-title,
-    .friend-wrap .panel-heading .panel-title:active,
-    .friend-wrap .panel-heading .panel-title:focus {
-      font-size: 16px;
-      line-height: 32px;
-      padding-left: 40px;
-      width: 100%;
-      text-align: left;
-      color: #0F3E5A; }
-  .friend-wrap .name .icon_status {
-    position: absolute;
-    right: 30px;
-    top: 14px;
-    font-size: 18px; }
-  .friend-wrap .email {
-    text-align: center; }
-    .friend-wrap .email .ready {
-      padding-bottom: 0;
-      margin-bottom: 5px; }
-
-.btn.delete_account {
-  width: 170px;
-  border: 1px solid #EC6645;
-  border-radius: 5px;
-  margin: 20px auto 0; }
-
-.btn.delete,
-.btn.delete:focus,
-.btn.delete:active,
-.btn.delete:hover {
-  font-weight: 600;
-  background: #FAF9F9;
-  color: #535553; }
-
-.btn.invite,
-.btn.invite:focus,
-.btn.invite:active,
-.btn.invite:hover,
-.btn.remaind,
-.btn.remaind:focus,
-.btn.remaind:active,
-.btn.remaind:hover {
-  font-weight: 600;
-  background: #FAF9F9;
-  color: #535553; }
-
-.add-friend-wrap {
-  margin-bottom: 20px; }
-
-.add-friend input.friendemail {
-  width: 69%;
-  float: left; }
-.add-friend button.add {
-  display: inline-block;
-  padding: 7px 10px;
-  width: 31%; }
-
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 /* Small devices (tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .friend-wrap {
+    position: relative; }
+    .friend-wrap .panel-heading {
+      padding: 0; }
+      .friend-wrap .panel-heading .panel-title,
+      .friend-wrap .panel-heading .panel-title:active,
+      .friend-wrap .panel-heading .panel-title:focus {
+        font-size: 16px;
+        line-height: 32px;
+        padding-left: 40px;
+        width: 100%;
+        text-align: left;
+        color: #0F3E5A; }
+    .friend-wrap .name .icon_status {
+      position: absolute;
+      right: 30px;
+      top: 14px;
+      font-size: 18px; }
+    .friend-wrap .email {
+      text-align: center; }
+      .friend-wrap .email .ready {
+        padding-bottom: 0;
+        margin-bottom: 5px; }
+
+  .delete,
+  .delete:focus,
+  .delete:active,
+  .delete:hover,
+  .invite,
+  .invite:focus,
+  .invite:active,
+  .invite:hover,
+  .remaind,
+  .remaind:focus,
+  .remaind:active,
+  .remaind:hover {
+    font-weight: 600;
+    background: #FAF9F9;
+    color: #0F3E5A; } }
+/* Small devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .friend-wrap {
+    position: relative;
     border-radius: 6px;
     padding: 0 10px 10px;
     margin-bottom: 10px;
     overflow: hidden;
     text-align: center; }
+    .friend-wrap .panel-heading {
+      padding: 0; }
+      .friend-wrap .panel-heading .panel-title,
+      .friend-wrap .panel-heading .panel-title:active,
+      .friend-wrap .panel-heading .panel-title:focus {
+        font-size: 16px;
+        line-height: 32px;
+        padding-left: 40px;
+        width: 100%;
+        text-align: left;
+        color: #0F3E5A; }
     .friend-wrap .name {
       padding: 0; }
-      .friend-wrap .name h3 {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding-left: 0; }
-      .friend-wrap .name a {
-        font-size: 24px; }
       .friend-wrap .name .icon_status {
-        display: none; }
-      .friend-wrap .name .settings {
-        display: none; }
-    .friend-wrap .warning-btn {
-      font-weight: bold;
-      color: #0F3E5A; }
-    .friend-wrap .delete-btn {
-      font-weight: bold;
-      position: absolute;
-      right: 7px; }
-    .friend-wrap .btn.delete_account {
-      width: 170px;
-      border: 1px solid #EC6645;
-      border-radius: 5px;
-      margin: 20px auto 0; } }
+        position: absolute;
+        right: 30px;
+        top: 14px;
+        font-size: 18px; }
+
+  .btn.delete,
+  .btn.delete:focus,
+  .btn.delete:active,
+  .btn.delete:hover {
+    font-weight: 600;
+    background: #FAF9F9;
+    color: #535553; }
+
+  .btn.invite,
+  .btn.invite:focus,
+  .btn.invite:active,
+  .btn.invite:hover,
+  .btn.remaind,
+  .btn.remaind:focus,
+  .btn.remaind:active,
+  .btn.remaind:hover {
+    font-weight: 600;
+    background: #FAF9F9;
+    color: #535553; }
+
+  .add-friend-wrap {
+    margin-bottom: 20px; }
+    .add-friend-wrap .add-friend input.friendemail {
+      width: 69%;
+      float: left; }
+    .add-friend-wrap .add-friend button.add {
+      display: inline-block;
+      padding: 7px 10px;
+      width: 31%; } }
 /* Medium devices (desktops, 992px and up) */
 /* Large devices (large desktops, 1200px and up) */
 

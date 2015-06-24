@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+
+
 	// ************
 	// STEP 3 PAGE
 	// ************
@@ -187,6 +189,19 @@ $(document).ready(function(){
     if (window_width > '768' ) {
         $('.friend-wrap').find('.collapse').addClass('in');
     }
+
+
+    //Collapse Control
+    // var obj = document.getElementById('145');
+    // obj.addEventListener('touchmove', function(event) {
+    //     // If there's exactly one finger inside this element
+    //     if (event.targetTouches.length == 1) {
+    //         var touch = event.targetTouches[0];
+    //         // Place element where the finger is
+    //         obj.style.left = touch.pageX + 'px';
+    //         obj.style.top = touch.pageY + 'px';
+    //     }
+    // }, false);
 
 
 });

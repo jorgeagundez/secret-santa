@@ -736,6 +736,7 @@ footer {
 
 
 // HEADER
+// =======
 
 .dash_header {
 	position: fixed;
@@ -775,7 +776,16 @@ footer {
 	}
 }
 
+.btn.delete_account {
+	width: 170px;
+	border: 1px solid #EC6645;
+	border-radius: 5px;
+	margin: 20px auto 0;
+}
+
+
 // Nav
+// =======
 
 .mobile_nav {
 
@@ -797,7 +807,6 @@ footer {
 
 }
 
-
 .datas {
 	margin: 50px 0 20px;
 	p {
@@ -810,6 +819,7 @@ footer {
 }
 
 // All friends wrap
+// ================
 
 .friends_section {
 	margin: 2px 0;
@@ -823,93 +833,9 @@ footer {
 	}
 }
 
-// Each Friend
-
-.friend-wrap {
-	position: relative;
-
-	.panel-heading {
-		padding: 0;
-
-		.panel-title,
-		.panel-title:active,
-		.panel-title:focus {
-			font-size: 16px;
-			line-height: 32px;
-			padding-left: 40px;
-			width: 100%;
-			text-align: left;
-			color: $blue;
-		}
-	}
-
-	.name {
-
-		.icon_status {
-			position: absolute;
-			right: 30px;
-			top: 14px;
-			font-size: 18px;
-		}
-	}
-
-	.email {
-		text-align: center;
-		.ready {
-			padding-bottom: 0;
-			margin-bottom: 5px;
-		}
-	}
-}
 
 
-// Buttons
-.btn.delete_account {
-	width: 170px;
-	border: 1px solid #EC6645;
-	border-radius: 5px;
-	margin: 20px auto 0;
-}
 
-.btn.delete,
-.btn.delete:focus,
-.btn.delete:active,
-.btn.delete:hover {
-	font-weight: $bold;
-	background: $ligthgray;
-	color: $black;
-}
-
-.btn.invite,
-.btn.invite:focus,
-.btn.invite:active,
-.btn.invite:hover, 
-.btn.remaind,
-.btn.remaind:focus,
-.btn.remaind:active,
-.btn.remaind:hover {
-	font-weight: $bold;
-	background: $ligthgray;
-	color: $black;
-}
-
-.add-friend-wrap{
-	margin-bottom: 20px;
-}
-
-.add-friend {
-	input.friendemail {
-		width: 69%;
-		float: left;
-	}
-
-	button.add {
-		display: inline-block;
-		padding: 7px 10px;
-		width: 31%;
-
-	}
-}
 
 
 // Partials
