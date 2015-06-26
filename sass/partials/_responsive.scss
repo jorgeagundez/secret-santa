@@ -7,42 +7,100 @@
 	// Each Friend
 	// ===========
 
+
+
 	.friend-wrap {
 		position: relative;
 
-		.panel-heading {
-			padding: 0;
 
-			.panel-title,
-			.panel-title:active,
-			.panel-title:focus {
-				font-size: 16px;
-				line-height: 32px;
-				padding-left: 40px;
-				width: 100%;
-				text-align: left;
-				color: $blue;
-			}
+		.content-wrapper{
+			position: relative;
+		    width: 100%;
+		    display: block;
+		    overflow: hidden;
+		    border-top: 2px solid $sky;
 		}
 
-		.name {
+			.content-top {
+				position: relative;
+	   			width: 100%;
+	   			height: 100%;
+	   			display: block;
+	   			z-index: 100;
+	   			cursor: pointer;
+	   			background: $ligthgray;
+	   			right: 0;
+	   			padding-left: 7%;
+	   			padding-top: 10px;
+	   			padding-bottom: 10px;
+	   			overflow: hidden;
+	   			border-right: 1px solid $sky;
+	   			-webkit-transform: translateZ(0);
+	   			-webkit-transition: all 200ms linear 0s;
+	   			-moz-transition: all 200ms linear 0s;
+	   			-o-transition: all 200ms linear 0s;
+	   			transition: all 200ms linear 0s;
 
-			.icon_status {
+	   			p{
+	   				font-size: 20px;
+  					line-height: 40px;
+  					margin: 0;
+  					padding: 0;
+  					display: inline-block;
+	   			}
+			}
+
+			.content-top.move {
+    			right: 50%;
+			}
+
+			.content-behind{
 				position: absolute;
-				right: 30px;
-				top: 14px;
-				font-size: 18px;
+				display: block;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 50%;
+				height: 100%;
+				
 			}
-		}
-
-		.email {
-			text-align: center;
-			.ready {
-				padding-bottom: 0;
-				margin-bottom: 5px;
-			}
-		}
+		
+		
 	}
+
+	.icon_status {
+		position: absolute;
+		right: 7%;
+		top: 22px;
+		font-size: 18px;
+	}
+
+	.behind-btn {
+		height: 100%;
+		position: absolute;
+		font-size: 18px;
+		line-height: 57px;
+		color: white;
+		font-weight: bold;
+	}
+
+	.behind-btn:hover,
+	.behind-btn:focus,
+	.behind-btn:active {
+		text-decoration: none;
+		color: white;
+	}
+
+	.invite-btn {
+		@extend .behind-btn; 
+		width: 100%;
+		right: 0;
+		background: $yellow;
+		padding-left: 33%;
+	}
+
+	
+	
 
 	.delete,
 	.delete:focus,

@@ -257,18 +257,6 @@ div.ligthgray {
 	color: inherit;
 }
 
-section.ligthgray05,
-div.ligthgray05 {
-	background: $ligthgray05;
-	color: inherit;
-}
-
-section.yellow05,
-div.yellow05 {
-	background: $yellow05;
-	color: inherit;
-}
-
 section.regulargray,
 div.regulargray {
 	background: $regulargray;
@@ -281,9 +269,9 @@ div.darkgray {
 	color: inherit;
 }
 
-section.green05,
-div.green05 {
-	background: $green05;
+section.green,
+div.green {
+	background: $green;
 	color: inherit;
 }
 
@@ -822,7 +810,6 @@ footer {
 // ================
 
 .friends_section {
-	margin: 2px 0;
 	.wrapper {
 		padding: 0;
 		text-align: left;
