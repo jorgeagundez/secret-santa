@@ -5,7 +5,7 @@ session_start();
 if(isset($_SESSION['user_id']))
 {
     // $_SESSION['error'] = 'You are already subscribed, please login';
-    header('Location:/secret_santa/controller/logout.php');
+    header('Location:/controller/logout.php');
 
 
 }elseif(!isset($_POST['username'],$_POST['password'],$_POST['rPassword'],$_POST['email'],$_POST['rEmail'],$_POST['form_token'])){
@@ -55,13 +55,13 @@ if(isset($_SESSION['user_id']))
     $_SESSION['form_token_step1'] = $form_token;
     $_SESSION['form_token'] = $_SESSION['form_token_step1'];
     
-    header('Location:/secret_santa/stepTwo.php');
+    header('Location:/stepTwo.php');
 
 }
 
 if (isset($_SESSION['error'])) {
 
-    header('Location:/secret_santa/stepOne.php');
+    header('Location:/stepOne.php');
 }
 
 ?>

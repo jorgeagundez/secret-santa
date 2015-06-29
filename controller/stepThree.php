@@ -4,7 +4,7 @@ session_start();
 
 if(!isset($_POST['nFriends'])) {
 
-    header('Location:/secret_santa/controller/logout.php');
+    header('Location:/controller/logout.php');
 
 }else {
 
@@ -17,7 +17,7 @@ for ($i = 1; $i <= $nFriends; $i++) {
     if ( !isset($_POST['friendname' . $i]) || !isset($_POST['friendemail' . $i]) ) {
 
        $_SESSION['error'] = 'Please enter a valid data';
-       header('Location:/secret_santa/stepThree.php');
+       header('Location:/stepThree.php');
     }
 }
 
@@ -25,7 +25,7 @@ for ($i = 1; $i <= $nFriends; $i++) {
 if(isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_token'] != $_SESSION['form_token']){
 
     // $_SESSION['error'] = 'There was a problem, please start again or login if you have an account already';
-    header('Location:/secret_santa/controller/logout.php');
+    header('Location:/controller/logout.php');
     
 }else{ 
 
@@ -100,7 +100,7 @@ if(isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_t
             unset( $_SESSION['form_token'] );
             unset( $_SESSION['form_token_step1'] );
             unset( $_SESSION['form_token_step2'] );
-            header('Location:/secret_santa/controller/multiple_invitations.php');
+            header('Location:/controller/multiple_invitations.php');
                
         }catch(Exception $e){
                     

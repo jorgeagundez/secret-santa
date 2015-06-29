@@ -3,10 +3,10 @@ session_start();
 
 if(!isset($_SESSION['user_id'])) {
   $_SESSION['error'] = 'You must be logged in to visit this page';
-  header('Location:/secret_santa/index.php');
+  header('Location:/index.php');
 }else if($_SESSION['id_session'] != session_id()) {
   $_SESSION['error'] = 'There was a mistake in the session, please, login again';
-  header('Location:/secret_santa/index.php');;
+  header('Location:/index.php');;
 }
 
 $form_token = md5( uniqid('auth', true) );
@@ -61,7 +61,7 @@ include "../includes/header.php";
         </div>
       </form>
       <div class="col-md-12 well">
-        <a href="/secret_santa/userPages/dashboard.php" class="btn btn-default" >Go back to the member page</a>
+        <a href="/user/dashboard.php" class="btn btn-default" >Go back to the member page</a>
       </div>
     </div>
 

@@ -5,13 +5,13 @@ session_start();
 if(!isset($_SESSION['user_id']))
 {
     $_SESSION['error'] = 'You must be logged in to updated your details';
-    header('Location:/secret_santa/index.php');
+    header('Location:/index.php');
    
 
 }elseif($_SESSION['id_session'] != session_id()){
 
     $_SESSION['error'] = 'There was a mistake in the session, please, login again';
-    header('Location:/secret_santa/index.php');
+    header('Location:/index.php');
 
 }elseif(!isset($_POST['password'],$_POST['rPassword'],$_POST['email'],$_POST['rEmail'],$_POST['form_token'])){
 
@@ -66,7 +66,7 @@ if(!isset($_SESSION['user_id']))
         }else{
 
             $_SESSION['user_email'] = $email;
-            header('Location:/secret_santa/userPages/dashboard.php?info=You are now update your details');
+            header('Location:/user/dashboard.php?info=You are now update your details');
 
         }
 
@@ -85,7 +85,7 @@ if(!isset($_SESSION['user_id']))
 
 if (isset($_SESSION['error'])) {
 
-    header('Location:/secret_santa/userPages/update.php');
+    header('Location:/user/update.php');
 
 }
 

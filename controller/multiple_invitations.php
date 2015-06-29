@@ -26,7 +26,7 @@ if(!isset($_SESSION['user_id']))
         //                 <p>This is the message of ' . $_SESSION['user_name'] . 'to you:  </p>
         //                 <p>' . $_SESSION['game_description'] . '</p>
         //                 <p>If you are agree with the conditions of the game. Please, confirm following this.</p>
-        //                 <a href="http://www.jorgeagundez.com/secret_santa/confirmation.php?gameKey='. $_SESSION['game_key'] . '&friendemail=' . $_SESSION['friendemail' . $i] . '"> link </a>
+        //                 <a href="http://www.jorgeagundez.com/confirmation.php?gameKey='. $_SESSION['game_key'] . '&friendemail=' . $_SESSION['friendemail' . $i] . '"> link </a>
         //             </body>
         //             </html>';
         // $mime = new Mail_mime("\n");
@@ -70,7 +70,7 @@ if(!isset($_SESSION['user_id']))
         // }
     }//Endfor
 
-    header('Location:/secret_santa/userPages/dashboard.php');
+    header('Location:/user/dashboard.php');
 
 } //endif
 

@@ -134,7 +134,7 @@ $template = 'frontpage';
 				</div>
 				<div class="row">
 					<div class="col-xs-6 col-xs-offset-3">
-						<a href="/secret_santa/stepOne.php" type="button" class="btn btn-red">Comenzar</a>
+						<a href="/stepOne.php" type="button" class="btn btn-red">Comenzar</a>
 					</div>
 				</div>
 			</div>

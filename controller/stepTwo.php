@@ -6,7 +6,7 @@ if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_
 
     // $_SESSION['error'] = 'There was a problem, please start again or login if you have an account already';
     
-    header('Location:/secret_santa/controller/logout.php');
+    header('Location:/controller/logout.php');
 
 }elseif(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplace'],$_POST['gamedate'])){
 
@@ -34,13 +34,13 @@ if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_
     $_SESSION['form_token_step2'] = $form_token;
     $_SESSION['form_token'] = $_SESSION['form_token_step2'];
 
-    header('Location:/secret_santa/stepThree.php');
+    header('Location:/stepThree.php');
 
 }
 
 if (isset($_SESSION['error'])) {
     
-    header('Location:/secret_santa/stepTwo.php');
+    header('Location:/stepTwo.php');
 }
 
 ?>

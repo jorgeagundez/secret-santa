@@ -35,7 +35,7 @@ function send_remaind($friendid, $friendname, $friendemail) {
     //                 <p>This is the message of ' . $_SESSION['user_name'] . 'to you:  </p>
     //                 <p>' . $_SESSION['game_description'] . '</p>
     //                 <p>If you are agree with the conditions of the game. Please, confirm following this.</p>
-    //                 <a href="http://www.jorgeagundez.com/secret_santa/confirmation.php?gameKey='. $_SESSION['game_key'] . '&friendemail=' . $friendemail . '"> link </a>
+    //                 <a href="http://www.jorgeagundez.com/confirmation.php?gameKey='. $_SESSION['game_key'] . '&friendemail=' . $friendemail . '"> link </a>
     //             </body>
     //             </html>';
     // $mime = new Mail_mime("\n");

@@ -4,7 +4,7 @@ session_start();
 
 if(!isset($_SESSION['user_id'])) {
     $_SESSION['error'] = 'You must be logged in to visit this page';
-    header('Location:/secret_santa/index.php');
+    header('Location:/index.php');
 }
 
 $_SESSION['id_session'] = session_id();
@@ -32,8 +32,8 @@ include "../includes/header.php";
                             </div>
                             <nav id="collapseOne" class="panel-collapse collapse mobile_nav" role="tabpanel" aria-labelledby="headingOne">
                                 <ul class="list-group">
-                                    <li><span class="glyphicon glyphicon-off red" aria-hidden="true"></span><a href="/secret_santa/controller/logout.php"> Salir</a></li>
-                                    <li><span class="glyphicon glyphicon-erase red" aria-hidden="true"></span><a class="delete_account" href="/secret_santa/controller/delete-user.php"> Borrar cuenta</a></li>
+                                    <li><span class="glyphicon glyphicon-off red" aria-hidden="true"></span><a href="/controller/logout.php"> Salir</a></li>
+                                    <li><span class="glyphicon glyphicon-erase red" aria-hidden="true"></span><a class="delete_account" href="/controller/delete-user.php"> Borrar cuenta</a></li>
                                 </ul>
                             </nav>
                         </div>
