@@ -8,19 +8,19 @@ if(isset($_SESSION['user_id']))
 
 }elseif(!isset( $_POST['username'],$_POST['password'])){
 
-	$_SESSION['error'] = 'Please enter a valid username and password';
+	$_SESSION['error'] = 'Por favor, introduzca un email y password validos';
 
 }elseif( $_POST['form_token'] != $_SESSION['form_token']){
 
-    $_SESSION['error'] = 'Invalid form submission, please try again';
+    $_SESSION['error'] = 'Envio de formulario incorrecto, por favor, intentelo de nuevo';
 
 }elseif (strlen( $_POST['username']) < 5 || strlen($_POST['username']) > 20) {
 
-    $_SESSION['error'] = 'Incorrect Length for Username';
+    $_SESSION['error'] = 'Formato de email incorrecto';
 
 }elseif (strlen( $_POST['password']) < 8 || strlen($_POST['password']) > 20){
 
-    $_SESSION['error'] = 'Incorrect Length for Password';
+    $_SESSION['error'] = 'Incorrecto numero de caracteres para password';
 
 }elseif (ctype_alnum($_POST['username']) != true){
  

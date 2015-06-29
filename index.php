@@ -72,9 +72,15 @@ $template = 'frontpage';
 			</div>
 		</header>
 
-		<div class="">
-			<?php if (isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?>
-		</div>
+		
+		<?php if (isset($_SESSION['error'])){ 
+			echo '<div class="message-error">';
+			echo '<span>Error:</span></br>';
+			echo '<p>' . $_SESSION['error'] . '</p>'; 
+			unset($_SESSION['error']);}
+			echo '</div>';
+		?>
+	
 
 		<section class="blue ribbon">
 			<div class="container">
