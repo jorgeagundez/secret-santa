@@ -12,7 +12,7 @@ $(document).ready(function(){
 
                 switch($(this).attr('name')){
                     case 'username':
-                        if ($(this).val() == '' || $(this).val().length < 5 || $(this).val().length > 20) {
+                        if ($(this).val() == '' || $(this).val().length < 5 || $(this).val().length > 8) {
                             errors.push('Username is invalid');
                             $(this).addClass('error');                     
                         }else{

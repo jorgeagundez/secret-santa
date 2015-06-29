@@ -21,19 +21,27 @@ $(document).ready(function(){
 	// DASHBOARD
 	// ************
 
-	// Functions
+    //Open options each friend-list
+
+    $('.friends').on( 'click', '.content-top', function() {
+        if (!$(this).find('span').hasClass('green')) {
+            $(this).toggleClass('move');
+        }
+    });
+
+    // Functions
 
     function getFriendData(object){
 
 		var thisobject = object;
-    	var friendWrap = thisobject.parents('div[class^="friend-wrap"]');
+        var friendWrap = thisobject.parents('.friend-wrap');
         var friend_id = friendWrap.attr('id');
         var friend_name = friendWrap.find('.name').attr('id');
         var friend_email = friendWrap.find('.email').attr('id');
         var friend = {
-                        "friendid" : friend_id,
-                        "friendname" : friend_name,
-                        "friendemail" : friend_email
+                        'friendid' : friend_id,
+                        'friendname' : friend_name,
+                        'friendemail' : friend_email
                 };
 
         return friend;
@@ -42,41 +50,78 @@ $(document).ready(function(){
 
 	// Add friend Ajax
 
-        $('#activator').click(function(evento){
-            evento.preventDefault();
-            addFriend('lolita', 'lolita@mail.com');
+        $('body').on( 'submit', '#addFriend' ,function(){
 
-            function addFriend(name, email){
-                var newfriend = {
-                        "name" : name,
-                        "email" : email
-                };
-                $.ajax({
-                        data:  newfriend,
-                        url:   '../controller/ajax/addFriend.php',
-                        type:  'post',
-                        beforeSend: function () {
-                                $("#result").html("Procesando, espere por favor...");
-                        },
-                        success:  function (response) {
-                                $("#result").html(response);
-                        }
-                });
+            var name = $(this).find('.friendname').val();
+            var email = $(this).find('.friendemail').val();
+
+            //Validation
+            var filter = new RegExp(/[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/);
+            var valid = filter.test(email);
+
+            if ( name == '' || name.length < 5 || name.length > 8) {
+                alert('El nombre debe contener entre 5 y 8 letras');
+                return false;
             }
+            if (!valid) {
+                alert('El email introducido no es valido');
+                return false;
+            }
+
+            //json datas
+            var newfriend = {
+                "name" : name,
+                "email" : email
+            };
+
+            function setFriendwrap(id, name, email){
+
+                if ( name + email > 35) {
+                    console.log('yeah');
+                }
+                var friendcode = '<div style=\"opacity: 0;\" class=\"col-xs-12 d col-sm-6 col-md-4 friend-wrap\" id=\"' + id + '\"><div class=\"content-wrapper\" ><div class=\"content-top ligthgray\"><p class=\"name bold text-capitalize\" id=\"' + name + '\">' + name + '</p><small class=\"email text-lowercase\" id=\"' + email + '\"> (' + email.substring(0,23) + '...)</small><i class=\"icon_status yellow fa fa-exclamation-triangle\"></i></div><div class=\"content-behind\"><a class=\"invite-btn behind-btn\" aria-label=\"Left Align\" href=\"\"> Invitar</a><a class="delete-btn behind-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash white" aria-hidden="true"></span></a></div></div></div>';
+                return friendcode;
+            }
+
+
+            $.ajax({
+                data:  newfriend,
+                type:  'POST',
+                url:   '../controller/ajax/addFriend.php',
+                success:  function (response) {
+                    if (response.error){
+                        alert(response.mensaje);
+                        console.log(response.type);
+                    }else{
+                        var code = setFriendwrap(response.newid, name, email);
+                        // $('.friends').find('.friend-wrap:last-child').add(code);
+                        $('.friends').find('.friend-wrap:last-child').after(code);
+                        $('.friends').find('.friend-wrap:last-child').fadeTo('slow', 1);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert('Ha ocurrido un error, por favor, intentelo mas tarde');
+                }
+            });
+
+            $(this).trigger("reset");
+            return false;
         });
 
     // Invite single friend
 
-        $('.invite').click(function(evento){
+        $('body').on( 'click', '.invite-btn', function(evento){
 
             evento.preventDefault();
 
             var confirmation = confirm('Se enviará una invitación. ¿Desea continuar?');
-            
+
             if( confirmation ) {
-            
-                var friendWrap = $(this).parents('div[class^="friend-wrap"]');
+
+                var friendWrap = $(this).parents('.friend-wrap');
                 var friend = getFriendData($(this));
+
+                console.log (friend);
 
                 $.ajax({
                         data:  friend,
@@ -87,15 +132,15 @@ $(document).ready(function(){
                             if (response.error){
                                 alert(response.mensaje);
                             }else{
-                                alert(response.mensaje)
-                                $(friendWrap).find('.invite').remove();
-                                $(friendWrap).find('.panel-body').append('<a id="" class="btn-sm btn btn-default warning-btn remaind" aria-label="Left Align" href=""><span class="glyphicon glyphicon-time yellow" aria-hidden="true"></span> Recordar</a>');
-                                $(friendWrap).find('.panel-body').append('&nbsp;<a id="" class="btn-sm btn btn-default warning-btn delete" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash red" aria-hidden="true"></span> Borrar</a>');
-                                $('.icon_status_inv').remove();
+                                $(friendWrap).find('.icon_status').remove();
+                                $(friendWrap).find('.content-top ').removeClass('move').append('<i class="icon_status sky fa fa-question-circle"></i>');
+                                $(friendWrap).find('.invite-btn').remove();
+                                $(friendWrap).find('.content-behind').append('<a class="remaind-btn behind-btn" aria-label="Left Align" href="">Recordar</a><a class="delete-btn behind-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash white" aria-hidden="true"></span></a>');
                             }
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
-                            alert('Ha ocurrido un error, por favor, intentelo mas tarde');
+                            alert('Ha ocurrido un error, por favor, intentelo mas tarde. Error: ' + errorThrown);
+                            console.log(jqXHR);
                         }
                 });
             };
@@ -104,15 +149,15 @@ $(document).ready(function(){
 
     // Remaind single friend
 
-        $('.remaind').click(function(evento){
+        $('body').on( 'click', '.remaind-btn', function(evento){
 
             evento.preventDefault();
 
             var confirmation = confirm('Se enviará un mensaje recordatorio. ¿Desea continuar?');
 
             if( confirmation ) {
-            
-                var friendWrap = $(this).parents('div[class^="friend-wrap"]');
+
+                var friendWrap = $(this).parents('.friend-wrap');
                 var friend = getFriendData($(this));
 
                 $.ajax({
@@ -124,7 +169,7 @@ $(document).ready(function(){
                             if (response.error){
                                 alert(response.mensaje);
                             }else{
-                                alert(response.mensaje);
+                                $(friendWrap).find('.content-top ').removeClass('move');
                             }
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
@@ -136,11 +181,11 @@ $(document).ready(function(){
 
 	// Delete Friend
 
-		$('.delete').click(function(evento){
+		$('body').on( 'click', '.delete-btn' ,function(evento){
 
             evento.preventDefault();
-            
-            var friendWrap = $(this).parents('div[class^="friend-wrap"]');
+
+            var friendWrap = $(this).parents('.friend-wrap');
             var friend = getFriendData($(this));
 
             var confirmation = confirm('Su amigo será eliminado del juego. ¿Desea continuar?');
@@ -154,14 +199,13 @@ $(document).ready(function(){
                             if (response.error){
                                 alert(response.mensaje);
                             }else{
-                                alert(response.mensaje);
                                 $(friendWrap).fadeOut('slow', function(){
                                     $(this).remove();
                                 });
                             }
                         },
                     error: function(jqXHR, textStatus, errorThrown) {
-                            alert('Ha ocurrido un error, por favor, intentelo mas tarde');
+                        alert('Ha ocurrido un error, por favor, intentelo mas tarde');
                     }
                 });
             }else{
@@ -172,7 +216,7 @@ $(document).ready(function(){
 
     //Delete Account
 
-    $('.delete_account').click(function(){
+    $('body').on( 'click', '.delete_account' , function(){
         var confirmation = confirm('Su cuenta va a ser borrada por completo. Todo los datos de su juego y amigos invitados se perderán. ¿Está de acuerdo?');
         if( confirmation ) {
             return true;
@@ -181,7 +225,7 @@ $(document).ready(function(){
         }
     })
 
-    
+
 
     // Style amends
 
@@ -191,20 +235,10 @@ $(document).ready(function(){
     }
 
 
-    //Collapse Control
-    // var obj = document.getElementById('145');
-    // obj.addEventListener('touchmove', function(event) {
-    //     // If there's exactly one finger inside this element
-    //     if (event.targetTouches.length == 1) {
-    //         var touch = event.targetTouches[0];
-    //         // Place element where the finger is
-    //         obj.style.left = touch.pageX + 'px';
-    //         obj.style.top = touch.pageY + 'px';
-    //     }
-    // }, false);
+
+}); // doc ready
 
 
-});
 
 
 

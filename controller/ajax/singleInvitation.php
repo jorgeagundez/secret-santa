@@ -19,43 +19,43 @@ if( isset($_POST["friendid"]) || isset($_POST["friendname"]) || isset($_POST["fr
 
 function single_invitation($friendid, $friendname, $friendemail) {
 
-    require_once 'Mail.php';
-    require_once 'Mail/mime.php';
+    // require_once 'Mail.php';
+    // require_once 'Mail/mime.php';
 
-    $destinario =  $friendemail ;
-    $from = 'jamedina97@gmail.com';
-    $asunto = 'Invitation of ' . $_SESSION['user_name'] . ' to play Secret Santa';
-    $mensaje = '<html>
-                    <head>
-                        <title>'.$asunto.'</title>
-                    </head>'.
-                "\n";
-    $mensaje .= '<body>
-                    <h1>Hello ' .    $friendname .', you have been invited to join a Secret Santa Game.</h1>
-                    <p>This is the message of ' . $_SESSION['user_name'] . 'to you:  </p>
-                    <p>' . $_SESSION['game_description'] . '</p>
-                    <p>If you are agree with the conditions of the game. Please, confirm following this.</p>
-                    <a href="http://www.jorgeagundez.com/secret_santa/confirmation.php?gameKey='. $_SESSION['game_key'] . '&friendemail=' . $friendemail . '"> link </a>
-                </body>
-                </html>';
-    $mime = new Mail_mime("\n");
-    $mime->setTXTBody(strip_tags($mensaje));
-    $mime->setHTMLBody($mensaje);
+    // $destinario =  $friendemail ;
+    // $from = 'jamedina97@gmail.com';
+    // $asunto = 'Invitation of ' . $_SESSION['user_name'] . ' to play Secret Santa';
+    // $mensaje = '<html>
+    //                 <head>
+    //                     <title>'.$asunto.'</title>
+    //                 </head>'.
+    //             "\n";
+    // $mensaje .= '<body>
+    //                 <h1>Hello ' .    $friendname .', you have been invited to join a Secret Santa Game.</h1>
+    //                 <p>This is the message of ' . $_SESSION['user_name'] . 'to you:  </p>
+    //                 <p>' . $_SESSION['game_description'] . '</p>
+    //                 <p>If you are agree with the conditions of the game. Please, confirm following this.</p>
+    //                 <a href="http://www.jorgeagundez.com/secret_santa/confirmation.php?gameKey='. $_SESSION['game_key'] . '&friendemail=' . $friendemail . '"> link </a>
+    //             </body>
+    //             </html>';
+    // $mime = new Mail_mime("\n");
+    // $mime->setTXTBody(strip_tags($mensaje));
+    // $mime->setHTMLBody($mensaje);
 
-    $body = $mime->get();
-    $hdrs = array('From' => $from, 'Subject' => $asunto);
-    $hdrs = $mime->headers($hdrs);
-    $mail =& Mail::factory('mail');
-    $res = $mail->send($destinario, $hdrs, $body);
+    // $body = $mime->get();
+    // $hdrs = array('From' => $from, 'Subject' => $asunto);
+    // $hdrs = $mime->headers($hdrs);
+    // $mail =& Mail::factory('mail');
+    // $res = $mail->send($destinario, $hdrs, $body);
 
-    $resultado = array();
+    // $resultado = array();
 
-    if (PEAR::isError($res)) {  
+    // if (PEAR::isError($res)) {  
 
-        $resultado['error'] = true;
-        $resultado['mensaje'] = 'Hubo un problema con el envío de invitaciones. Por favor, Inténtelo mas tarde.';
+    //     $resultado['error'] = true;
+    //     $resultado['mensaje'] = 'Hubo un problema con el envío de invitaciones. Por favor, Inténtelo mas tarde.';
 
-    }else{
+    // }else{
 
 
         require_once "../conexionDb.php";
@@ -84,7 +84,7 @@ function single_invitation($friendid, $friendname, $friendemail) {
         }//end try
 
         
-    }
+    // }
 
     header('Content-type: application/json; charset=utf-8');
     echo json_encode($resultado, JSON_FORCE_OBJECT);

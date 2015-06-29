@@ -8,7 +8,7 @@ if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_
     
     header('Location:/secret_santa/controller/logout.php');
 
-}elseif(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplace'],$_POST['gamedate'],$_POST['drawdate'])){
+}elseif(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplace'],$_POST['gamedate'])){
 
 	$_SESSION['error'] = 'Please enter a valid data';
 
@@ -23,14 +23,12 @@ if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_
     $gameprice = strip_tags($_POST['price']);
     $gameplace = strip_tags($_POST['gameplace']);
     $gamedate = strip_tags($_POST['gamedate']);
-    $gamedrawdate = strip_tags($_POST['drawdate']);
 
   	$_SESSION['game_title'] = filter_var($gametitle,FILTER_SANITIZE_STRING);
     $_SESSION['game_description'] = filter_var($gamedescription,FILTER_SANITIZE_STRING);
     $_SESSION['game_price'] = filter_var($gameprice,FILTER_SANITIZE_NUMBER_INT);
     $_SESSION['game_place'] = filter_var($gameplace,FILTER_SANITIZE_STRING);
     $_SESSION['game_date'] = filter_var($gamedate,FILTER_SANITIZE_STRING);
-    $_SESSION['game_drawdate'] = filter_var($gamedrawdate,FILTER_SANITIZE_STRING);
     
     $form_token = md5( uniqid('auth', true) );
     $_SESSION['form_token_step2'] = $form_token;

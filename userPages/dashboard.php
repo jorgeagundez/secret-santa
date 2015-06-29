@@ -48,10 +48,11 @@ include "../includes/header.php";
     <section class="info_area blue title">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-xs-4 col-md-6">
                     <div class="figure_small engranajecol"></div>
-                    <!-- <h3 class="white"><span class="bold text-capitalize">Juego de <?php echo $_SESSION['user_name']?></span></h3> -->
-                     <?php if(!$_SESSION['groupConfirmed']) { ?>
+                </div>
+                <div class="col-xs-8 col-md-6"></div>
+                    <?php if(!$_SESSION['groupConfirmed']) { ?>
                             <!-- <p class="white">Total Amigos: <span class="sky bold"><?php echo $_SESSION['numberfriends'] ?></span><br/> -->
                             <p class="white">Amigos confirmados: <span class="green bold"><?php echo $_SESSION['total_confirmed'] ?></span><br/>
                             Por confirmar: <span class="sky bold"><?php echo $_SESSION['numberfriends'] - $_SESSION['total_confirmed']  ?></span></p>
@@ -59,7 +60,7 @@ include "../includes/header.php";
                             <p class="white">Este grupo <span class="bold yellow">ha sido confirmado</span> por todos sus miembros. El <span class="bold green">sorteo</span> de nombres se ha <span class="bold green">realizado con éxito</span>, no olvides consultar tu correo electrónico para ver el resultado.</p>
                             <a class="red btn delete_account" href=""><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Borrar cuenta</a>
                     <?php } ?>
-                   
+                </div>
                 </div>
             </div>
         </div>
@@ -72,7 +73,7 @@ include "../includes/header.php";
                     <div class="col-xs-12 text-center">
                         <p class="red">
                             <?php 
-                                echo $_SESSION['error']; 
+                                echo $_SESSION['error'];
                                 unset($_SESSION['error']);
                             ?>
                         </p>
@@ -83,7 +84,7 @@ include "../includes/header.php";
     <?php } ?>
 
     <!-- MOBILE VERSION -->
-    <section class="friends_section">
+    <section class="friends">
         <div class="container wrapper">
             <div class="row ">
                 <?php if(isset($_SESSION['friendname1'])){ for ($i = 1; $i <= $_SESSION['numberfriends']; $i++) { ?>
@@ -92,153 +93,95 @@ include "../includes/header.php";
                     // $_SESSION['friendconfirmation' . $i] = false;
                 ?>
                     <div class="col-xs-12 d col-sm-6 col-md-4 friend-wrap " id="<?php echo $_SESSION['idfriend' . $i] ?>">
+                        <div class="content-wrapper" >
+
                         
-                          
-                               
-
-                            
-                                    <div class="content-wrapper" >
-                                   
-
-                                       
-                                        <div class="content-top" >
-                                        
-                                            <p class="bold text-capitalize"><?php echo $_SESSION['friendname' . $i] ?></p> - 
-                                            <small class="text-lowercase"><?php echo $_SESSION['friendemail' . $i] ?></small>
-                                            <?php if (!$_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]){ ?>
-                                                <i class="icon_status yellow fa fa-exclamation-triangle"></i>
-                                            <?php }elseif ($_SESSION['friendinvitation' . $i] && $_SESSION['friendconfirmation' . $i]){  ?>
-                                                <span class="icon_status glyphicon green glyphicon-thumbs-up" aria-hidden="true"></span>
-                                            <?php }else{ ?>
-                                                <i class="icon_status sky fa fa-question-circle"></i>
-                                            <?php } ?>
-
-                                        </div>
-               
-                    
-                                        <div class="content-behind">
+                            <?php if ($_SESSION['friendinvitation' . $i] && $_SESSION['friendconfirmation' . $i]){  ?>
+                                <div class="content-top green02">  
+                            <?php }else{ ?>
+                                <div class="content-top ligthgray">  
+                            <?php } ?>
                                          
-                                            <?php if($_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]) { ?>
+                                <p class="name bold text-capitalize " id="<?php echo $_SESSION['friendname' . $i] ?>"><?php echo $_SESSION['friendname' . $i] ?></p> 
 
-                                            <a class="remaind-btn behind-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-time yellow" aria-hidden="true"></span> Recordar</a>
-                                            <a class="delete-btn behind-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash red" aria-hidden="true"></span> Borrar</a>
-                                            
-                                            <?php }elseif (!$_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]){ ?>
-                                               
-                                            <a class="invite-btn behind-btn" aria-label="Left Align" href=""> Invitar</a>
-                                           
-                                            <?php }elseif ($_SESSION['friendinvitation' . $i] && $_SESSION['friendconfirmation' . $i]){  ?>
-                                                
-                                            <a href="">Listo</a>
-                                            
-                                            <?php } ?>
-                                        </div>
-        
-                                    </div>
-                  
-                    </div>
-                <?php } }?>
-            </div>
-        </div>
-    </section>
-
-<script> 
-$('.content-top').click(function(){  
-    if (!$(this).find('span').hasClass('green')) {
-        $(this).toggleClass('move');
-    }
-});   
-</script>
-
-    <!-- DESKTOP VERSION -->
-    <!-- <section class="white friends_section">
-        <div class="container wrapper">
-            <div class="row ">
-                <?php if(isset($_SESSION['friendname1'])){ for ($i = 1; $i <= $_SESSION['numberfriends']; $i++) { ?>
-                <?php  
-                    // $_SESSION['friendinvitation' . $i] = false ;
-                    // $_SESSION['friendconfirmation' . $i] = false;
-                ?>
-                    <div class="col-xs-12 d col-sm-6 col-md-4 col-md-offset-0 panel-group" id="<?php echo $_SESSION['idfriend' . $i] ?>"  role="tablist" aria-multiselectable="true">
-                        <div class="friend-wrap ligthgray panel-default" id="<?php echo $_SESSION['idfriend' . $i] ?>">
-                            <div class="row">
-                                <div class="name" id="<?php echo $_SESSION['friendname' . $i] ?>">
-                                    <?php if (!$_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]){ ?>
-                                    <div class="col-xs-12 yellow05 panel-heading" role="tab" id="header_<?php echo $_SESSION['friendname' . $i] ?>">
-                                    <?php }elseif($_SESSION['friendinvitation' . $i] && $_SESSION['friendconfirmation' . $i]){ ?>
-                                    <div class="col-xs-12 green05 panel-heading" role="tab" id="header_<?php echo $_SESSION['friendname' . $i] ?>">
-                                    <?php }else{ ?>
-                                    <div class="col-xs-12 ligthgray05 panel-heading" role="tab" id="header_<?php echo $_SESSION['friendname' . $i] ?>">
-                                    <?php } ?>
-                                        <a class="btn panel-title" role="button" data-toggle="collapse" data-parent="#<?php echo $_SESSION['idfriend' . $i] ?>" href="#body_<?php echo $_SESSION['friendname' . $i] ?>" aria-expanded="true" aria-controls="body_<?php echo $_SESSION['friendname' . $i] ?>">
-                                            <span class=" bold text-capitalize"><?php echo $_SESSION['friendname' . $i] ?></span> - 
-                                            <small class="text-lowercase"><?php echo $_SESSION['friendemail' . $i] ?></small>
-                                            <?php if (!$_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]){ ?>
-                                                <i class="icon_status yellow fa fa-exclamation-triangle"></i>
-                                            <?php }elseif ($_SESSION['friendinvitation' . $i] && $_SESSION['friendconfirmation' . $i]){  ?>
-                                                <span class="icon_status glyphicon green glyphicon-thumbs-up" aria-hidden="true"></span>
-                                            <?php }else{ ?>
-                                                <i class="icon_status sky fa fa-question-circle"></i>
-                                            <?php } ?>
-                                        </a>
-                                    </div>
-                                </div>
+                                <?php 
+                                    if ( strlen($_SESSION['friendname' . $i] . $_SESSION['friendemail' . $i]) > 35) {
+                                        $rest = substr($_SESSION['friendemail' . $i], 0, 23);
+                                        $rest = $rest . '...';
+                                        echo '<small class="email text-lowercase" id="' . $_SESSION['friendemail' . $i] . '">(' . $rest . ')</small>';
+                                    }else{
+                                        echo '<small class="email text-lowercase" id="' . $_SESSION['friendemail' . $i] . '">(' . $_SESSION['friendemail' . $i] . ')</small>';
+                                    }
+                                ?>
                                 
-                                <div class="email" id="<?php echo $_SESSION['friendemail' . $i] ?>">
-                                    <div class="col-xs-12 panel-collapse collapse" id="body_<?php echo $_SESSION['friendname' . $i] ?>" role="tabpanel" aria-labelledby="header_<?php echo $_SESSION['friendname' . $i] ?>">
-                                        <div class="panel-body">
-                                         
-                                            <?php if($_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]) { ?>
+                                <?php if (!$_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]){ ?>
+                                    <i class="icon_status yellow fa fa-exclamation-triangle"></i>
+                                <?php }elseif ($_SESSION['friendinvitation' . $i] && $_SESSION['friendconfirmation' . $i]){  ?>
+                                    <span class="icon_status glyphicon green glyphicon-thumbs-up" aria-hidden="true"></span>
+                                <?php }else{ ?>
+                                    <i class="icon_status sky fa fa-question-circle"></i>
+                                <?php } ?>
 
-                                            <a id="" class="remaind" aria-label="Left Align" href=""><span class="glyphicon glyphicon-time yellow" aria-hidden="true"></span> Recordar</a>
-                                            <a id="" class="delete" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash red" aria-hidden="true"></span> Borrar</a>
-                                            
-                                            <?php }elseif (!$_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]){ ?>
-                                               
-                                            <a id="" class="invite" aria-label="Left Align" href=""><span class="glyphicon glyphicon-send yellow" aria-hidden="true"></span> Invitar</a>
-                                           
-                                            <?php }elseif ($_SESSION['friendinvitation' . $i] && $_SESSION['friendconfirmation' . $i]){  ?>
-                                                
-                                            <p class="bold green ready">&iexcl;<?php echo $_SESSION['friendname' . $i] ?> ha confirmado!</p>
-                                            
-                                            <?php } ?>
-                                        </div>
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="content-behind">
+                             
+                                <?php if($_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]) { ?>
+                                    <a class="remaind-btn behind-btn" aria-label="Left Align" href="">Recordar</a>
+                                    <a class="delete-btn behind-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash white" aria-hidden="true"></span></a> 
+                                <?php }elseif (!$_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]){ ?>  
+                                    <a class="invite-btn behind-btn" aria-label="Left Align" href=""> Invitar</a>
+                                    <a class="delete-btn behind-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash white" aria-hidden="true"></span></a>
+                                <?php } ?>
+
                             </div>
                         </div>
                     </div>
                 <?php } }?>
             </div>
         </div>
-    </section> -->
+    </section>
+    
 
-    <section class="add-friend white">
-        <div class="col-xs-12 d col-sm-6 col-md-4 col-md-offset-0 panel-group add-friend-wrap" id="add-friend-wrap"  role="tablist" aria-multiselectable="true">
-            <div class="friend-wrap ligthgray panel-default" id="">
-                <div class="row">
-                    <div class="col-xs-12 ligthgray05 panel-heading name" role="tab" id="header_add-friend">
-                        <h3 class="panel-title">
-                            <span class="text-capitalize sky bold text-center">Añadir amigo</span>
-                        </h3>
-                        <a class="btn settings" role="button" data-toggle="collapse" data-parent="#add-friend-wrap" href="#body_add-friend" aria-expanded="true" aria-controls="body_add-friend">
-                            <span class="icon_set sky glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 panel-collapse collapse" id="body_add-friend" role="tabpanel" aria-labelledby="header_add-friend">
-                        <div class="panel-body">
-                            <form role="form" class="add-friend" id="addFriend" method="post" action=""> 
-                                <input type="text" name="friendname" class="form-control friendname" id="friendname" placeholder="Nombre" required="true"/>
-                                <input type="email" name="friendemail" class="form-control friendemail" id="friendemail" placeholder="Correo Electrónico" required="true"/>
-                                <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
-                                <button type="submit" id="" class="btn-sm btn btn-default warning-btn add" aria-label="Left Align" href=""><span class="glyphicon glyphicon-plus green" aria-hidden="true"></span> Añadir</a>
-                            </form>
-                        </div>
-                    </div>
+    <section class="blue ribbon">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <p class="white"><span class="glyphicon glyphicon-user"></span> Añadir Amigo</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <section class="add-friend">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 d col-sm-6 col-md-4 col-md-offset-0 add-friend-wrap" id="add-friend-wrap">
+                    <div class="friend-wrap">
+                        <form role="form" class="addFriend" id="addFriend" method="post" action=""> 
+                            <input type="text" name="friendname" class="form-control friendname" id="friendname" placeholder="Nombre" required="true"/>
+                            <input type="email" name="friendemail" class="form-control friendemail" id="friendemail" placeholder="Correo Electrónico" required="true"/>
+                            <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
+                            <button type="submit" id="addfriend-btn" class="btn-sm btn btn-white" aria-label="Left Align" href=""><span class="glyphicon glyphicon-plus yellow" aria-hidden="true"></span> Añadir</a>
+                        </form> 
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix visible-xs-block"></div>
+        </div>
+    </section>
+
+    <section class="blue ribbon">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <p class="white"><span class="glyphicon glyphicon-gift"></span>
+                        Datos del Juego
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <section class="info_area sky">
         <div class="container">
@@ -246,6 +189,7 @@ $('.content-top').click(function(){
                 <div class="col-xs-12">
                     <div class="col-xs-12">
                         <div class="quotes">
+                            <h3 class="bold"><?php echo $_SESSION['game_title']?></h3>
                             <p class="bold"><?php echo $_SESSION['game_description']?></p>
                         </div>
                         <div class="datas">
@@ -258,10 +202,6 @@ $('.content-top').click(function(){
             </div>
         </div>
     </section>
-
-    <div class="sky">
-    <button class="btn btn-default" id="activator">Test</button>
-    </div>
 
     <?php 
     include "../includes/footer.php";

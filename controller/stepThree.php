@@ -50,13 +50,12 @@ if(isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_t
 
             $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->prepare("INSERT INTO game (title, description, price, gameplace, gamedate, drawdate, user_idusuario, gamekey ) VALUES (:game_title, :game_description, :game_price, :game_place, :game_date, :draw_date, :user_id, :game_key )");
+            $stmt = $conn->prepare("INSERT INTO game (title, description, price, gameplace, gamedate, user_idusuario, gamekey ) VALUES (:game_title, :game_description, :game_price, :game_place, :user_id, :game_key )");
             $stmt->bindParam(':game_title', $_SESSION['game_title'], PDO::PARAM_STR);
             $stmt->bindParam(':game_description', $_SESSION['game_description'], PDO::PARAM_STR);
             $stmt->bindParam(':game_price', $_SESSION['game_price'], PDO::PARAM_STR);
             $stmt->bindParam(':game_place', $_SESSION['game_place'], PDO::PARAM_STR);
             $stmt->bindParam(':game_date', $_SESSION['game_date'], PDO::PARAM_STR);
-            $stmt->bindParam(':draw_date', $_SESSION['game_drawdate'], PDO::PARAM_STR);
             $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
             $stmt->bindParam(':game_key', $_SESSION['game_key'], PDO::PARAM_INT);
 
@@ -92,7 +91,7 @@ if(isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_t
 
                 }catch(Exception $e){
                         
-                    $_SESSION['error'] = $e->getCode();
+                    $_SESSION['error'] = $e->getCode() . ' ' . $e;
 
                 }//end try
                
@@ -105,13 +104,16 @@ if(isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_t
                
         }catch(Exception $e){
                     
-            $_SESSION['error'] = $e->getCode();
+            $_SESSION['error'] = $e->getCode() . ' ' . $e;
         }
 
     }catch(Exception $e){
 
-        $_SESSION['error'] = $e->getCode();
+        $_SESSION['error'] = $e->getCode() . ' ' . $e;
     }
+
+    echo $_SESSION['error'];
+    die();
 }
 
 

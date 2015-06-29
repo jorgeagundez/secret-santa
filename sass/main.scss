@@ -13,10 +13,9 @@ $darkgray: #DDDEDD;
 $black: #535553;
 
 //Opacity
-$ligthgray05 : rgba(171, 208, 205, 0.5);
-$ligthgray02 : rgba(171, 208, 205, 0.2);
-$yellow05: rgba(240, 179, 35, 0.5);
-$green05:  rgba(76, 174, 76, 0.5);
+$sky05 : #c7dfde;
+$yellow05: #f6d37f;
+$green02:  #dbeedb;
 
 // Font weights
 $light: 300;
@@ -106,6 +105,10 @@ body {
 	}
 }
 
+small {
+	font-size: 65%;
+}  
+
 // Colours Fonts
 // **************
 
@@ -189,6 +192,19 @@ body {
 	color: white;
 }
 
+.btn-white {
+	@extend .button_style;
+	background: white;
+	color: $black;
+	border: 1px solid $darkgray;
+}
+
+.btn-white:hover,
+.btn-white:focus,
+.btn-white:active {
+	color: $black!important;
+}
+
 .btn:hover, .btn:focus {
 	color: white;
 }
@@ -226,6 +242,12 @@ div.yellow {
 	color: inherit;
 }
 
+section.yellow05,
+div.yellow05 {
+	background: $yellow05;
+	color: inherit;
+}
+
 section.blue,
 div.blue {
 	background: $blue;
@@ -251,6 +273,13 @@ div.sky {
 	color: inherit;
 }
 
+section.sky05,
+div.sky05 {
+	background: $sky05;
+	color: inherit;
+	color: inherit;
+}
+
 section.ligthgray,
 div.ligthgray {
 	background: $ligthgray;
@@ -272,6 +301,12 @@ div.darkgray {
 section.green,
 div.green {
 	background: $green;
+	color: inherit;
+}
+
+section.green02,
+div.green02 {
+	background: $green02;
 	color: inherit;
 }
 
@@ -804,12 +839,14 @@ footer {
 
 .title {
 	margin-top: 50px;
+	text-align: left;
 }
 
 // All friends wrap
 // ================
 
-.friends_section {
+.friends {
+	border-top: 1px solid sky;
 	.wrapper {
 		padding: 0;
 		text-align: left;

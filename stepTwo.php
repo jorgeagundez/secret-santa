@@ -65,14 +65,8 @@ include "includes/header.php";
                         </div>
                         <div class="row">
                             <div class="col-md-12 input_wrapper">
-                                <label for="gamedate">Date of the game</label>
+                                <label for="gamedate">Date</label>
                                 <input type="date" name="gamedate" class="form-control" id="gamedate" required="true"/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 input_wrapper">
-                                <label for="drawdate">Date of the Draw</label>
-                                <input type="date" name="drawdate" class="form-control" id="drawdate"  required="true"/>
                             </div>
                         </div>
                         <div class="row">

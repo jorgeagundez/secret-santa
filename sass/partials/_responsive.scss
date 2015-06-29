@@ -4,10 +4,10 @@
 /* Small devices (tablets, 768px and up) */
 @media only screen and (max-width: 768px) 
 {
+	
+
 	// Each Friend
 	// ===========
-
-
 
 	.friend-wrap {
 		position: relative;
@@ -18,7 +18,8 @@
 		    width: 100%;
 		    display: block;
 		    overflow: hidden;
-		    border-top: 2px solid $sky;
+		    border-bottom: 1px solid $darkgray;
+		  
 		}
 
 			.content-top {
@@ -28,13 +29,11 @@
 	   			display: block;
 	   			z-index: 100;
 	   			cursor: pointer;
-	   			background: $ligthgray;
 	   			right: 0;
 	   			padding-left: 7%;
 	   			padding-top: 10px;
 	   			padding-bottom: 10px;
 	   			overflow: hidden;
-	   			border-right: 1px solid $sky;
 	   			-webkit-transform: translateZ(0);
 	   			-webkit-transition: all 200ms linear 0s;
 	   			-moz-transition: all 200ms linear 0s;
@@ -63,9 +62,7 @@
 				width: 50%;
 				height: 100%;
 				
-			}
-		
-		
+			}	
 	}
 
 	.icon_status {
@@ -93,10 +90,27 @@
 
 	.invite-btn {
 		@extend .behind-btn; 
-		width: 100%;
-		right: 0;
+		width:70%;
+		left:0;
+		padding-left: 17%;
 		background: $yellow;
-		padding-left: 33%;
+	}
+
+	.remaind-btn {
+		@extend .behind-btn; 
+		width:70%;
+		left:0;
+		padding-left: 12%;
+		background: $black;
+	}
+
+	.delete-btn {
+		@extend .behind-btn; 
+		width:30%;
+		left: 70%;
+		background: $red;
+		padding-left: 10%;
+  		padding-top: 3px;
 	}
 
 	
@@ -117,6 +131,31 @@
 		font-weight: $bold;
 		background: $ligthgray;
 		color: $blue;
+	}
+
+	// ADD FRIEND
+	.add-friend {
+		padding: 15px 0;
+		background: $ligthgray;
+		// height: 180px;
+
+		input {
+			margin: 5px 0;
+			color: $blue;
+			height: 50px;
+			font-size: 18px;
+		}
+
+		button {
+			display: block;
+			margin: 0 auto;
+			font-weight: $regular;
+			margin-top: 10px;
+			height: 40px;
+			font-size: 16px;
+			box-shadow: none;
+		}
+
 	}
 
 }

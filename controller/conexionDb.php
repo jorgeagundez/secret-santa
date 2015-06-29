@@ -5,9 +5,14 @@
     // $mysql_password = 'Jam19977';
     // $mysql_dbname = 'db572200012';
 
-    $mysql_hostname = 'localhost';
-    $mysql_username = 'root';
-    $mysql_password = 'jam19977';
-    $mysql_dbname = 'secretsanta';
+     $mysql_hostname = 'localhost';
+     $mysql_username = 'root';
+     $mysql_password = 'mayday';
+     $mysql_dbname = 'secretsanta';
+//
+//    $mysql_hostname = 'localhost';
+//    $mysql_username = 'root';
+//    $mysql_password = 'jam19977';
+//    $mysql_dbname = 'secretsanta';
 
 ?>
