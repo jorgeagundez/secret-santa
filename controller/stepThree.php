@@ -50,7 +50,7 @@ if(isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_t
 
             $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->prepare("INSERT INTO game (title, description, price, gameplace, gamedate, user_idusuario, gamekey ) VALUES (:game_title, :game_description, :game_price, :game_place, :user_id, :game_key )");
+            $stmt = $conn->prepare("INSERT INTO game (title, description, price, gameplace, gamedate, user_idusuario, gamekey ) VALUES (:game_title, :game_description, :game_price, :game_place, :game_date, :user_id, :game_key )");
             $stmt->bindParam(':game_title', $_SESSION['game_title'], PDO::PARAM_STR);
             $stmt->bindParam(':game_description', $_SESSION['game_description'], PDO::PARAM_STR);
             $stmt->bindParam(':game_price', $_SESSION['game_price'], PDO::PARAM_STR);
