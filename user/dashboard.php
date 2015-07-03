@@ -4,7 +4,7 @@ session_start();
 
 if(!isset($_SESSION['user_id'])) {
     $_SESSION['error'] = 'You must be logged in to visit this page';
-    header('Location:/index.php');
+    header('Location:/controller/logout.php');
 }
 
 $_SESSION['id_session'] = session_id();
@@ -43,8 +43,6 @@ include "../includes/header.php";
         </div>
     </header>
 
-    <?php //$_SESSION['groupConfirmed'] = 1 ;?>
-
     <section class="info_area blue title">
         <div class="container">
             <div class="row">
@@ -52,8 +50,7 @@ include "../includes/header.php";
                     <div class="figure_small engranajecol"></div>
                 </div>
                 <div class="col-xs-8 col-md-6"></div>
-                    <?php if(!$_SESSION['groupConfirmed']) { ?>
-                            <!-- <p class="white">Total Amigos: <span class="sky bold"><?php echo $_SESSION['numberfriends'] ?></span><br/> -->
+                    <?php if(! $game->getConfirmed() ) { ?>
                             <p class="white">Amigos confirmados: <span class="green bold"><?php echo $_SESSION['total_confirmed'] ?></span><br/>
                             Por confirmar: <span class="sky bold"><?php echo $_SESSION['numberfriends'] - $_SESSION['total_confirmed']  ?></span></p>
                     <?php }else{ ?>
@@ -84,39 +81,35 @@ include "../includes/header.php";
     <?php } ?>
 
     <!-- MOBILE VERSION -->
-    <section class="friends">
+    <section id="friends" class="friends">
         <div class="container wrapper">
-            <div class="row ">
-                <?php if(isset($_SESSION['friendname1'])){ for ($i = 1; $i <= $_SESSION['numberfriends']; $i++) { ?>
-                <?php  
-                    // $_SESSION['friendinvitation' . $i] = false ;
-                    // $_SESSION['friendconfirmation' . $i] = false;
-                ?>
-                    <div class="col-xs-12 d col-sm-6 col-md-4 friend-wrap " id="<?php echo $_SESSION['idfriend' . $i] ?>">
+            <div class="row">
+
+                <?php foreach( $allFriends as $friend ) { ?>
+                    <div class="col-xs-12 d col-sm-6 col-md-4 friend-wrap " id="<?php echo $friend->getIdfriend(); ?>">
                         <div class="content-wrapper" >
 
-                        
-                            <?php if ($_SESSION['friendinvitation' . $i] && $_SESSION['friendconfirmation' . $i]){  ?>
+                            <?php if ($friend->getInvitation() && $friend->getConfirmation()){  ?>
                                 <div class="content-top green02">  
                             <?php }else{ ?>
                                 <div class="content-top ligthgray">  
                             <?php } ?>
                                          
-                                <p class="name bold text-capitalize " id="<?php echo $_SESSION['friendname' . $i] ?>"><?php echo $_SESSION['friendname' . $i] ?></p> 
+                                <p class="name bold text-capitalize " id="<?php echo $friend->getFriendname(); ?>"><?php echo $friend->getFriendname(); ?></p> 
 
                                 <?php 
-                                    if ( strlen($_SESSION['friendname' . $i] . $_SESSION['friendemail' . $i]) > 35) {
-                                        $rest = substr($_SESSION['friendemail' . $i], 0, 23);
+                                    if ( strlen( $friend->getFriendname() . $friend->getFriendemail()) > 35) {
+                                        $rest = substr($friend->getFriendemail(), 0, 23);
                                         $rest = $rest . '...';
-                                        echo '<small class="email text-lowercase" id="' . $_SESSION['friendemail' . $i] . '">(' . $rest . ')</small>';
+                                        echo '<small class="email text-lowercase" id="' . $friend->getFriendemail() . '">(' . $rest . ')</small>';
                                     }else{
-                                        echo '<small class="email text-lowercase" id="' . $_SESSION['friendemail' . $i] . '">(' . $_SESSION['friendemail' . $i] . ')</small>';
+                                        echo '<small class="email text-lowercase" id="' . $friend->getFriendemail() . '">(' . $friend->getFriendemail() . ')</small>';
                                     }
                                 ?>
                                 
-                                <?php if (!$_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]){ ?>
+                                <?php if (!$friend->getInvitation() && !$friend->getConfirmation()){ ?>
                                     <i class="icon_status yellow fa fa-exclamation-triangle"></i>
-                                <?php }elseif ($_SESSION['friendinvitation' . $i] && $_SESSION['friendconfirmation' . $i]){  ?>
+                                <?php }elseif ($friend->getInvitation() && $friend->getConfirmation()){  ?>
                                     <span class="icon_status glyphicon green glyphicon-thumbs-up" aria-hidden="true"></span>
                                 <?php }else{ ?>
                                     <i class="icon_status sky fa fa-question-circle"></i>
@@ -125,10 +118,10 @@ include "../includes/header.php";
                             </div>
                             <div class="content-behind">
                              
-                                <?php if($_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]) { ?>
+                                <?php if($friend->getInvitation() && !$friend->getConfirmation()) { ?>
                                     <a class="remaind-btn behind-btn" aria-label="Left Align" href="">Recordar</a>
                                     <a class="delete-btn behind-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash white" aria-hidden="true"></span></a> 
-                                <?php }elseif (!$_SESSION['friendinvitation' . $i] && !$_SESSION['friendconfirmation' . $i]){ ?>  
+                                <?php }elseif (!$friend->getInvitation() && !$friend->getConfirmation()){ ?>  
                                     <a class="invite-btn behind-btn" aria-label="Left Align" href=""> Invitar</a>
                                     <a class="delete-btn behind-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash white" aria-hidden="true"></span></a>
                                 <?php } ?>
@@ -136,7 +129,8 @@ include "../includes/header.php";
                             </div>
                         </div>
                     </div>
-                <?php } }?>
+                <?php } ?>
+
             </div>
         </div>
     </section>
@@ -189,13 +183,13 @@ include "../includes/header.php";
                 <div class="col-xs-12">
                     <div class="col-xs-12">
                         <div class="quotes">
-                            <h3 class="bold"><?php echo $_SESSION['game_title']?></h3>
-                            <p class="bold"><?php echo $_SESSION['game_description']?></p>
+                            <h3 class="bold"><?php echo $game->getTitle() ?></h3>
+                            <p class="bold"><?php echo $game->getDescription() ?></p>
                         </div>
                         <div class="datas">
-                           <p class="bold white"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Precio Mínimo <span class="blue"><?php echo $_SESSION['game_price']?> &euro; </span></p>
-                           <p class="bold white"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lugar <span class="blue"><?php echo $_SESSION['game_place']?></span></p>
-                           <p class="bold white"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Fecha <span class="blue"><?php echo $_SESSION['game_date']?></span></p>
+                           <p class="bold white"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Precio Mínimo <span class="blue"><?php echo $game->getPrice() ?> &euro; </span></p>
+                           <p class="bold white"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lugar <span class="blue"><?php echo $game->getGameplace() ?></span></p>
+                           <p class="bold white"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Fecha <span class="blue"><?php echo $game->getGamedate() ?></span></p>
                         </div>
                     </div>
                 </div>

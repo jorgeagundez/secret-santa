@@ -743,24 +743,42 @@ footer {
 			font-weight: $regular;
 		}
 	}
+}
 
-	.stepThree {
-		.friend_wrap {
-			padding: 10px 15px 15px;
-			border-bottom: 1px solid $lightyellow;
+// ========================
+// ========================
+//        STEP THREE
+// ========================
+// ========================
 
-			label {
-				font-weight: $bold;
-				color: $blue;
-			}
-		}
+.step-three {
+	padding: 20px 0 0 0;
+}
+
+.flashback {
+	display: block;
+	opacity: 0;
+	width: 100%;
+	background: #fcefd3;
+	margin-top: 20px;
+	text-align: center;
+	padding: 16px 0 7px 0;
+	border-radius: 10px;
+	border: 1px solid $yellow05;
+
+	-webkit-transition: all 1s linear;
+	-moz-transition: all 1s linear;
+	-o-transition: all 1s linear;
+	transition: all 1s linear;
+
+	p{
+		font-size: 16px;
+		color: $black;
 	}
+}
 
-	.friendList {
-		margin: 20px 0;
-	}
-	
-
+.flash {
+	opacity:1;
 }
 
 // ========================
@@ -802,7 +820,7 @@ footer {
 		width: 40px;
 		height: 40px;
 		position: absolute;
-		top: 6px;
+		top: 11px;
 		right: 7px;
 		.icon_set {
 			margin: 0;
@@ -850,7 +868,7 @@ footer {
 }
 
 .title {
-	margin-top: 50px;
+	margin-top: 27px;
 	text-align: left;
 }
 

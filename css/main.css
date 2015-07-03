@@ -477,14 +477,30 @@ footer {
 .form_step_wrapper .stepTwo label {
   color: white;
   font-weight: 400; }
-.form_step_wrapper .stepThree .friend_wrap {
-  padding: 10px 15px 15px;
-  border-bottom: 1px solid #f6d17b; }
-  .form_step_wrapper .stepThree .friend_wrap label {
-    font-weight: 600;
-    color: #0F3E5A; }
-.form_step_wrapper .friendList {
-  margin: 20px 0; }
+
+.step-three {
+  padding: 20px 0 0 0; }
+
+.flashback {
+  display: block;
+  opacity: 0;
+  width: 100%;
+  background: #fcefd3;
+  margin-top: 20px;
+  text-align: center;
+  padding: 16px 0 7px 0;
+  border-radius: 10px;
+  border: 1px solid #f6d37f;
+  -webkit-transition: all 1s linear;
+  -moz-transition: all 1s linear;
+  -o-transition: all 1s linear;
+  transition: all 1s linear; }
+  .flashback p {
+    font-size: 16px;
+    color: #535553; }
+
+.flash {
+  opacity: 1; }
 
 .dash_header {
   position: fixed;
@@ -508,7 +524,7 @@ footer {
     width: 40px;
     height: 40px;
     position: absolute;
-    top: 6px;
+    top: 11px;
     right: 7px; }
     .dash_header .settings .icon_set {
       margin: 0; }
@@ -537,7 +553,7 @@ footer {
     margin: 5px 0; }
 
 .title {
-  margin-top: 50px;
+  margin-top: 27px;
   text-align: left; }
 
 .friends {
@@ -553,6 +569,11 @@ footer {
 /* No media query since this is the default in Bootstrap */
 /* Small devices (tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
+  .ribbon {
+    border-top: 1px solid #FAF9F9; }
+    .ribbon p {
+      margin: 15px 0; }
+
   .friend-wrap {
     position: relative; }
     .friend-wrap .content-wrapper {
@@ -594,51 +615,48 @@ footer {
       bottom: 0;
       width: 50%;
       height: 100%; }
+      .friend-wrap .content-behind .behind-btn, .friend-wrap .content-behind .invite-btn, .friend-wrap .content-behind .remaind-btn, .friend-wrap .content-behind .delete-btn {
+        height: 100%;
+        position: absolute;
+        font-size: 18px;
+        line-height: 57px;
+        color: white;
+        font-weight: bold; }
+        .friend-wrap .content-behind .behind-btn .glyphicon, .friend-wrap .content-behind .invite-btn .glyphicon, .friend-wrap .content-behind .remaind-btn .glyphicon, .friend-wrap .content-behind .delete-btn .glyphicon {
+          line-height: 51px; }
+      .friend-wrap .content-behind .behind-btn:hover, .friend-wrap .content-behind .invite-btn:hover, .friend-wrap .content-behind .remaind-btn:hover, .friend-wrap .content-behind .delete-btn:hover,
+      .friend-wrap .content-behind .behind-btn:focus,
+      .friend-wrap .content-behind .invite-btn:focus,
+      .friend-wrap .content-behind .remaind-btn:focus,
+      .friend-wrap .content-behind .delete-btn:focus,
+      .friend-wrap .content-behind .behind-btn:active,
+      .friend-wrap .content-behind .invite-btn:active,
+      .friend-wrap .content-behind .remaind-btn:active,
+      .friend-wrap .content-behind .delete-btn:active {
+        text-decoration: none;
+        color: white; }
+      .friend-wrap .content-behind .invite-btn {
+        width: 70%;
+        left: 0;
+        padding-left: 17%;
+        background: #F0B323; }
+      .friend-wrap .content-behind .remaind-btn {
+        width: 70%;
+        left: 0;
+        padding-left: 12%;
+        background: #535553; }
+      .friend-wrap .content-behind .delete-btn {
+        width: 30%;
+        left: 70%;
+        background: #EC6645;
+        padding-left: 10%;
+        padding-top: 3px; }
 
   .icon_status {
     position: absolute;
     right: 7%;
     top: 22px;
     font-size: 18px; }
-
-  .behind-btn, .invite-btn, .remaind-btn, .delete-btn {
-    height: 100%;
-    position: absolute;
-    font-size: 18px;
-    line-height: 57px;
-    color: white;
-    font-weight: bold; }
-
-  .behind-btn:hover, .invite-btn:hover, .remaind-btn:hover, .delete-btn:hover,
-  .behind-btn:focus,
-  .invite-btn:focus,
-  .remaind-btn:focus,
-  .delete-btn:focus,
-  .behind-btn:active,
-  .invite-btn:active,
-  .remaind-btn:active,
-  .delete-btn:active {
-    text-decoration: none;
-    color: white; }
-
-  .invite-btn {
-    width: 70%;
-    left: 0;
-    padding-left: 17%;
-    background: #F0B323; }
-
-  .remaind-btn {
-    width: 70%;
-    left: 0;
-    padding-left: 12%;
-    background: #535553; }
-
-  .delete-btn {
-    width: 30%;
-    left: 70%;
-    background: #EC6645;
-    padding-left: 10%;
-    padding-top: 3px; }
 
   .delete,
   .delete:focus,

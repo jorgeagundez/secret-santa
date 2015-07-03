@@ -3,7 +3,14 @@
 
 /* Small devices (tablets, 768px and up) */
 @media only screen and (max-width: 768px) 
-{
+{	
+
+	.ribbon {
+		border-top: 1px solid $ligthgray;
+		p {
+			margin: 15px 0;
+		}
+	}
 	
 
 	// Each Friend
@@ -61,7 +68,52 @@
 				bottom: 0;
 				width: 50%;
 				height: 100%;
-				
+
+				.behind-btn {
+					height: 100%;
+					position: absolute;
+					font-size: 18px;
+					line-height: 57px;
+					color: white;
+					font-weight: bold;
+
+					.glyphicon {
+					 	line-height: 51px;
+					}
+				}
+
+				.behind-btn:hover,
+				.behind-btn:focus,
+				.behind-btn:active {
+					text-decoration: none;
+					color: white;
+				}
+
+				.invite-btn {
+					@extend .behind-btn; 
+					width:70%;
+					left:0;
+					padding-left: 17%;
+					background: $yellow;
+				}
+
+				.remaind-btn {
+					@extend .behind-btn; 
+					width:70%;
+					left:0;
+					padding-left: 12%;
+					background: $black;
+				}
+
+				.delete-btn {
+					@extend .behind-btn; 
+					width:30%;
+					left: 70%;
+					background: $red;
+					padding-left: 10%;
+			  		padding-top: 3px;
+				}
+							
 			}	
 	}
 
@@ -72,46 +124,7 @@
 		font-size: 18px;
 	}
 
-	.behind-btn {
-		height: 100%;
-		position: absolute;
-		font-size: 18px;
-		line-height: 57px;
-		color: white;
-		font-weight: bold;
-	}
-
-	.behind-btn:hover,
-	.behind-btn:focus,
-	.behind-btn:active {
-		text-decoration: none;
-		color: white;
-	}
-
-	.invite-btn {
-		@extend .behind-btn; 
-		width:70%;
-		left:0;
-		padding-left: 17%;
-		background: $yellow;
-	}
-
-	.remaind-btn {
-		@extend .behind-btn; 
-		width:70%;
-		left:0;
-		padding-left: 12%;
-		background: $black;
-	}
-
-	.delete-btn {
-		@extend .behind-btn; 
-		width:30%;
-		left: 70%;
-		background: $red;
-		padding-left: 10%;
-  		padding-top: 3px;
-	}
+	
 
 	
 	

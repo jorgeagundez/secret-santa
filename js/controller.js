@@ -1,21 +1,24 @@
 $(document).ready(function(){
 
-
-
 	// ************
 	// STEP 3 PAGE
 	// ************
 
-	var i = 1;
-	$('.addFriend').click(function(){
-		i++;
-		var friend = '<div class="row friend_wrap"><div class="col-md-3 input_wrapper"><label for="friendname' + i + '">Amigo n&deg;' + i + '</label><input type="text" name="friendname' + i + '" class="form-control" id="friendname' + i + '" placeholder="Nombre" required="true"/></div><div class="col-md-9 input_wrapper"><label for="friendemail' + i + '">Email</label><input type="email" name="friendemail' + i + '" class="form-control" id="friendemail' + i + '" placeholder="Correo Electrónico" required="true"/></div></div>';
-		$('div.friendList').append(friend);
-	});
+    
 
-	$('form#stepThree').submit(function() {
-		$('.nFriends').val(i);
-	});
+    function showFlasback() {
+        $('.flashback').addClass('flash');
+    }
+
+    function hideFlasback() {
+        $('.flashback').removeClass('flash');
+    }
+
+    setTimeout(showFlasback , 2000 );
+    setTimeout(hideFlasback , 4000 );
+
+    
+	
 
 	// ************
 	// DASHBOARD
@@ -76,9 +79,6 @@ $(document).ready(function(){
 
             function setFriendwrap(id, name, email){
 
-                if ( name + email > 35) {
-                    console.log('yeah');
-                }
                 var friendcode = '<div style=\"opacity: 0;\" class=\"col-xs-12 d col-sm-6 col-md-4 friend-wrap\" id=\"' + id + '\"><div class=\"content-wrapper\" ><div class=\"content-top ligthgray\"><p class=\"name bold text-capitalize\" id=\"' + name + '\">' + name + '</p><small class=\"email text-lowercase\" id=\"' + email + '\"> (' + email.substring(0,23) + '...)</small><i class=\"icon_status yellow fa fa-exclamation-triangle\"></i></div><div class=\"content-behind\"><a class=\"invite-btn behind-btn\" aria-label=\"Left Align\" href=\"\"> Invitar</a><a class="delete-btn behind-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash white" aria-hidden="true"></span></a></div></div></div>';
                 return friendcode;
             }
@@ -91,12 +91,17 @@ $(document).ready(function(){
                 success:  function (response) {
                     if (response.error){
                         alert(response.mensaje);
+                        alert(response.type);
                         console.log(response.type);
                     }else{
                         var code = setFriendwrap(response.newid, name, email);
-                        // $('.friends').find('.friend-wrap:last-child').add(code);
-                        $('.friends').find('.friend-wrap:last-child').after(code);
+                        if ($('.friends > .wrapper > .row > div').length == 0 ) {
+                            $('.friends > .wrapper > .row:last-child').append(code);
+                        }else{
+                            $('.friends').find('.friend-wrap:last-child').after(code);
+                        }
                         $('.friends').find('.friend-wrap:last-child').fadeTo('slow', 1);
+                        
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -127,7 +132,7 @@ $(document).ready(function(){
                         data:  friend,
                         type:  'POST',
                         dataType: 'json',
-                        url:   '../controller/ajax/singleInvitation.php',
+                        url:   '../controller/ajax/inviteFriend.php',
                         success:  function (response) {
                             if (response.error){
                                 alert(response.mensaje);

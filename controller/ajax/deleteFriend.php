@@ -30,6 +30,9 @@ function delete_friend($friendid, $friendname, $friendemail) {
 
         $stmt->execute();
 
+        
+
+
         // require_once 'Mail.php';
         // require_once 'Mail/mime.php';
 
