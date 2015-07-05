@@ -7,8 +7,7 @@ $friendemail = $_POST["email"];
 
 if(!isset($_SESSION['user_id']))
 {
-    header('Location:/logout.php');
-    
+    header('Location:/logout.php'); 
 };
 
 if ( !isset($friendname) || !isset($friendemail) ) {

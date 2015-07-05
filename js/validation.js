@@ -20,6 +20,15 @@ $(document).ready(function(){
                             $(this).addClass('correct');
                         };
                     break;
+                    case 'friendname':
+                        if ($(this).val() == '' || $(this).val().length < 5 || $(this).val().length > 8) {
+                            errors.push('Friendname is invalid');
+                            $(this).addClass('error');                     
+                        }else{
+                            $(this).removeClass('error');
+                            $(this).addClass('correct');
+                        };
+                    break;
                     case 'title':
                         if ($(this).val() == '' ) {
                             errors.push('Title is invalid');
@@ -98,7 +107,31 @@ $(document).ready(function(){
                             $(this).addClass('correct');
                             email = $(this).val();
                         }
-                    break;	
+                    break;
+                    case 'friendemail':
+                        var filter = new RegExp(/[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/);
+                        var valid = filter.test($(this).val());
+                        if (!valid) {
+                            errors.push('Valid Email is required');
+                            $(this).addClass('error');
+                        }else{
+                            $(this).removeClass('error');
+                            $(this).addClass('correct');
+                            email = $(this).val();
+                        }
+                    break;  
+                    case 'useremail':
+                        var filter = new RegExp(/[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/);
+                        var valid = filter.test($(this).val());
+                        if (!valid) {
+                            errors.push('Valid Email is required');
+                            $(this).addClass('error');
+                        }else{
+                            $(this).removeClass('error');
+                            $(this).addClass('correct');
+                            email = $(this).val();
+                        }
+                    break;
                     case 'rEmail':
                         var filter = new RegExp(/[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/);
                         var valid = filter.test($(this).val());

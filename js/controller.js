@@ -1,10 +1,18 @@
 $(document).ready(function(){
 
+    // ========================
+    // ========================
+    //  REMEMBER PASSWORD PAGE
+    // ========================
+    // ========================
+
+    var h = $(window).height();
+    $('.pass-wrap').height(h - 130);
+
+
 	// ************
 	// STEP 3 PAGE
 	// ************
-
-    
 
     function showFlasback() {
         $('.flashback').addClass('flash');
@@ -17,9 +25,43 @@ $(document).ready(function(){
     setTimeout(showFlasback , 2000 );
     setTimeout(hideFlasback , 4000 );
 
-    
-	
+    // Add and Invite friend Ajax
 
+    $('body').on( 'submit', '#addInviteFriend' ,function(){
+
+        var name = $(this).find('.friendname').val();
+        var email = $(this).find('.friendemail').val();
+
+        //json datas
+        var newfriend = {
+            "name" : name,
+            "email" : email
+        };
+
+
+        $.ajax({
+            data:  newfriend,
+            type:  'POST',
+            url:   '../controller/ajax/addInviteFriend.php',
+            success:  function (response) {
+                if (response.error){
+                    $('.flashback > p').html('ERROR, inténtelo de nuevo');
+                }else{
+                    $('.flashback > p').html(name + ' añadido con éxito');
+                    setTimeout(showFlasback , 100 );
+                    setTimeout(hideFlasback , 2000 );
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Ha ocurrido un error, por favor, intentelo mas tarde');
+            }
+        });
+
+        $(this).trigger("reset");
+        return false;
+    });
+
+    
 	// ************
 	// DASHBOARD
 	// ************
@@ -51,25 +93,13 @@ $(document).ready(function(){
 
     }
 
+
 	// Add friend Ajax
 
         $('body').on( 'submit', '#addFriend' ,function(){
 
             var name = $(this).find('.friendname').val();
             var email = $(this).find('.friendemail').val();
-
-            //Validation
-            var filter = new RegExp(/[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/);
-            var valid = filter.test(email);
-
-            if ( name == '' || name.length < 5 || name.length > 8) {
-                alert('El nombre debe contener entre 5 y 8 letras');
-                return false;
-            }
-            if (!valid) {
-                alert('El email introducido no es valido');
-                return false;
-            }
 
             //json datas
             var newfriend = {

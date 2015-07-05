@@ -32,8 +32,8 @@ include "../includes/header.php";
                             </div>
                             <nav id="collapseOne" class="panel-collapse collapse mobile_nav" role="tabpanel" aria-labelledby="headingOne">
                                 <ul class="list-group">
-                                    <li><span class="glyphicon glyphicon-off red" aria-hidden="true"></span><a href="/controller/logout.php"> Salir</a></li>
-                                    <li><span class="glyphicon glyphicon-erase red" aria-hidden="true"></span><a class="delete_account" href="/controller/delete-user.php"> Borrar cuenta</a></li>
+                                    <li><i class="red fa fa-key"></i><a class="update_account" href="up-pass.php"> Datos de acceso</a></li>
+                                    <li><span class="glyphicon glyphicon-off red" aria-hidden="true"></span><a href="/controller/logout.php"> Salir de la sesión</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -108,7 +108,7 @@ include "../includes/header.php";
                                 ?>
                                 
                                 <?php if (!$friend->getInvitation() && !$friend->getConfirmation()){ ?>
-                                    <i class="icon_status yellow fa fa-exclamation-triangle"></i>
+                                    <i class="icon_status yellow fa fa-paper-plane-o"></i>
                                 <?php }elseif ($friend->getInvitation() && $friend->getConfirmation()){  ?>
                                     <span class="icon_status glyphicon green glyphicon-thumbs-up" aria-hidden="true"></span>
                                 <?php }else{ ?>

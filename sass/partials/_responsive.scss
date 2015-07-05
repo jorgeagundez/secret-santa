@@ -6,11 +6,23 @@
 {	
 
 	.ribbon {
-		border-top: 1px solid $ligthgray;
+		// border-top: 1px solid $ligthgray;
 		p {
 			margin: 15px 0;
+
+			a{
+				color:white;
+			}
+
+			a:hover,
+			a:focus,
+			a:active {
+				color:white;
+				text-decoration:none;
+			}
 		}
 	}
+
 	
 
 	// Each Friend

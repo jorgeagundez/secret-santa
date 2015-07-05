@@ -33,7 +33,7 @@ include "../includes/header.php";
             <div class="row">
                 <div class="col-xs-12">
                     <div class="flashback">
-                        <p class="bold">Introduce el nombre y correo electronico de tus amigos</p>
+                        <p class="bold">Introduce los datos de tus amigos</p>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@ include "../includes/header.php";
             <div class="row">
                 <div class="col-xs-12 d col-sm-6 col-md-4 col-md-offset-0 add-friend-wrap" id="add-friend-wrap">
                     <div class="friend-wrap">
-                        <form role="form" class="addFriend" id="addFriend" method="post" action=""> 
+                        <form role="form" class="addInviteFriend" id="addInviteFriend" method="post" action=""> 
                             <input type="text" name="friendname" class="form-control friendname" id="friendname" placeholder="Nombre" required="true"/>
                             <input type="email" name="friendemail" class="form-control friendemail" id="friendemail" placeholder="Correo Electrónico" required="true"/>
                             <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
@@ -57,10 +57,17 @@ include "../includes/header.php";
             <div class="clearfix visible-xs-block"></div>
         </div>
     </section>
-<!-- 
-    <div class="go_back">
-        <a href="/controller/logout.php" class="" ><span class="gray">Reset</span></a></p>
-    </div> -->
+
+    <section class="blue ribbon">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <p class="white"><i class="fa fa-list"></i><a class="white" href="/user/dashboard.php"> Ver listado completo</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <?php 
     include "../includes/footer.php";
     ?>
