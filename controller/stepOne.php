@@ -7,49 +7,40 @@ if(isset($_SESSION['user_id']))
     // $_SESSION['error'] = 'You are already subscribed, please login';
     header('Location:/controller/logout.php');
 
+}elseif(!isset($_POST['username'],$_POST['password'],$_POST['useremail'],$_POST['form_token'])){
 
-}elseif(!isset($_POST['username'],$_POST['password'],$_POST['rPassword'],$_POST['email'],$_POST['rEmail'],$_POST['form_token'])){
-
-	$_SESSION['error'] = 'Please enter a valid data';
+	$_SESSION['error'] = 'Por favor, introduzca un valor válido';
 
 }elseif( $_POST['form_token'] != $_SESSION['form_token']){
 
-    $_SESSION['error'] = 'Invalid form submission, please try again';
+    $_SESSION['error'] = 'Envío del formulario no válido, por favor intente de nuevo';
 
-}elseif (strlen( $_POST['username']) < 5 || strlen($_POST['username']) > 20) {
+}elseif (strlen( $_POST['username']) < 2 || strlen($_POST['username']) > 20) {
 
-    $_SESSION['error'] = 'Incorrect Length for Username';
+    $_SESSION['error'] = 'El nombre de usuario debe contener entre 2 y 8 letras';
 
-}elseif (strlen( $_POST['password']) < 8 || strlen($_POST['password']) > 20){
+}elseif (strlen( $_POST['password']) < 4 ){
 
-    $_SESSION['error'] = 'Incorrect Length for Password';
-
-}elseif ($_POST['password'] != $_POST['rPassword']){
-
-    $_SESSION['error'] = 'The passwords have to be the same. Please, try again.';
-
-}elseif ($_POST['email'] != $_POST['rEmail']){
-
-    $_SESSION['error'] = 'The emailes have to be the same. Please, try again';
+    $_SESSION['error'] = 'El password debe contener al menos 4 dígitos';
 
 }elseif (ctype_alnum($_POST['username']) != true){
  
-    $_SESSION['error'] = "Username must be alpha numeric";
+    $_SESSION['error'] = "El nombre de usuario sólo permite carácteres alpha numéricos";
 
 }elseif (ctype_alnum($_POST['password']) != true){
 
-    $_SESSION['error'] = "Password must be alpha numeric";
+    $_SESSION['error'] = "El nombre de usuario sólo permite carácteres alpha numéricos";
 
 }else{
 
     $username = strip_tags($_POST['username']);
     $password = strip_tags($_POST['password']);
-    $email = strip_tags($_POST['email']);
+    $useremail = strip_tags($_POST['useremail']);
 
   	$_SESSION['user_name'] = filter_var($username,FILTER_SANITIZE_STRING);
 	$password = filter_var($password,FILTER_SANITIZE_STRING);
     $_SESSION['user_password'] = sha1( $password );
-    $_SESSION['user_email'] = filter_var($email,FILTER_SANITIZE_EMAIL);
+    $_SESSION['user_email'] = filter_var($useremail,FILTER_SANITIZE_EMAIL);
 
     $form_token = md5( uniqid('auth', true) );
     $_SESSION['form_token_step1'] = $form_token;

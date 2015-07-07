@@ -31,7 +31,7 @@ $template = 'frontpage';
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="logo">
-									<h1><span class="blue">Organiza tu propio amigo invisible en</span><br/><span class="red">60</span><span class="white">segundos!</span></h1>	
+									<h1><span class="blue">Organiza tu propio amigo invisible en</span><br/><span class="red">3</span><span class="white"> pasos!</span></h1>	
 								</div>
 							</div>
 						</div>
@@ -49,13 +49,13 @@ $template = 'frontpage';
 									<div class="row">
 										<div class="col-xs-10 col-xs-offset-1 input_wrapper">
 											<label for="useremail">Usuario</label>
-											<input type="text" name="useremail" class="form-control" id="useremail" placeholder="email" required="true"/>
+											<input type="text" name="useremail" class="form-control" id="useremail" placeholder="Email" required="true"/>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-xs-10 col-xs-offset-1 input_wrapper">
 							            	<label for="password">Password</label>
-							            	<input type="password" name="password" class="form-control" id="password" placeholder="password" required="true"/></li>
+							            	<input type="password" name="password" class="form-control" id="password" placeholder="Password" required="true"/></li>
 							            	<a class="" href="pass.php">Olvidé mi contraseña</a>
 					         			</div>
 					         		</div>
@@ -135,7 +135,7 @@ $template = 'frontpage';
 				</div>
 				<div class="row">
 					<div class="col-xs-6 col-xs-offset-3">
-						<a href="/stepOne.php" type="button" class="btn btn-red">Comenzar</a>
+						<a href="/stepOne.php" type="button" class="btn btn-red">Nuevo Juego</a>
 					</div>
 				</div>
 			</div>

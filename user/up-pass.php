@@ -26,7 +26,7 @@ include "../includes/header.php";
                         <div class="panel panel-default col-xs-12">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
-                                    <p class="top_bar text-capitalize"><span class="red"><?php echo $_SESSION['user_name'] ?><span class="gray">|</span></span> Datos de Acceso</p>
+                                    <p class="top_bar text-capitalize"><span class="red"><?php echo $_SESSION['user_name'] ?><span class="gray">|</span></span> Ajustes</p>
                                     <a class="btn settings" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         <span class="icon_set glyphicon glyphicon-menu-hamburger blue" aria-hidden="true"></span>
                                     </a>
@@ -34,7 +34,7 @@ include "../includes/header.php";
                             </div>
                             <nav id="collapseOne" class="panel-collapse collapse mobile_nav" role="tabpanel" aria-labelledby="headingOne">
                                 <ul class="list-group">
-                                    <li><span class="glyphicon glyphicon-off red" aria-hidden="true"></span><a href="dashboard.php"> Volver a Panel de Control</a></li>
+                                    <li><span class="glyphicon glyphicon-off red" aria-hidden="true"></span><a href="dashboard.php"> Panel de Control</a></li>
                                     <li><span class="glyphicon glyphicon-off red" aria-hidden="true"></span><a href="/controller/logout.php"> Salir de la sesión</a></li>
                                 </ul>
                             </nav>

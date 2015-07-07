@@ -23,7 +23,7 @@ include "../includes/header.php";
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default col-xs-12">
                             <div class="panel-heading" role="tab" id="headingOne">
-                                <h4 class="panel-title">
+                                    <h4 class="panel-title">
                                     <p class="top_bar text-capitalize"><span class="red"><?php echo $_SESSION['user_name'] ?><span class="gray">|</span></span> Panel de Control</p>
                                     <a class="btn settings" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         <span class="icon_set glyphicon glyphicon-menu-hamburger blue" aria-hidden="true"></span>
@@ -32,7 +32,7 @@ include "../includes/header.php";
                             </div>
                             <nav id="collapseOne" class="panel-collapse collapse mobile_nav" role="tabpanel" aria-labelledby="headingOne">
                                 <ul class="list-group">
-                                    <li><i class="red fa fa-key"></i><a class="update_account" href="up-pass.php"> Datos de acceso</a></li>
+                                    <li><i class="red fa fa-key"></i><a class="update_account" href="up-pass.php"> Ajustes</a></li>
                                     <li><span class="glyphicon glyphicon-off red" aria-hidden="true"></span><a href="/controller/logout.php"> Salir de la sesión</a></li>
                                 </ul>
                             </nav>
@@ -43,25 +43,7 @@ include "../includes/header.php";
         </div>
     </header>
 
-    <section class="info_area blue title">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-4 col-md-6">
-                    <div class="figure_small engranajecol"></div>
-                </div>
-                <div class="col-xs-8 col-md-6"></div>
-                    <?php if(! $game->getConfirmed() ) { ?>
-                            <p class="white">Amigos confirmados: <span class="green bold"><?php echo $_SESSION['total_confirmed'] ?></span><br/>
-                            Por confirmar: <span class="sky bold"><?php echo $_SESSION['numberfriends'] - $_SESSION['total_confirmed']  ?></span></p>
-                    <?php }else{ ?>
-                            <p class="white">Este grupo <span class="bold yellow">ha sido confirmado</span> por todos sus miembros. El <span class="bold green">sorteo</span> de nombres se ha <span class="bold green">realizado con éxito</span>, no olvides consultar tu correo electrónico para ver el resultado.</p>
-                            <a class="red btn delete_account" href=""><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Borrar cuenta</a>
-                    <?php } ?>
-                </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <?php if (isset($_SESSION['error'])){ ?>
         <section class="blue ribbon">
@@ -80,56 +62,77 @@ include "../includes/header.php";
         </section>
     <?php } ?>
 
+
+    <section class="blue ribbon title">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <p class="white"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listado de Amigos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- MOBILE VERSION -->
     <section id="friends" class="friends">
         <div class="container wrapper">
             <div class="row">
-
-                <?php foreach( $allFriends as $friend ) { ?>
-                    <div class="col-xs-12 d col-sm-6 col-md-4 friend-wrap " id="<?php echo $friend->getIdfriend(); ?>">
+                <?php if (count($allFriends) == 0) { ?>
+                    <div class="col-xs-12 d col-sm-6 col-md-4 friend-wrap no-friend" id="">
                         <div class="content-wrapper" >
-
-                            <?php if ($friend->getInvitation() && $friend->getConfirmation()){  ?>
-                                <div class="content-top green02">  
-                            <?php }else{ ?>
-                                <div class="content-top ligthgray">  
-                            <?php } ?>
-                                         
-                                <p class="name bold text-capitalize " id="<?php echo $friend->getFriendname(); ?>"><?php echo $friend->getFriendname(); ?></p> 
-
-                                <?php 
-                                    if ( strlen( $friend->getFriendname() . $friend->getFriendemail()) > 35) {
-                                        $rest = substr($friend->getFriendemail(), 0, 23);
-                                        $rest = $rest . '...';
-                                        echo '<small class="email text-lowercase" id="' . $friend->getFriendemail() . '">(' . $rest . ')</small>';
-                                    }else{
-                                        echo '<small class="email text-lowercase" id="' . $friend->getFriendemail() . '">(' . $friend->getFriendemail() . ')</small>';
-                                    }
-                                ?>
-                                
-                                <?php if (!$friend->getInvitation() && !$friend->getConfirmation()){ ?>
-                                    <i class="icon_status yellow fa fa-paper-plane-o"></i>
-                                <?php }elseif ($friend->getInvitation() && $friend->getConfirmation()){  ?>
-                                    <span class="icon_status glyphicon green glyphicon-thumbs-up" aria-hidden="true"></span>
-                                <?php }else{ ?>
-                                    <i class="icon_status sky fa fa-question-circle"></i>
-                                <?php } ?>
-
-                            </div>
-                            <div class="content-behind">
-                             
-                                <?php if($friend->getInvitation() && !$friend->getConfirmation()) { ?>
-                                    <a class="remaind-btn behind-btn" aria-label="Left Align" href="">Recordar</a>
-                                    <a class="delete-btn behind-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash white" aria-hidden="true"></span></a> 
-                                <?php }elseif (!$friend->getInvitation() && !$friend->getConfirmation()){ ?>  
-                                    <a class="invite-btn behind-btn" aria-label="Left Align" href=""> Invitar</a>
-                                    <a class="delete-btn behind-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash white" aria-hidden="true"></span></a>
-                                <?php } ?>
-
+                            <div class="content-top ligthgray">
+                                <i class="icon_status yellow no-move fa fa-exclamation-triangle"></i>        
+                                <p class="name bold text-capitalize black" id="">Sin invitaciones enviadas</p> 
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php }else{ ?>
+                    <?php foreach( $allFriends as $friend ) { ?>
+                        <div class="col-xs-12 d col-sm-6 col-md-4 friend-wrap " id="<?php echo $friend->getIdfriend(); ?>">
+                            <div class="content-wrapper" >
+
+                                <?php if ($friend->getInvitation() && $friend->getConfirmation()){  ?>
+                                    <div class="content-top green02">  
+                                <?php }else{ ?>
+                                    <div class="content-top ligthgray">  
+                                <?php } ?>
+                                             
+                                    <p class="name bold text-capitalize " id="<?php echo $friend->getFriendname(); ?>"><?php echo $friend->getFriendname(); ?></p> 
+
+                                    <?php 
+                                        if ( strlen( $friend->getFriendname() . $friend->getFriendemail()) > 35) {
+                                            $rest = substr($friend->getFriendemail(), 0, 23);
+                                            $rest = $rest . '...';
+                                            echo '<small class="email text-lowercase" id="' . $friend->getFriendemail() . '">(' . $rest . ')</small>';
+                                        }else{
+                                            echo '<small class="email text-lowercase" id="' . $friend->getFriendemail() . '">(' . $friend->getFriendemail() . ')</small>';
+                                        }
+                                    ?>
+                                    
+                                    <?php if (!$friend->getInvitation() && !$friend->getConfirmation()){ ?>
+                                        <i class="icon_status yellow fa fa-exclamation-triangle"></i>
+                                    <?php }elseif ($friend->getInvitation() && $friend->getConfirmation()){  ?>
+                                        <span class="icon_status glyphicon no-move green glyphicon-thumbs-up" aria-hidden="true"></span>
+                                    <?php }else{ ?>
+                                        <i class="icon_status sky fa fa-clock-o"></i>
+                                    <?php } ?>
+
+                                </div>
+                                <div class="content-behind">
+                                 
+                                    <?php if($friend->getInvitation() && !$friend->getConfirmation()) { ?>
+                                        <a class="remaind-btn behind-btn" aria-label="Left Align" href="">Recordar</a>
+                                        <a class="delete-btn behind-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash white" aria-hidden="true"></span></a> 
+                                    <?php }elseif (!$friend->getInvitation() && !$friend->getConfirmation()){ ?>  
+                                        <a class="invite-btn behind-btn" aria-label="Left Align" href=""> Invitar</a>
+                                        <a class="delete-btn behind-btn" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash white" aria-hidden="true"></span></a>
+                                    <?php } ?>
+
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?><!--  End for -->
+                <?php }?><!--  End if -->
 
             </div>
         </div>
@@ -140,7 +143,7 @@ include "../includes/header.php";
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <p class="white"><span class="glyphicon glyphicon-user"></span> Añadir Amigo</p>
+                    <p class="white"><i class="fa fa-arrow-down"></i> Añadir Amigo</p>
                 </div>
             </div>
         </div>
@@ -168,34 +171,36 @@ include "../includes/header.php";
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <p class="white"><span class="glyphicon glyphicon-gift"></span>
-                        Datos del Juego
-                    </p>
+                    <p class="white"><span class="glyphicon glyphicon glyphicon-gift" aria-hidden="true"></span> Datos del Juego</p>
                 </div>
             </div>
         </div>
     </section>
-
 
     <section class="info_area sky">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="col-xs-12">
+                        <h3 class="bold"><em><?php echo $game->getTitle() ?></em></h3>
                         <div class="quotes">
-                            <h3 class="bold"><?php echo $game->getTitle() ?></h3>
                             <p class="bold"><?php echo $game->getDescription() ?></p>
                         </div>
-                        <div class="datas">
-                           <p class="bold white"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Precio Mínimo <span class="blue"><?php echo $game->getPrice() ?> &euro; </span></p>
-                           <p class="bold white"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Lugar <span class="blue"><?php echo $game->getGameplace() ?></span></p>
-                           <p class="bold white"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Fecha <span class="blue"><?php echo $game->getGamedate() ?></span></p>
+                        <div class="datas">       
+                           <p class="bold white"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Amigos Confirmados: <span class="blue bold"><?php echo $_SESSION['total_confirmed'] ?></span></p>
+                           <p class="bold white"><i class="fa fa-clock-o"></i></span> Por Confirmar: <span class="blue bold"><?php echo $_SESSION['numberfriends'] - $_SESSION['total_confirmed']; ?></span></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <?php if( $game->getConfirmed() ) { ?>
+        <p class="">Este grupo <span class="bold yellow">ha sido confirmado</span> por todos sus miembros. El <span class="bold green">sorteo</span> de nombres se ha <span class="bold green">realizado con éxito</span>, no olvides consultar tu correo electrónico para ver el resultado.</p>
+        <a class="red btn delete_account" href=""><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Borrar cuenta</a>
+    <?php } ?>
+
 
     <?php 
     include "../includes/footer.php";

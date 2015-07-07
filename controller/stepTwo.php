@@ -8,21 +8,14 @@ if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_
     
     header('Location:/controller/logout.php');
 
-}elseif(!isset($_POST['title'],$_POST['description'],$_POST['price'],$_POST['gameplace'],$_POST['gamedate'])){
+}elseif(!isset($_POST['title'],$_POST['description'])){
 
-	$_SESSION['error'] = 'Please enter a valid data';
-
-}elseif(ctype_digit($_POST['price']) != true ){
-
-    $_SESSION['error'] = 'Please enter a valid data, It must be alpha numeric';
+	$_SESSION['error'] = 'Por favor, no deje ningún campo en blanco';
 
 }else{
 
   	$gametitle = filter_var( strip_tags($_POST['title']),FILTER_SANITIZE_STRING);
     $gamedescription = filter_var(strip_tags($_POST['description']),FILTER_SANITIZE_STRING);
-    $gameprice = filter_var(strip_tags($_POST['price']),FILTER_SANITIZE_NUMBER_INT);
-    $gameplace = filter_var(strip_tags($_POST['gameplace']),FILTER_SANITIZE_STRING);
-    $gamedate = filter_var(strip_tags($_POST['gamedate']),FILTER_SANITIZE_STRING);
     
     $form_token = md5( uniqid('auth', true) );
     $_SESSION['form_token_step2'] = $form_token;
@@ -49,12 +42,9 @@ if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_
 
             $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->prepare("INSERT INTO game (title, description, price, gameplace, gamedate, user_idusuario, gamekey ) VALUES (:game_title, :game_description, :game_price, :game_place, :game_date, :user_id, :game_key )");
+            $stmt = $conn->prepare("INSERT INTO game (title, description, user_idusuario, gamekey ) VALUES (:game_title, :game_description, :user_id, :game_key )");
             $stmt->bindParam(':game_title', $gametitle, PDO::PARAM_STR);
             $stmt->bindParam(':game_description', $gamedescription, PDO::PARAM_STR);
-            $stmt->bindParam(':game_price', $gameprice, PDO::PARAM_STR);
-            $stmt->bindParam(':game_place', $gameplace, PDO::PARAM_STR);
-            $stmt->bindParam(':game_date', $gamedate, PDO::PARAM_STR);
             $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
             $stmt->bindParam(':game_key', $_SESSION['game_key'], PDO::PARAM_INT);
 
@@ -65,7 +55,7 @@ if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_
             unset( $_SESSION['form_token'] );
             unset( $_SESSION['form_token_step1'] );
             unset( $_SESSION['form_token_step2'] );
-            header('Location:/user/stepThree.php');
+            header('Location:/user/dashboard.php');
                
         }catch(Exception $e){
                     
@@ -74,7 +64,8 @@ if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_
 
     }catch(Exception $e){
 
-        $_SESSION['error'] = $e->getCode() . ' ' . $e;
+        $_SESSION['error'] = 'Ya existe un usuario con su email. Por favor, introduzca otro diferente';
+        header('Location:/stepOne.php');
     }
 
     
