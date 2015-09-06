@@ -1,5 +1,5 @@
-CMS proposal by Symfony 2
-=========================
+Web App by PHP
+==============
 
 Secret Santa ('Amigo invisible' in Spanish) is a Web App to manage Secret Santa Game online. 
 Is suitable for group of friends to manage this game when each one is living in different places.
