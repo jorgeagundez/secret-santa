@@ -4,7 +4,7 @@ session_start();
 
 if ( !isset($_SESSION['form_token_step1'])){
 
-  header('Location:/secret_santa/controller/logout.php');
+  header('Location:/controller/logout.php');
 
 }
 
@@ -21,16 +21,16 @@ include "includes/header.php";
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <p class="top_bar"><span class="red">Paso 2 <span class="gray">|</span></span> Reglas del Juego</p>
+                        <p class="top_bar"><span class="red">Paso 2 <span class="gray">|</span></span> Datos del Juego</p>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="form_step_wrapper red steps">
+    <section class="form_step_wrapper yellow steps">
         <div class="step_wrap">
-            <div class="figure trineo"></div>
+            <div class="figure ginger"></div>
             <div class="container">
                 <form role="form" class="stepTwo" id="stepTwo" method="post" action="controller/stepTwo.php">
                     <div class="col-md-5">
@@ -41,45 +41,21 @@ include "includes/header.php";
                         </div>
                         <div class="row">
                             <div class="col-md-12 input_wrapper">
-                                <label for="title">Game Title</label>
-                                <input type="text" name="title" class="form-control" id="title" required="true"/>
+                                <label for="title">Asunto</label>
+                                <input type="text" name="title" class="form-control" id="title" required="true" placeholder="Ej: Título del Juego"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 input_wrapper">
-                                <label for="description">Description</label>
-                                <textarea type="text" name="description" class="form-control" id="description" required="true"></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 input_wrapper">
-                                <label for="price">Price</label>
-                                <input type="text" name="price" class="form-control" id="price" required="true"/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 input_wrapper">
-                                <label for="gameplace">Place of the game</label>
-                                <input type="text" name="gameplace" class="form-control" id="gameplace" required="true"/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 input_wrapper">
-                                <label for="gamedate">Date of the game</label>
-                                <input type="date" name="gamedate" class="form-control" id="gamedate" required="true"/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 input_wrapper">
-                                <label for="drawdate">Date of the Draw</label>
-                                <input type="date" name="drawdate" class="form-control" id="drawdate"  required="true"/>
+                                <label for="description">Mensaje para tus amigos</label>
+                                <textarea type="text" name="description" class="form-control" id="description" required="true" placeholder="Ej: Aquí puedes proponer algunas reglas para el juego, posible precio mínimo de los regalos, lugar si habéis hablado de alguno, posible fecha y todo lo que quieras!"></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-2">
                                 <br>
                                 <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
-                                <button type="submit" class="btn btn-default">Next Step</button>
+                                <button type="submit" class="btn btn-blue">Comenzar</button>
                             </div>
                         </div>
                     </div>
@@ -89,7 +65,7 @@ include "includes/header.php";
     </section>
 
            <!--  <div class="go_back">
-                <a href="/secret_santa/controller/logout.php" class="" ><span class="gray">Reset</span></a></p>
+                <a href="/controller/logout.php" class="" ><span class="gray">Reset</span></a></p>
             </div> -->
 
             <?php 

@@ -13,9 +13,9 @@ $darkgray: #DDDEDD;
 $black: #535553;
 
 //Opacity
-$ligthgray05 : rgba(171, 208, 205, 0.5);
-$ligthgray02 : rgba(171, 208, 205, 0.2);
-$green05:  rgba(76, 174, 76, 1);
+$sky05 : #c7dfde;
+$yellow05: #f6d37f;
+$green02:  #dbeedb;
 
 // Font weights
 $light: 300;
@@ -105,6 +105,34 @@ body {
 	}
 }
 
+small {
+	font-size: 65%;
+}
+
+.message-error {
+	text-align: center;
+  	padding: 10px;
+  	background-color: $regulargray;
+  	color: $blue;
+  	font-size: 16px;
+
+  	span {
+  		color: $red;
+  	}
+} 
+
+.error-wrap {
+	padding: 20px;
+	p {
+		font-size: 12px;
+		color: $red;
+	}
+
+	i {
+		font-size: 20px;
+	}
+}
+
 // Colours Fonts
 // **************
 
@@ -188,6 +216,19 @@ body {
 	color: white;
 }
 
+.btn-white {
+	@extend .button_style;
+	background: white;
+	color: $black;
+	border: 1px solid $darkgray;
+}
+
+.btn-white:hover,
+.btn-white:focus,
+.btn-white:active {
+	color: $black!important;
+}
+
 .btn:hover, .btn:focus {
 	color: white;
 }
@@ -225,6 +266,12 @@ div.yellow {
 	color: inherit;
 }
 
+section.yellow05,
+div.yellow05 {
+	background: $yellow05;
+	color: inherit;
+}
+
 section.blue,
 div.blue {
 	background: $blue;
@@ -250,15 +297,16 @@ div.sky {
 	color: inherit;
 }
 
-section.ligthgray,
-div.ligthgray {
-	background: $ligthgray;
+section.sky05,
+div.sky05 {
+	background: $sky05;
+	color: inherit;
 	color: inherit;
 }
 
-section.ligthgray05,
-div.ligthgray05 {
-	background: $ligthgray05;
+section.ligthgray,
+div.ligthgray {
+	background: $ligthgray;
 	color: inherit;
 }
 
@@ -274,14 +322,28 @@ div.darkgray {
 	color: inherit;
 }
 
-section.green05,
-div.green05 {
-	background: $green05;
+section.green,
+div.green {
+	background: $green;
+	color: inherit;
+}
+
+section.green02,
+div.green02 {
+	background: $green02;
 	color: inherit;
 }
 
 .input_wrapper {
 	padding: 8px;
+
+	a {
+		color: $blue;
+		text-align: right;
+		font-size: 12px;
+		display: block;
+		padding-top: 5px;
+	}
 }
 
 // ICONS
@@ -570,7 +632,7 @@ header {
 
 		.login_header {
 
-			h3{
+			h3, p {
 				margin: 0;
 				text-align: center;
 				font-weight: $bold;
@@ -579,6 +641,8 @@ header {
 				padding-top: 6px;
 				padding-bottom: 10px;
 			}
+
+			
 		}
 
 		button {
@@ -659,6 +723,45 @@ footer {
 
 // ========================
 // ========================
+//  REMEMBER PASSWORD PAGE
+// ========================
+// ========================
+
+.pass-wrap {
+	background: $yellow;
+	text-align: center;
+	white-space: nowrap;
+
+	.pass_header {
+		padding-top: 10px;
+  		padding-bottom: 10px;
+		p{
+			margin: 0;
+		}
+	}
+}
+
+.pass-wrap:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	margin-right: -0.25em;
+}
+
+.pass-form {
+	background: $ligthgray;
+	display: inline-block;
+	vertical-align: middle;
+	width: 80%;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+
+
+// ========================
+// ========================
 //        STEP PAGES
 // ========================
 // ========================
@@ -697,28 +800,51 @@ footer {
 
 	.stepTwo {
 		label {
-			color: white;
-			font-weight: $regular;
+			color: $blue;
+			font-weight: $bold;
 		}
-	}
 
-	.stepThree {
-		.friend_wrap {
-			padding: 10px 15px 15px;
-			border-bottom: 1px solid $lightyellow;
-
-			label {
-				font-weight: $bold;
-				color: $blue;
-			}
+		textarea {
+			height: 150px;
 		}
-	}
 
-	.friendList {
-		margin: 20px 0;
 	}
-	
+}
 
+// ========================
+// ========================
+//        STEP THREE
+// ========================
+// ========================
+
+.step-three {
+	padding: 20px 0 0 0;
+}
+
+.flashback {
+	display: block;
+	opacity: 0;
+	width: 100%;
+	background: #fcefd3;
+	margin-top: 20px;
+	text-align: center;
+	padding: 9px 0 0px 0;
+	border-radius: 10px;
+	border: 1px solid $yellow05;
+
+	-webkit-transition: all 1s linear;
+	-moz-transition: all 1s linear;
+	-o-transition: all 1s linear;
+	transition: all 1s linear;
+
+	p{
+		font-size: 16px;
+		color: $black;
+	}
+}
+
+.flash {
+	opacity:1;
 }
 
 // ========================
@@ -727,23 +853,9 @@ footer {
 // ========================
 // ========================
 
-.settings {
-	font-size: 18px;
-	padding: 0;
-	border-radius: 50%;
-	width: 40px;
-	height: 40px;
-	position: absolute;
-	top: 11px;
-	right: 22px;
-
-	.icon_set {
-		margin: 0;
-		// opacity: 0.6;
-	}
-}
 
 // HEADER
+// =======
 
 .dash_header {
 	position: fixed;
@@ -755,6 +867,8 @@ footer {
 
 	.panel-default {
 		border: none;
+		border-bottom: 5px solid $blue;
+		border-radius: 0;
 
 		.panel-heading {
 			// overwritting bootstrap
@@ -768,14 +882,32 @@ footer {
 	}
 
 	.settings {
+		font-size: 28px;
+		padding: 0;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		position: absolute;
 		top: 7px;
 		right: 7px;
-		color: black;
-		font-size: 28px;
+		.icon_set {
+			margin: 0;
+			// opacity: 0.6;
+		}
 	}
 }
 
+.btn.delete_account {
+	display: block;
+	width: 170px;
+	border: 1px solid #EC6645;
+	border-radius: 5px;
+	margin: 20px auto 0;
+}
+
+
 // Nav
+// =======
 
 .mobile_nav {
 
@@ -797,7 +929,6 @@ footer {
 
 }
 
-
 .datas {
 	margin: 50px 0 20px;
 	p {
@@ -807,11 +938,14 @@ footer {
 
 .title {
 	margin-top: 50px;
+	text-align: left;
 }
 
 // All friends wrap
+// ================
 
-.friends_section {
+.friends {
+	border-top: 1px solid sky;
 	.wrapper {
 		padding: 0;
 		text-align: left;
@@ -822,97 +956,9 @@ footer {
 	}
 }
 
-// Each Friend
-
-.friend-wrap {
-	position: relative;
-
-	.panel-heading {
-		padding: 0;
-		h3{
-			margin-top: 10px;
-			margin-bottom: 10px;
-			font-size: 24px;
-			padding-left: 40px;
-			.icon_friend {
-				font-size: 15px;
-			}
-		}
-	}
-
-	.name {
-		.icon_status_inv {
-			position: absolute;
-			right: 103px;
-			top: 14px;
-			font-size: 18px;
-		}
-
-		.icon_status {
-			position: absolute;
-			right: 67px;
-			top: 15px;
-			font-size: 18px;
-		}
-	}
-
-	.email {
-		text-align: center;
-		.ready {
-			padding-bottom: 0;
-			margin-bottom: 5px;
-		}
-	}
-}
 
 
-// Buttons
-.btn.delete_account {
-	width: 170px;
-	border: 1px solid #EC6645;
-	border-radius: 5px;
-	margin: 20px auto 0;
-}
 
-.btn.delete,
-.btn.delete:focus,
-.btn.delete:active,
-.btn.delete:hover {
-	font-weight: $bold;
-	background: $ligthgray;
-	color: $black;
-}
-
-.btn.invite,
-.btn.invite:focus,
-.btn.invite:active,
-.btn.invite:hover, 
-.btn.remaind,
-.btn.remaind:focus,
-.btn.remaind:active,
-.btn.remaind:hover {
-	font-weight: $bold;
-	background: $ligthgray;
-	color: $black;
-}
-
-.add-friend-wrap{
-	margin-bottom: 20px;
-}
-
-.add-friend {
-	input.friendemail {
-		width: 69%;
-		float: left;
-	}
-
-	button.add {
-		display: inline-block;
-		padding: 7px 10px;
-		width: 31%;
-
-	}
-}
 
 
 // Partials

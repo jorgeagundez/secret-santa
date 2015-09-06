@@ -21,7 +21,7 @@ include "../includes/header.php";
 
 <script>
 setTimeout( function(){ 
-    $(location).attr('href', '/secret_santa/controller/logout.php');
+    $(location).attr('href', '/controller/logout.php');
   }
  , 5000 );
   

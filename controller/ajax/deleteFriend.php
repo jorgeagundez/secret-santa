@@ -30,32 +30,35 @@ function delete_friend($friendid, $friendname, $friendemail) {
 
         $stmt->execute();
 
-        require_once 'Mail.php';
-        require_once 'Mail/mime.php';
+        
 
-        $destinario =  $friendemail;
-        $from = 'jamedina97@gmail.com';
-        $asunto = 'Deleted from ' . $_SESSION['user_name'] . ' Secret Santa Game';
-        $mensaje = '<html>
-                        <head>
-                            <title>'.$asunto.'</title>
-                        </head>'.
-                    "\n";
-        $mensaje .= '<body>
-                        <h1>Hello ' .  $friendname .', you have been deleted from Secret Santa Game.</h1>
-                    </body>
-                    </html>';
-        $mime = new Mail_mime("\n");
-        $mime->setTXTBody(strip_tags($mensaje));
-        $mime->setHTMLBody($mensaje);
 
-        $body = $mime->get();
-        $hdrs = array('From' => $from, 'Subject' => $asunto);
-        $hdrs = $mime->headers($hdrs);
-        $mail =& Mail::factory('mail');
-        $res = $mail->send($destinario, $hdrs, $body);
+        // require_once 'Mail.php';
+        // require_once 'Mail/mime.php';
 
-        $resultado = array();
+        // $destinario =  $friendemail;
+        // $from = 'jamedina97@gmail.com';
+        // $asunto = 'Deleted from ' . $_SESSION['user_name'] . ' Secret Santa Game';
+        // $mensaje = '<html>
+        //                 <head>
+        //                     <title>'.$asunto.'</title>
+        //                 </head>'.
+        //             "\n";
+        // $mensaje .= '<body>
+        //                 <h1>Hello ' .  $friendname .', you have been deleted from Secret Santa Game.</h1>
+        //             </body>
+        //             </html>';
+        // $mime = new Mail_mime("\n");
+        // $mime->setTXTBody(strip_tags($mensaje));
+        // $mime->setHTMLBody($mensaje);
+
+        // $body = $mime->get();
+        // $hdrs = array('From' => $from, 'Subject' => $asunto);
+        // $hdrs = $mime->headers($hdrs);
+        // $mail =& Mail::factory('mail');
+        // $res = $mail->send($destinario, $hdrs, $body);
+
+        // $resultado = array();
 
         $resultado['error'] = false;
         $resultado['mensaje'] = 'Amigo eliminado correctamente';

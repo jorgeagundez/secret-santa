@@ -8,6 +8,6 @@ $_SESSION = array();
 session_regenerate_id(TRUE);
 session_unset();
 session_destroy();
-header("Location:/secret_santa/index.php");
+header("Location:/index.php");
 
 ?>

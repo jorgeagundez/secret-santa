@@ -7,7 +7,7 @@ $_SESSION['form_token'] = $form_token;
 
 if ( !isset($_GET['gameKey']) || !isset($_GET['friendemail']) ){ 
   
-  header('Location:/secret_santa/');
+  header('Location:/');
   
 }else{
 
@@ -26,7 +26,7 @@ if ( !isset($_GET['gameKey']) || !isset($_GET['friendemail']) ){
 
     }catch(Exception $e){
       
-      header('Location:/secret_santa/index.php?error=' . 'You can not confirm your game. Please, try it later');
+      header('Location:/index.php?error=' . 'You can not confirm your game. Please, try it later');
 
   }//End Try
 

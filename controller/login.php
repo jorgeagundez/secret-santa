@@ -4,27 +4,19 @@ session_start();
 
 if(isset($_SESSION['user_id']))
 {
-    header('Location:/secret_santa/controller/logout.php');
+    header('Location:/controller/logout.php');
 
-}elseif(!isset( $_POST['username'],$_POST['password'])){
+}elseif(!isset( $_POST['useremail'],$_POST['password'])){
 
-	$_SESSION['error'] = 'Please enter a valid username and password';
+	$_SESSION['error'] = 'Por favor, introduzca un email y password validos';
 
 }elseif( $_POST['form_token'] != $_SESSION['form_token']){
 
-    $_SESSION['error'] = 'Invalid form submission, please try again';
-
-}elseif (strlen( $_POST['username']) < 5 || strlen($_POST['username']) > 20) {
-
-    $_SESSION['error'] = 'Incorrect Length for Username';
+    $_SESSION['error'] = 'Envio de formulario incorrecto, por favor, intentelo de nuevo';
 
 }elseif (strlen( $_POST['password']) < 8 || strlen($_POST['password']) > 20){
 
-    $_SESSION['error'] = 'Incorrect Length for Password';
-
-}elseif (ctype_alnum($_POST['username']) != true){
- 
-    $_SESSION['error'] = "Username must be alpha numeric";
+    $_SESSION['error'] = 'Incorrecto numero de caracteres para password';
 
 }elseif (ctype_alnum($_POST['password']) != true){
 
@@ -32,7 +24,7 @@ if(isset($_SESSION['user_id']))
 
 }else{
 
-  	$username = filter_var($_POST['username'],FILTER_SANITIZE_STRING);
+  	$useremail = filter_var($_POST['useremail'],FILTER_SANITIZE_STRING);
 	$password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
     $password = sha1( $password );
 
@@ -42,8 +34,8 @@ if(isset($_SESSION['user_id']))
 
         $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT idusuario, nombreusuario, email FROM user WHERE nombreusuario = :user_name AND password = :user_password");
-        $stmt->bindParam(':user_name', $username, PDO::PARAM_STR);
+        $stmt = $conn->prepare("SELECT idusuario, nombreusuario, email FROM user WHERE email = :user_email AND password = :user_password");
+        $stmt->bindParam(':user_email', $useremail, PDO::PARAM_STR);
         $stmt->bindParam(':user_password', $password, PDO::PARAM_STR, 40);
         
         $stmt->execute();
@@ -59,7 +51,7 @@ if(isset($_SESSION['user_id']))
 
         if (!$user_id) {
 
-            $_SESSION['error'] = 'There is no user with "' . $username . '" as an username. Please, try again.';
+            $_SESSION['error'] = 'Por favor, intentelo de nuevo.';
 
         }else{
 
@@ -67,7 +59,7 @@ if(isset($_SESSION['user_id']))
             $_SESSION['user_name'] = $user_name;
             $_SESSION['user_email'] = $user_email;
 
-            header('Location:/secret_santa/userPages/dashboard.php');
+            header('Location:/user/dashboard.php');
 
         }//End Else
 
@@ -80,7 +72,7 @@ if(isset($_SESSION['user_id']))
 
 if (isset($_SESSION['error'])) {
 
-    header('Location:/secret_santa/index.php');
+    header('Location:/index.php');
 
 }
 

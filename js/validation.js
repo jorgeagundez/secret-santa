@@ -11,15 +11,71 @@ $(document).ready(function(){
             $(this).find('select, input, textarea').each(function(){
 
                 switch($(this).attr('name')){
+
                     case 'username':
-                        if ($(this).val() == '' || $(this).val().length < 5 || $(this).val().length > 20) {
-                            errors.push('Username is invalid');
+                        if ($(this).val() == '' || $(this).val().length < 2 || $(this).val().length > 8) {
+                            errors.push('El nombre de usuario debe contener entre 2 y 8 letras');
                             $(this).addClass('error');                     
                         }else{
                             $(this).removeClass('error');
                             $(this).addClass('correct');
                         };
                     break;
+                    case 'password':
+                        if ($(this).val() == '' || $(this).val().length < 8 || $(this).val().length > 20) {
+                            errors.push('El Pasword debe contener entre 8 y 20 caracteres');
+                            $(this).addClass('error');
+                        }else{
+                            $(this).removeClass('error');
+                            $(this).addClass('correct');
+                            pass = $(this).val();
+                        };
+                    break;
+                    case 'rPassword':
+                        if ($(this).val() == '' || $(this).val().length < 8 || $(this).val().length > 20) {
+                            errors.push('Password is invalid');
+                            $(this).addClass('error');
+                        }else if($(this).val() != pass ){
+                            errors.push('Los passwords deben de ser iguales');
+                            $(this).addClass('error');
+                        }else{
+                            $(this).removeClass('error');
+                            $(this).addClass('correct');
+                        };
+                    break; 
+                    case 'useremail':
+                        var filter = new RegExp(/[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/);
+                        var valid = filter.test($(this).val());
+                        if (!valid) {
+                            errors.push('Email no válido. Por favor, vuelva a escribir su email');
+                            $(this).addClass('error');
+                        }else{
+                            $(this).removeClass('error');
+                            $(this).addClass('correct');
+                            email = $(this).val();
+                        }
+                    break;
+                    case 'friendname':
+                        if ($(this).val() == ' ') {
+                            errors.push('El nombre de un amigo debe contener al menos una letra');
+                            $(this).addClass('error');                     
+                        }else{
+                            $(this).removeClass('error');
+                            $(this).addClass('correct');
+                        };
+                    break;
+                    case 'friendemail':
+                        var filter = new RegExp(/[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/);
+                        var valid = filter.test($(this).val());
+                        if (!valid) {
+                            errors.push('Email no válido. Por favor, vuelva a escribir su email');
+                            $(this).addClass('error');
+                        }else{
+                            $(this).removeClass('error');
+                            $(this).addClass('correct');
+                            email = $(this).val();
+                        }
+                    break;  
                     case 'title':
                         if ($(this).val() == '' ) {
                             errors.push('Title is invalid');
@@ -56,63 +112,7 @@ $(document).ready(function(){
                             $(this).addClass('correct');
                         };
                     break;
-                    case 'password':
-                        if ($(this).val() == '' || $(this).val().length < 8 || $(this).val().length > 20) {
-                            errors.push('Password is invalid');
-                            $(this).addClass('error');
-                        }else{
-                            $(this).removeClass('error');
-                            $(this).addClass('correct');
-                            pass = $(this).val();
-                        };
-                    break;	
-                    case 'rPassword':
-                        if ($(this).val() == '' || $(this).val().length < 8 || $(this).val().length > 20) {
-                            errors.push('Password is invalid');
-                            $(this).addClass('error');
-                        }else if($(this).val() != pass ){
-                        	errors.push('The passwords have to be the same');
-                        	$(this).addClass('error');
-                        }else{
-                            $(this).removeClass('error');
-                            $(this).addClass('correct');
-                        };
-                    break;
-                    case 'lastName':
-                        if ($(this).val() == '') {
-                            errors.push('Last Name is required');
-                            $(this).addClass('error');
-                        }else{
-                            $(this).removeClass('error');
-                            $(this).addClass('correct');
-                        };
-                    break;
-                    case 'email':
-                        var filter = new RegExp(/[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/);
-                        var valid = filter.test($(this).val());
-                        if (!valid) {
-                            errors.push('Valid Email is required');
-                            $(this).addClass('error');
-                        }else{
-                            $(this).removeClass('error');
-                            $(this).addClass('correct');
-                            email = $(this).val();
-                        }
-                    break;	
-                    case 'rEmail':
-                        var filter = new RegExp(/[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/);
-                        var valid = filter.test($(this).val());
-                        if (!valid) {
-                            errors.push('Valid Email is required');
-                            $(this).addClass('error');
-                        }else if($(this).val() != email ){
-                        	errors.push('The emailes have to be the same');
-                        	$(this).addClass('error');
-                        }else{
-                            $(this).removeClass('error');
-                            $(this).addClass('correct');
-                        }
-                    break;	
+                    
                     			
                 } //End switch function
 

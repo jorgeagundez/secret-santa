@@ -21,7 +21,7 @@ try {
 }catch(Exception $e){
         
     $_SESSION['error'] = 'We are unable to process your request. Please try again later';
-    header('Location:/secret_santa/userPages/dashboard.php');
+    header('Location:/user/dashboard.php');
 
 
 }

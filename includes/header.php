@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Secret Santa</title>
 
     <!-- Bootstrap -->
-    <!-- <link href="/secret_santa/css/bootstrap.css" rel="stylesheet"> -->
+    <!-- <link href="/css/bootstrap.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- Styles -->
-    <link rel="stylesheet" href="/secret_santa/css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <!-- Google font -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700,300,600,400' rel='stylesheet' type='text/css'>
     <!-- Font Awesome -->
@@ -26,6 +26,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- <script src="/secret_santa/js/bootstrap.min.js"></script>  -->
+    <!-- <script src="/js/bootstrap.min.js"></script>  -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </head>

@@ -49,6 +49,26 @@ body {
 .ribbon p {
   margin: 15px 0; }
 
+small {
+  font-size: 65%; }
+
+.message-error {
+  text-align: center;
+  padding: 10px;
+  background-color: #EDEDED;
+  color: #0F3E5A;
+  font-size: 16px; }
+  .message-error span {
+    color: #EC6645; }
+
+.error-wrap {
+  padding: 20px; }
+  .error-wrap p {
+    font-size: 12px;
+    color: #EC6645; }
+  .error-wrap i {
+    font-size: 20px; }
+
 .white {
   color: white; }
 
@@ -83,7 +103,7 @@ body {
   color: #DDDEDD; }
 
 .button_style, .btn-red, .btn-yellow,
-.btn-yellow:hover, .btn-sky, .btn-blue {
+.btn-yellow:hover, .btn-sky, .btn-blue, .btn-white {
   display: block;
   margin: 0 auto;
   border: none; }
@@ -104,6 +124,16 @@ body {
 .btn-blue {
   background: #0F3E5A;
   color: white; }
+
+.btn-white {
+  background: white;
+  color: #535553;
+  border: 1px solid #DDDEDD; }
+
+.btn-white:hover,
+.btn-white:focus,
+.btn-white:active {
+  color: #535553 !important; }
 
 .btn:hover, .btn:focus {
   color: white; }
@@ -128,6 +158,11 @@ div.yellow {
   background: #F0B323;
   color: inherit; }
 
+section.yellow05,
+div.yellow05 {
+  background: #f6d37f;
+  color: inherit; }
+
 section.blue,
 div.blue {
   background: #0F3E5A;
@@ -149,14 +184,15 @@ div.sky {
   color: inherit;
   color: inherit; }
 
+section.sky05,
+div.sky05 {
+  background: #c7dfde;
+  color: inherit;
+  color: inherit; }
+
 section.ligthgray,
 div.ligthgray {
   background: #FAF9F9;
-  color: inherit; }
-
-section.ligthgray05,
-div.ligthgray05 {
-  background: rgba(171, 208, 205, 0.5);
   color: inherit; }
 
 section.regulargray,
@@ -169,13 +205,24 @@ div.darkgray {
   background: #DDDEDD;
   color: inherit; }
 
-section.green05,
-div.green05 {
+section.green,
+div.green {
   background: #4cae4c;
+  color: inherit; }
+
+section.green02,
+div.green02 {
+  background: #dbeedb;
   color: inherit; }
 
 .input_wrapper {
   padding: 8px; }
+  .input_wrapper a {
+    color: #0F3E5A;
+    text-align: right;
+    font-size: 12px;
+    display: block;
+    padding-top: 5px; }
 
 .figure {
   width: 120px;
@@ -375,7 +422,7 @@ header .login {
   padding: 0;
   color: #0F3E5A;
   overflow: hidden; }
-  header .login .login_header h3 {
+  header .login .login_header h3, header .login .login_header p {
     margin: 0;
     text-align: center;
     font-weight: 600;
@@ -425,6 +472,31 @@ footer {
     .steps .step_wrap p.bold {
       font-size: 18px; }
 
+.pass-wrap {
+  background: #F0B323;
+  text-align: center;
+  white-space: nowrap; }
+  .pass-wrap .pass_header {
+    padding-top: 10px;
+    padding-bottom: 10px; }
+    .pass-wrap .pass_header p {
+      margin: 0; }
+
+.pass-wrap:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; }
+
+.pass-form {
+  background: #FAF9F9;
+  display: inline-block;
+  vertical-align: middle;
+  width: 80%;
+  border-radius: 10px;
+  overflow: hidden; }
+
 .go_back {
   padding: 20px 0 0; }
   .go_back p {
@@ -442,28 +514,34 @@ footer {
 .form_step_wrapper .stepOne label {
   color: white; }
 .form_step_wrapper .stepTwo label {
-  color: white;
-  font-weight: 400; }
-.form_step_wrapper .stepThree .friend_wrap {
-  padding: 10px 15px 15px;
-  border-bottom: 1px solid #f6d17b; }
-  .form_step_wrapper .stepThree .friend_wrap label {
-    font-weight: 600;
-    color: #0F3E5A; }
-.form_step_wrapper .friendList {
-  margin: 20px 0; }
+  color: #0F3E5A;
+  font-weight: 600; }
+.form_step_wrapper .stepTwo textarea {
+  height: 150px; }
 
-.settings {
-  font-size: 18px;
-  padding: 0;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: 11px;
-  right: 22px; }
-  .settings .icon_set {
-    margin: 0; }
+.step-three {
+  padding: 20px 0 0 0; }
+
+.flashback {
+  display: block;
+  opacity: 0;
+  width: 100%;
+  background: #fcefd3;
+  margin-top: 20px;
+  text-align: center;
+  padding: 9px 0 0px 0;
+  border-radius: 10px;
+  border: 1px solid #f6d37f;
+  -webkit-transition: all 1s linear;
+  -moz-transition: all 1s linear;
+  -o-transition: all 1s linear;
+  transition: all 1s linear; }
+  .flashback p {
+    font-size: 16px;
+    color: #535553; }
+
+.flash {
+  opacity: 1; }
 
 .dash_header {
   position: fixed;
@@ -473,7 +551,9 @@ footer {
   width: 100%;
   z-index: 999999999; }
   .dash_header .panel-default {
-    border: none; }
+    border: none;
+    border-bottom: 5px solid #0F3E5A;
+    border-radius: 0; }
     .dash_header .panel-default .panel-heading {
       color: #0F3E5A;
       background-color: transparent;
@@ -481,10 +561,23 @@ footer {
       padding: 0;
       height: 50px; }
   .dash_header .settings {
+    font-size: 28px;
+    padding: 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    position: absolute;
     top: 7px;
-    right: 7px;
-    color: black;
-    font-size: 28px; }
+    right: 7px; }
+    .dash_header .settings .icon_set {
+      margin: 0; }
+
+.btn.delete_account {
+  display: block;
+  width: 170px;
+  border: 1px solid #EC6645;
+  border-radius: 5px;
+  margin: 20px auto 0; }
 
 .mobile_nav ul {
   list-style: none;
@@ -504,113 +597,205 @@ footer {
     margin: 5px 0; }
 
 .title {
-  margin-top: 50px; }
+  margin-top: 50px;
+  text-align: left; }
 
-.friends_section .wrapper {
-  padding: 0;
-  text-align: left;
-  overflow: hidden; }
-  .friends_section .wrapper .panel-group {
-    margin-bottom: 2px; }
-
-.friend-wrap {
-  position: relative; }
-  .friend-wrap .panel-heading {
-    padding: 0; }
-    .friend-wrap .panel-heading h3 {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      font-size: 24px;
-      padding-left: 40px; }
-      .friend-wrap .panel-heading h3 .icon_friend {
-        font-size: 15px; }
-  .friend-wrap .name .icon_status_inv {
-    position: absolute;
-    right: 103px;
-    top: 14px;
-    font-size: 18px; }
-  .friend-wrap .name .icon_status {
-    position: absolute;
-    right: 67px;
-    top: 15px;
-    font-size: 18px; }
-  .friend-wrap .email {
-    text-align: center; }
-    .friend-wrap .email .ready {
-      padding-bottom: 0;
-      margin-bottom: 5px; }
-
-.btn.delete_account {
-  width: 170px;
-  border: 1px solid #EC6645;
-  border-radius: 5px;
-  margin: 20px auto 0; }
-
-.btn.delete,
-.btn.delete:focus,
-.btn.delete:active,
-.btn.delete:hover {
-  font-weight: 600;
-  background: #FAF9F9;
-  color: #535553; }
-
-.btn.invite,
-.btn.invite:focus,
-.btn.invite:active,
-.btn.invite:hover,
-.btn.remaind,
-.btn.remaind:focus,
-.btn.remaind:active,
-.btn.remaind:hover {
-  font-weight: 600;
-  background: #FAF9F9;
-  color: #535553; }
-
-.add-friend-wrap {
-  margin-bottom: 20px; }
-
-.add-friend input.friendemail {
-  width: 69%;
-  float: left; }
-.add-friend button.add {
-  display: inline-block;
-  padding: 7px 10px;
-  width: 31%; }
+.friends {
+  border-top: 1px solid sky; }
+  .friends .wrapper {
+    padding: 0;
+    text-align: left;
+    overflow: hidden; }
+    .friends .wrapper .panel-group {
+      margin-bottom: 2px; }
 
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 /* Small devices (tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .ribbon p {
+    margin: 15px 0; }
+    .ribbon p a {
+      color: white; }
+    .ribbon p a:hover,
+    .ribbon p a:focus,
+    .ribbon p a:active {
+      color: white;
+      text-decoration: none; }
+
+  .friend-wrap {
+    position: relative; }
+    .friend-wrap .content-wrapper {
+      position: relative;
+      width: 100%;
+      display: block;
+      overflow: hidden;
+      border-bottom: 1px solid #DDDEDD; }
+    .friend-wrap .content-top {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 100;
+      cursor: pointer;
+      right: 0;
+      padding-left: 7%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      overflow: hidden;
+      -webkit-transform: translateZ(0);
+      -webkit-transition: all 200ms linear 0s;
+      -moz-transition: all 200ms linear 0s;
+      -o-transition: all 200ms linear 0s;
+      transition: all 200ms linear 0s; }
+      .friend-wrap .content-top p {
+        font-size: 20px;
+        line-height: 40px;
+        margin: 0;
+        padding: 0;
+        display: inline-block; }
+    .friend-wrap .content-top.move {
+      right: 50%; }
+    .friend-wrap .content-behind {
+      position: absolute;
+      display: block;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      height: 100%; }
+      .friend-wrap .content-behind .behind-btn, .friend-wrap .content-behind .invite-btn, .friend-wrap .content-behind .remaind-btn, .friend-wrap .content-behind .delete-btn {
+        height: 100%;
+        position: absolute;
+        font-size: 18px;
+        line-height: 57px;
+        color: white;
+        font-weight: bold; }
+        .friend-wrap .content-behind .behind-btn .glyphicon, .friend-wrap .content-behind .invite-btn .glyphicon, .friend-wrap .content-behind .remaind-btn .glyphicon, .friend-wrap .content-behind .delete-btn .glyphicon {
+          line-height: 51px; }
+      .friend-wrap .content-behind .behind-btn:hover, .friend-wrap .content-behind .invite-btn:hover, .friend-wrap .content-behind .remaind-btn:hover, .friend-wrap .content-behind .delete-btn:hover,
+      .friend-wrap .content-behind .behind-btn:focus,
+      .friend-wrap .content-behind .invite-btn:focus,
+      .friend-wrap .content-behind .remaind-btn:focus,
+      .friend-wrap .content-behind .delete-btn:focus,
+      .friend-wrap .content-behind .behind-btn:active,
+      .friend-wrap .content-behind .invite-btn:active,
+      .friend-wrap .content-behind .remaind-btn:active,
+      .friend-wrap .content-behind .delete-btn:active {
+        text-decoration: none;
+        color: white; }
+      .friend-wrap .content-behind .invite-btn {
+        width: 70%;
+        left: 0;
+        padding-left: 17%;
+        background: #F0B323; }
+      .friend-wrap .content-behind .remaind-btn {
+        width: 70%;
+        left: 0;
+        padding-left: 12%;
+        background: #535553; }
+      .friend-wrap .content-behind .delete-btn {
+        width: 30%;
+        left: 70%;
+        background: #EC6645;
+        padding-left: 10%;
+        padding-top: 3px; }
+
+  .icon_status {
+    position: absolute;
+    right: 7%;
+    top: 22px;
+    font-size: 18px; }
+
+  .delete,
+  .delete:focus,
+  .delete:active,
+  .delete:hover,
+  .invite,
+  .invite:focus,
+  .invite:active,
+  .invite:hover,
+  .remaind,
+  .remaind:focus,
+  .remaind:active,
+  .remaind:hover {
+    font-weight: 600;
+    background: #FAF9F9;
+    color: #0F3E5A; }
+
+  .add-friend {
+    padding: 15px 0;
+    background: #FAF9F9; }
+    .add-friend input {
+      margin: 5px 0;
+      color: #0F3E5A;
+      height: 50px;
+      font-size: 18px; }
+    .add-friend button {
+      display: block;
+      margin: 0 auto;
+      font-weight: 400;
+      margin-top: 10px;
+      height: 40px;
+      font-size: 16px;
+      box-shadow: none; } }
+/* Small devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .friend-wrap {
+    position: relative;
     border-radius: 6px;
     padding: 0 10px 10px;
     margin-bottom: 10px;
     overflow: hidden;
     text-align: center; }
+    .friend-wrap .panel-heading {
+      padding: 0; }
+      .friend-wrap .panel-heading .panel-title,
+      .friend-wrap .panel-heading .panel-title:active,
+      .friend-wrap .panel-heading .panel-title:focus {
+        font-size: 16px;
+        line-height: 32px;
+        padding-left: 40px;
+        width: 100%;
+        text-align: left;
+        color: #0F3E5A; }
     .friend-wrap .name {
       padding: 0; }
-      .friend-wrap .name h3 {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding-left: 0; }
-      .friend-wrap .name a {
-        font-size: 24px; }
       .friend-wrap .name .icon_status {
-        display: none; }
-      .friend-wrap .name .settings {
-        display: none; }
-    .friend-wrap .warning-btn {
-      font-weight: bold;
-      color: #0F3E5A; }
-    .friend-wrap .delete-btn {
-      font-weight: bold;
-      position: absolute;
-      right: 7px; }
-    .friend-wrap .btn.delete_account {
-      width: 170px;
-      border: 1px solid #EC6645;
-      border-radius: 5px;
-      margin: 20px auto 0; } }
+        position: absolute;
+        right: 30px;
+        top: 14px;
+        font-size: 18px; }
+
+  .btn.delete,
+  .btn.delete:focus,
+  .btn.delete:active,
+  .btn.delete:hover {
+    font-weight: 600;
+    background: #FAF9F9;
+    color: #535553; }
+
+  .btn.invite,
+  .btn.invite:focus,
+  .btn.invite:active,
+  .btn.invite:hover,
+  .btn.remaind,
+  .btn.remaind:focus,
+  .btn.remaind:active,
+  .btn.remaind:hover {
+    font-weight: 600;
+    background: #FAF9F9;
+    color: #535553; }
+
+  .add-friend-wrap {
+    margin-bottom: 20px; }
+    .add-friend-wrap .add-friend input.friendemail {
+      width: 69%;
+      float: left; }
+    .add-friend-wrap .add-friend button.add {
+      display: inline-block;
+      padding: 7px 10px;
+      width: 31%; } }
 /* Medium devices (desktops, 992px and up) */
 /* Large devices (large desktops, 1200px and up) */
 

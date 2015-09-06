@@ -58,7 +58,6 @@ CREATE TABLE IF NOT EXISTS `game` (
   `price` int(11) NOT NULL,
   `gameplace` varchar(45) NOT NULL,
   `gamedate` date NOT NULL,
-  `drawdate` date NOT NULL,
   `user_idusuario` int(11) DEFAULT NULL,
   `gamenumberfriends` int(11) NOT NULL,
   `confirmed` tinyint(1) NOT NULL DEFAULT '0',
@@ -69,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `game` (
 -- Volcado de datos para la tabla `game`
 --
 
-INSERT INTO `game` (`idgame`, `title`, `description`, `price`, `gameplace`, `gamedate`, `drawdate`, `user_idusuario`, `gamenumberfriends`, `confirmed`, `gamekey`) VALUES
+INSERT INTO `game` (`idgame`, `title`, `description`, `price`, `gameplace`, `gamedate`, `user_idusuario`, `gamenumberfriends`, `confirmed`, `gamekey`) VALUES
 (36, 'Juego de Jorge', 'Juego bla bla bla bla', 5, 'London', '2015-04-25', '2015-04-25', 64, 3, 0, 'ea5d2f1c4608232e07d3aa3d998e5135');
 
 -- --------------------------------------------------------

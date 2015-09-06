@@ -1,116 +1,109 @@
 $(document).ready(function(){
 
-	// ************
-	// STEP 3 PAGE
-	// ************
+    // ========================
+    // ========================
+    //  REMEMBER PASSWORD PAGE
+    // ========================
+    // ========================
 
-	var i = 1;
-	$('.addFriend').click(function(){
-		i++;
-		var friend = '<div class="row friend_wrap"><div class="col-md-3 input_wrapper"><label for="friendname' + i + '">Amigo n&deg;' + i + '</label><input type="text" name="friendname' + i + '" class="form-control" id="friendname' + i + '" placeholder="Nombre" required="true"/></div><div class="col-md-9 input_wrapper"><label for="friendemail' + i + '">Email</label><input type="email" name="friendemail' + i + '" class="form-control" id="friendemail' + i + '" placeholder="Correo Electrónico" required="true"/></div></div>';
-		$('div.friendList').append(friend);
-	});
+    var h = $(window).height();
+    $('.pass-wrap').height(h - 130);
 
-	$('form#stepThree').submit(function() {
-		$('.nFriends').val(i);
-	});
 
+	
 	// ************
 	// DASHBOARD
 	// ************
 
-	// Functions
+    //Open options each friend-list
+
+    $('.friends').on( 'click', '.content-top', function() {
+        if (!$(this).find('span').hasClass('no-move')) {
+            $(this).toggleClass('move');
+        }
+    });
+
+    // Functions
 
     function getFriendData(object){
 
 		var thisobject = object;
-    	var friendWrap = thisobject.parents('div[class^="friend-wrap"]');
+        var friendWrap = thisobject.parents('.friend-wrap');
         var friend_id = friendWrap.attr('id');
         var friend_name = friendWrap.find('.name').attr('id');
         var friend_email = friendWrap.find('.email').attr('id');
         var friend = {
-                        "friendid" : friend_id,
-                        "friendname" : friend_name,
-                        "friendemail" : friend_email
+                        'friendid' : friend_id,
+                        'friendname' : friend_name,
+                        'friendemail' : friend_email
                 };
 
         return friend;
 
     }
 
+
 	// Add friend Ajax
 
-        $('#activator').click(function(evento){
-            evento.preventDefault();
-            addFriend('lolita', 'lolita@mail.com');
+        $('body').on( 'submit', '#addFriend' ,function(){
 
-            function addFriend(name, email){
-                var newfriend = {
-                        "name" : name,
-                        "email" : email
-                };
-                $.ajax({
-                        data:  newfriend,
-                        url:   '../controller/ajax/addFriend.php',
-                        type:  'post',
-                        beforeSend: function () {
-                                $("#result").html("Procesando, espere por favor...");
-                        },
-                        success:  function (response) {
-                                $("#result").html(response);
-                        }
-                });
-            }
-        });
+            var name = $(this).find('.friendname').val();
+            var email = $(this).find('.friendemail').val();
 
-    // Invite single friend
-
-        $('.invite').click(function(evento){
-
-            evento.preventDefault();
-
-            var confirmation = confirm('Se enviará una invitación. ¿Desea continuar?');
-            
-            if( confirmation ) {
-            
-                var friendWrap = $(this).parents('div[class^="friend-wrap"]');
-                var friend = getFriendData($(this));
-
-                $.ajax({
-                        data:  friend,
-                        type:  'POST',
-                        dataType: 'json',
-                        url:   '../controller/ajax/singleInvitation.php',
-                        success:  function (response) {
-                            if (response.error){
-                                alert(response.mensaje);
-                            }else{
-                                alert(response.mensaje)
-                                $(friendWrap).find('.invite').remove();
-                                $(friendWrap).find('.panel-body').append('<a id="" class="btn-sm btn btn-default warning-btn remaind" aria-label="Left Align" href=""><span class="glyphicon glyphicon-time yellow" aria-hidden="true"></span> Recordar</a>');
-                                $(friendWrap).find('.panel-body').append('&nbsp;<a id="" class="btn-sm btn btn-default warning-btn delete" aria-label="Left Align" href=""><span class="glyphicon glyphicon-trash red" aria-hidden="true"></span> Borrar</a>');
-                                $('.icon_status_inv').remove();
-                            }
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            alert('Ha ocurrido un error, por favor, intentelo mas tarde');
-                        }
-                });
+            //json datas
+            var newfriend = {
+                "name" : name,
+                "email" : email
             };
+
+            function setFriendwrap(id, name, email){
+
+                var friendcode = '<div style=\"opacity: 0;\" class=\"col-xs-12 d col-sm-6 col-md-4 friend-wrap\" id=\"' + id + '\"><div class=\"content-wrapper\" ><div class=\"content-top ligthgray\"><p class=\"name bold text-capitalize\" id=\"' + name + '\">' + name + '</p><small class=\"email text-lowercase\" id=\"' + email + '\"> (' + email.substring(0,23) + '...)</small><i class=\"icon_status sky fa fa-clock-o\"></i></div><div class=\"content-behind\"><a class=\"remaind-btn behind-btn\" aria-label=\"Left Align\" href=\"\">Recordar</a><a class=\"delete-btn behind-btn\" aria-label=\"Left Align\" href=\"\"><span class=\"glyphicon glyphicon-trash white\" aria-hidden=\"true\"></span></a></div></div></div>';
+                return friendcode;
+            };
+
+
+            $.ajax({
+                data:  newfriend,
+                type:  'POST',
+                url:   '../controller/ajax/addFriend.php',
+                success:  function (response) {
+                    if (response.error){
+                        alert(response.mensaje);
+                        alert(response.type);
+                        console.log(response.type);
+                    }else{
+                        var code = setFriendwrap(response.newid, name, email);
+                        $('.friends').find('.no-friend').remove();
+                        if ($('.friends > .wrapper > .row > div').length == 0 ) {
+                            $('.friends > .wrapper > .row:last-child').append(code);
+                        }else{
+                            $('.friends').find('.friend-wrap:last-child').after(code);
+                        }
+                        $('.friends').find('.friend-wrap:last-child').fadeTo('slow', 1);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert('Ha ocurrido un error, por favor, intentelo mas tarde');
+                }
+            });
+
+            $(this).trigger("reset");
+            return false;
         });
 
-
+   
     // Remaind single friend
 
-        $('.remaind').click(function(evento){
+        $('body').on( 'click', '.remaind-btn', function(evento){
 
             evento.preventDefault();
 
             var confirmation = confirm('Se enviará un mensaje recordatorio. ¿Desea continuar?');
 
             if( confirmation ) {
-            
-                var friendWrap = $(this).parents('div[class^="friend-wrap"]');
+
+                var friendWrap = $(this).parents('.friend-wrap');
                 var friend = getFriendData($(this));
 
                 $.ajax({
@@ -122,7 +115,7 @@ $(document).ready(function(){
                             if (response.error){
                                 alert(response.mensaje);
                             }else{
-                                alert(response.mensaje);
+                                $(friendWrap).find('.content-top ').removeClass('move');
                             }
                         },
                         error: function(jqXHR, textStatus, errorThrown) {
@@ -134,11 +127,11 @@ $(document).ready(function(){
 
 	// Delete Friend
 
-		$('.delete').click(function(evento){
+		$('body').on( 'click', '.delete-btn' ,function(evento){
 
             evento.preventDefault();
-            
-            var friendWrap = $(this).parents('div[class^="friend-wrap"]');
+
+            var friendWrap = $(this).parents('.friend-wrap');
             var friend = getFriendData($(this));
 
             var confirmation = confirm('Su amigo será eliminado del juego. ¿Desea continuar?');
@@ -152,14 +145,13 @@ $(document).ready(function(){
                             if (response.error){
                                 alert(response.mensaje);
                             }else{
-                                alert(response.mensaje);
                                 $(friendWrap).fadeOut('slow', function(){
                                     $(this).remove();
                                 });
                             }
                         },
                     error: function(jqXHR, textStatus, errorThrown) {
-                            alert('Ha ocurrido un error, por favor, intentelo mas tarde');
+                        alert('Ha ocurrido un error, por favor, intentelo mas tarde');
                     }
                 });
             }else{
@@ -170,7 +162,7 @@ $(document).ready(function(){
 
     //Delete Account
 
-    $('.delete_account').click(function(){
+    $('body').on( 'click', '.delete_account' , function(){
         var confirmation = confirm('Su cuenta va a ser borrada por completo. Todo los datos de su juego y amigos invitados se perderán. ¿Está de acuerdo?');
         if( confirmation ) {
             return true;
@@ -179,7 +171,7 @@ $(document).ready(function(){
         }
     })
 
-    
+
 
     // Style amends
 
@@ -189,7 +181,10 @@ $(document).ready(function(){
     }
 
 
-});
+
+}); // doc ready
+
+
 
 
 

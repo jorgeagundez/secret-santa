@@ -1,75 +1,280 @@
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 
+/* Small devices (tablets, 768px and up) */
+@media only screen and (max-width: 768px) 
+{	
+
+	.ribbon {
+		// border-top: 1px solid $ligthgray;
+		p {
+			margin: 15px 0;
+
+			a{
+				color:white;
+			}
+
+			a:hover,
+			a:focus,
+			a:active {
+				color:white;
+				text-decoration:none;
+			}
+		}
+	}
+
+	
+
+	// Each Friend
+	// ===========
+
+	.friend-wrap {
+		position: relative;
+
+
+		.content-wrapper{
+			position: relative;
+		    width: 100%;
+		    display: block;
+		    overflow: hidden;
+		    border-bottom: 1px solid $darkgray;
+		  
+		}
+
+			.content-top {
+				position: relative;
+	   			width: 100%;
+	   			height: 100%;
+	   			display: block;
+	   			z-index: 100;
+	   			cursor: pointer;
+	   			right: 0;
+	   			padding-left: 7%;
+	   			padding-top: 10px;
+	   			padding-bottom: 10px;
+	   			overflow: hidden;
+	   			-webkit-transform: translateZ(0);
+	   			-webkit-transition: all 200ms linear 0s;
+	   			-moz-transition: all 200ms linear 0s;
+	   			-o-transition: all 200ms linear 0s;
+	   			transition: all 200ms linear 0s;
+
+	   			p{
+	   				font-size: 20px;
+  					line-height: 40px;
+  					margin: 0;
+  					padding: 0;
+  					display: inline-block;
+	   			}
+			}
+
+			.content-top.move {
+    			right: 50%;
+			}
+
+			.content-behind{
+				position: absolute;
+				display: block;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 50%;
+				height: 100%;
+
+				.behind-btn {
+					height: 100%;
+					position: absolute;
+					font-size: 18px;
+					line-height: 57px;
+					color: white;
+					font-weight: bold;
+
+					.glyphicon {
+					 	line-height: 51px;
+					}
+				}
+
+				.behind-btn:hover,
+				.behind-btn:focus,
+				.behind-btn:active {
+					text-decoration: none;
+					color: white;
+				}
+
+				.invite-btn {
+					@extend .behind-btn; 
+					width:70%;
+					left:0;
+					padding-left: 17%;
+					background: $yellow;
+				}
+
+				.remaind-btn {
+					@extend .behind-btn; 
+					width:70%;
+					left:0;
+					padding-left: 12%;
+					background: $black;
+				}
+
+				.delete-btn {
+					@extend .behind-btn; 
+					width:30%;
+					left: 70%;
+					background: $red;
+					padding-left: 10%;
+			  		padding-top: 3px;
+				}
+							
+			}	
+	}
+
+	.icon_status {
+		position: absolute;
+		right: 7%;
+		top: 22px;
+		font-size: 18px;
+	}
+
+	
+
+	
+	
+
+	.delete,
+	.delete:focus,
+	.delete:active,
+	.delete:hover,
+	.invite,
+	.invite:focus,
+	.invite:active,
+	.invite:hover, 
+	.remaind,
+	.remaind:focus,
+	.remaind:active,
+	.remaind:hover {
+		font-weight: $bold;
+		background: $ligthgray;
+		color: $blue;
+	}
+
+	// ADD FRIEND
+	.add-friend {
+		padding: 15px 0;
+		background: $ligthgray;
+		// height: 180px;
+
+		input {
+			margin: 5px 0;
+			color: $blue;
+			height: 50px;
+			font-size: 18px;
+		}
+
+		button {
+			display: block;
+			margin: 0 auto;
+			font-weight: $regular;
+			margin-top: 10px;
+			height: 40px;
+			font-size: 16px;
+			box-shadow: none;
+		}
+
+	}
+
+}
 
 /* Small devices (tablets, 768px and up) */
 @media only screen and (min-width: 768px) 
 {
 
-	.friend-wrap {
-	// border: 1px solid $black;
-	border-radius: 6px;
-	padding: 0 10px 10px;
-	margin-bottom: 10px;
-	overflow: hidden;
-	text-align: center;
+		// Each Friend 
 
-	.name {
-
-		padding: 0;
-
-		h3{
-			margin-top: 10px;
+		.friend-wrap {
+			position: relative;
+			border-radius: 6px;
+			padding: 0 10px 10px;
 			margin-bottom: 10px;
-			padding-left: 0;
+			overflow: hidden;
+			text-align: center;
 
-			
-		}
-
-		a{
-			font-size: 24px;
+			.panel-heading {
+				padding: 0;
+				.panel-title,
+				.panel-title:active,
+				.panel-title:focus {
+					font-size: 16px;
+					line-height: 32px;
+					padding-left: 40px;
+					width: 100%;
+					text-align: left;
+					color: $blue;
+				}
 			}
+			.name {
+				padding: 0;
+				.icon_status {
+					position: absolute;
+					right: 30px;
+					top: 14px;
+					font-size: 18px;
+				}
+			}
+	 	}
 
-		.icon_status {
-			display: none;
+
+		// Buttons friend list
+
+		.btn.delete,
+		.btn.delete:focus,
+		.btn.delete:active,
+		.btn.delete:hover {
+			font-weight: $bold;
+			background: $ligthgray;
+			color: $black;
 		}
 
-		.settings {
-			display: none;
+		.btn.invite,
+		.btn.invite:focus,
+		.btn.invite:active,
+		.btn.invite:hover, 
+		.btn.remaind,
+		.btn.remaind:focus,
+		.btn.remaind:active,
+		.btn.remaind:hover {
+			font-weight: $bold;
+			background: $ligthgray;
+			color: $black;
 		}
 
-	}
+		// add Friend
+		.add-friend-wrap{
+			margin-bottom: 20px;
+			.add-friend {
+				input.friendemail {
+					width: 69%;
+					float: left;
+				}
 
-	
-	.warning-btn {
-		// border: none;
+				button.add {
+					display: inline-block;
+					padding: 7px 10px;
+					width: 31%;
+				}
+			}
+		}
+
 		
-		font-weight: bold;
-		color: $blue;
-	}
 
-	.delete-btn {
-		font-weight: bold;
-		position: absolute;
-		right: 7px;
-	}
 
-		// Buttons
-	.btn.delete_account {
-		width: 170px;
-		border: 1px solid #EC6645;
-		border-radius: 5px;
-		margin: 20px auto 0;
-	}
 
-	.invite {
-		
-	}
+
 
 	
 		
 	
-}
+
 
 }
 

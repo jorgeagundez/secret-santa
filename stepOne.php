@@ -13,7 +13,7 @@ include "includes/header.php";
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <p class="top_bar"><span class="red">Paso 1 <span class="gray">|</span></span> Rellena tus Datos</p>
+                        <p class="top_bar"><span class="red">Paso 1 <span class="gray">|</span></span> Datos de Acceso</p>
                     </div>
                 </div>
             </div>
@@ -26,11 +26,14 @@ include "includes/header.php";
             <div class="container">
                 <form role="form" class="stepOne" id="stepOne" method="post" action="controller/stepOne.php">
                     <div class="col-xs-12">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <?php if (isset($_SESSION['error'])){ echo $_SESSION['error']; unset($_SESSION['error']);}?>
+                        <?php if (isset($_SESSION['error'])){ ?>
+                            <div class="row error-wrap">
+                                <div class="col-md-12">
+                                    <p><i class="fa fa-exclamation-triangle"></i><p>
+                                    <p><?php echo  $_SESSION['error']?></p>
+                                </div>
                             </div>
-                        </div>
+                        <?php unset($_SESSION['error']);}?>
                         <div class="row">
                             <div class="col-md-12 input_wrapper">
                                 <label for="username">Usuario</label>
@@ -39,26 +42,15 @@ include "includes/header.php";
                         </div>
                         <div class="row">
                             <div class="col-md-12 input_wrapper">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" class="form-control" id="email" required="true"/>
+                                <label for="useremail">Email</label>
+                                <input type="email" name="useremail" class="form-control" id="useremail" required="true"/>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12 input_wrapper">
-                                <label for="rEmail">Repite Email</label>
-                                <input type="email" name="rEmail" class="form-control" id="rEmail" required="true"/>
-                            </div>
-                        </div>
+                       
                         <div class="row">
                             <div class="col-md-12 input_wrapper">
                                 <label for="password">Password</label>
                                 <input type="password" name="password" class="form-control" id="password" required="true"/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 input_wrapper">
-                                <label for="rPassword">Repite Password</label>
-                                <input type="password" name="rPassword" class="form-control" id="rPassword" required="true"/>
                             </div>
                         </div>
                         <div class="row">
@@ -73,11 +65,11 @@ include "includes/header.php";
             </div>
             <div class="go_back">
                 <p>*Tienes una cuenta?</p>
-                <p>Haz login <a href="/secret_santa/controller/logout.php" class="" ><span class="gray">Aquí</span></a></p>
+                <p>Haz login <a href="/controller/logout.php" class="" ><span class="gray">Aquí</span></a></p>
             </div>
 
            <!--  <div class="go_back">
-                <a href="/secret_santa/controller/logout.php" class="" ><span class="gray">Reset</span></a></p>
+                <a href="/controller/logout.php" class="" ><span class="gray">Reset</span></a></p>
             </div> -->
             
         </div>

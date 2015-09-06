@@ -5,15 +5,15 @@ session_start();
 if(!isset($_SESSION['user_id']))
 {
     $_SESSION['error'] = 'You must be logged in to updated your details';
-    header('Location:/secret_santa/index.php');
+    header('Location:/index.php');
    
 
 }elseif($_SESSION['id_session'] != session_id()){
 
     $_SESSION['error'] = 'There was a mistake in the session, please, login again';
-    header('Location:/secret_santa/index.php');
+    header('Location:/controller/logout.php');
 
-}elseif(!isset($_POST['password'],$_POST['rPassword'],$_POST['email'],$_POST['rEmail'],$_POST['form_token'])){
+}elseif(!isset($_POST['password'],$_POST['rPassword'],$_POST['form_token'])){
 
     $_SESSION['error'] = 'Please enter a valid data';
 
@@ -29,10 +29,6 @@ if(!isset($_SESSION['user_id']))
 
     $_SESSION['error'] = 'The passwords have to be the same. Please, try again.';
 
-}elseif ($_POST['email'] != $_POST['rEmail']){
-
-    $_SESSION['error'] = 'The emailes have to be the same. Please, try again';
-
 }elseif (ctype_alnum($_POST['password']) != true){
 
     $_SESSION['error'] = "Password must be alpha numeric";
@@ -41,7 +37,6 @@ if(!isset($_SESSION['user_id']))
 
     $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
     $password = sha1( $password );
-    $email = filter_var($_POST['email'],FILTER_SANITIZE_STRING);
     $user_id = $_SESSION['user_id'];
 
     require_once "conexionDb.php";
@@ -50,10 +45,9 @@ if(!isset($_SESSION['user_id']))
 
         $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("UPDATE user SET password = :user_password, email = :user_email WHERE idusuario = :id");
+        $stmt = $conn->prepare("UPDATE user SET password = :user_password WHERE idusuario = :id");
         $stmt->bindParam(':id', $user_id, PDO::PARAM_STR);
         $stmt->bindParam(':user_password', $password, PDO::PARAM_STR, 40);
-        $stmt->bindParam(':user_email', $email, PDO::PARAM_STR);
         
         $stmt->execute();
         
@@ -65,8 +59,8 @@ if(!isset($_SESSION['user_id']))
 
         }else{
 
-            $_SESSION['user_email'] = $email;
-            header('Location:/secret_santa/userPages/dashboard.php?info=You are now update your details');
+            $_SESSION['info'] = 'Su contraseña ha sido actualizada';
+            header('Location:/user/up-pass.php');
 
         }
 
@@ -85,7 +79,7 @@ if(!isset($_SESSION['user_id']))
 
 if (isset($_SESSION['error'])) {
 
-    header('Location:/secret_santa/userPages/update.php');
+    header('Location:/user/up-pass.php');
 
 }
 
