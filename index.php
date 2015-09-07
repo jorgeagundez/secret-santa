@@ -140,5 +140,9 @@ $template = 'frontpage';
 				</div>
 			</div>
 		</section>
+
+		<div class="icons-licence">
+			<p>Icons made by <a href="http://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a><br/> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></p>
+		</div>
  
 <?php include 'includes/footer.php';?>
