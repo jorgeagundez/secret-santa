@@ -81,6 +81,11 @@ $(document).ready(function(){
                             $('.friends').find('.friend-wrap:last-child').after(code);
                         }
                         $('.friends').find('.friend-wrap:last-child').fadeTo('slow', 1);
+                        $('.group-confirmed').hide();
+
+                        var totalNoConfirmed =parseInt($('.total-no-confirmed').html());
+                        $('.total-no-confirmed').empty();
+                        $('.total-no-confirmed').html(totalNoConfirmed + 1);
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -149,6 +154,9 @@ $(document).ready(function(){
                                     $(this).remove();
                                 });
                             }
+                            var totalNoConfirmed =parseInt($('.total-no-confirmed').html());
+                            $('.total-no-confirmed').empty();
+                            $('.total-no-confirmed').html(totalNoConfirmed - 1);
                         },
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert('Ha ocurrido un error, por favor, intentelo mas tarde');

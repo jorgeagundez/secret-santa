@@ -564,7 +564,7 @@ div.green02 {
 .icons-licence {
 
 	padding-bottom: 20px;
-	
+
 	p {
 		text-align: center;
 		font-size: 50%;
@@ -909,13 +909,36 @@ footer {
 	}
 }
 
-.btn.delete_account {
+.btn.skin {
 	display: block;
 	width: 170px;
-	border: 1px solid #EC6645;
 	border-radius: 5px;
 	margin: 20px auto 0;
+	color: $blue;
+
+	&:hover, &:focus, &:active {
+		color: $blue;
+	}
 }
+
+.btn.delete_account {
+	@extend .btn.skin; 
+	border: 1px solid $red;
+}
+
+.btn.continue {
+	@extend .btn.skin; 
+	border: 1px solid $yellow;
+}
+
+.btn.make-draw {
+	@extend .btn.skin; 
+	border: 1px solid $green;
+}
+
+
+
+
 
 
 // Nav
@@ -968,6 +991,11 @@ footer {
 	}
 }
 
+
+.group-confirmed {
+	margin-top: 50px;
+	padding-top: 50px;
+}
 
 
 

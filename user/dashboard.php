@@ -43,7 +43,23 @@ include "../includes/header.php";
         </div>
     </header>
 
-    
+    <?php if( $_SESSION['total_confirmed'] == $_SESSION['numberfriends'] ) { ?>
+        <section class="group-confirmed">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <p>Todos los miembros del grupo han confirmado.</p> 
+                        <p><span class="bold green">¿Listo para realizar el sorteo?</span></p>
+                        <p><a class="btn make-draw" href=""><span class="fa fa-magic" aria-hidden="true"></span> Realizar Sorteo</a></p><br/>
+                        <p><span class="bold yellow">¿O quizás has olvidado a alguien?</span></p>
+                        <p><a class="btn continue" href="#add-friend"><span class="fa fa-plus" aria-hidden="true"></span> Añadir Amigo</a></p>
+
+                        <!-- <a class="red btn delete_account" href=""><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Borrar cuenta</a> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    <?php } ?>
 
     <?php if (isset($_SESSION['error'])){ ?>
         <section class="blue ribbon">
@@ -72,7 +88,7 @@ include "../includes/header.php";
             </div>
         </div>
     </section>
-
+    
     <!-- MOBILE VERSION -->
     <section id="friends" class="friends">
         <div class="container wrapper">
@@ -133,12 +149,12 @@ include "../includes/header.php";
                         </div>
                     <?php } ?><!--  End for -->
                 <?php }?><!--  End if -->
-
+ 
             </div>
         </div>
     </section>
     
-
+    <a name="add-friend"></a>
     <section class="blue ribbon">
         <div class="container">
             <div class="row">
@@ -147,8 +163,7 @@ include "../includes/header.php";
                 </div>
             </div>
         </div>
-    </section>
-
+    </section>    
     <section class="add-friend">
         <div class="container">
             <div class="row">
@@ -166,6 +181,7 @@ include "../includes/header.php";
             <div class="clearfix visible-xs-block"></div>
         </div>
     </section>
+   
 
     <section class="blue ribbon">
         <div class="container">
@@ -187,19 +203,14 @@ include "../includes/header.php";
                             <p class="bold"><?php echo $game->getDescription() ?></p>
                         </div>
                         <div class="datas">       
-                           <p class="bold white"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Amigos Confirmados: <span class="blue bold"><?php echo $_SESSION['total_confirmed'] ?></span></p>
-                           <p class="bold white"><i class="fa fa-clock-o"></i></span> Por Confirmar: <span class="blue bold"><?php echo $_SESSION['numberfriends'] - $_SESSION['total_confirmed']; ?></span></p>
+                           <p class="bold white"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Amigos Confirmados: <span class="blue bold total-confirmed"><?php echo $_SESSION['total_confirmed'] ?></span></p>
+                           <p class="bold white"><i class="fa fa-clock-o"></i></span> Por Confirmar: <span class="blue bold total-no-confirmed"><?php echo $_SESSION['numberfriends'] - $_SESSION['total_confirmed']; ?></span></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <?php if( $game->getConfirmed() ) { ?>
-        <p class="">Este grupo <span class="bold yellow">ha sido confirmado</span> por todos sus miembros. El <span class="bold green">sorteo</span> de nombres se ha <span class="bold green">realizado con éxito</span>, no olvides consultar tu correo electrónico para ver el resultado.</p>
-        <a class="red btn delete_account" href=""><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Borrar cuenta</a>
-    <?php } ?>
 
 
     <?php 

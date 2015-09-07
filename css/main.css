@@ -578,12 +578,23 @@ footer {
     .dash_header .settings .icon_set {
       margin: 0; }
 
-.btn.delete_account {
+.btn.skin, .btn.delete_account, .btn.continue, .btn.make-draw {
   display: block;
   width: 170px;
-  border: 1px solid #EC6645;
   border-radius: 5px;
-  margin: 20px auto 0; }
+  margin: 20px auto 0;
+  color: #0F3E5A; }
+  .btn.skin:hover, .btn.delete_account:hover, .btn.continue:hover, .btn.make-draw:hover, .btn.skin:focus, .btn.delete_account:focus, .btn.continue:focus, .btn.make-draw:focus, .btn.skin:active, .btn.delete_account:active, .btn.continue:active, .btn.make-draw:active {
+    color: #0F3E5A; }
+
+.btn.delete_account {
+  border: 1px solid #EC6645; }
+
+.btn.continue {
+  border: 1px solid #F0B323; }
+
+.btn.make-draw {
+  border: 1px solid #4cae4c; }
 
 .mobile_nav ul {
   list-style: none;
@@ -614,6 +625,10 @@ footer {
     overflow: hidden; }
     .friends .wrapper .panel-group {
       margin-bottom: 2px; }
+
+.group-confirmed {
+  margin-top: 50px;
+  padding-top: 50px; }
 
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
