@@ -4,7 +4,7 @@ session_start();
 
 if($_POST['form_token'] != $_SESSION['form_token']){
 
-    $error = 'There was a problem sending the confirmation. Please, try it later';
+    $_SESSION['error'] = 'There was a problem sending the confirmation. Please, try it later';
 
 }else{
 
@@ -26,8 +26,8 @@ if($_POST['form_token'] != $_SESSION['form_token']){
 
     }catch(Exception $e){
             
-        $error= 'There was a problem sending the confirmation. Please, try it later.';
-        header('Location:/user/dashboard.php?&error=' . $error);
+        $_SESSION['error'] = 'There was a problem sending the confirmation. Please, try it later.';
+        header('Location:/index.php');
 
     }//end try
 }

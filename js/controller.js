@@ -70,10 +70,11 @@ $(document).ready(function(){
                 success:  function (response) {
                     if (response.error){
                         alert(response.mensaje);
-                        alert(response.type);
-                        console.log(response.type);
+                        // alert(response.type);
+                        // console.log(response.type);
                     }else{
                         var code = setFriendwrap(response.newid, name, email);
+                        console.log(response.mensaje);
                         $('.friends').find('.no-friend').remove();
                         if ($('.friends > .wrapper > .row > div').length == 0 ) {
                             $('.friends > .wrapper > .row:last-child').append(code);
@@ -89,7 +90,7 @@ $(document).ready(function(){
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    alert('Ha ocurrido un error, por favor, intentelo mas tarde');
+                    console.log(jqXHR);
                 }
             });
 
@@ -171,7 +172,7 @@ $(document).ready(function(){
     //Delete Account
 
     $('body').on( 'click', '.delete_account' , function(){
-        var confirmation = confirm('Su cuenta va a ser borrada por completo. Todo los datos de su juego y amigos invitados se perderán. ¿Está de acuerdo?');
+        var confirmation = confirm('Su cuenta va a ser borrada por completo. Todo los datos de su juego y amigos se perderán. ¿Está de acuerdo?');
         if( confirmation ) {
             return true;
         }else{

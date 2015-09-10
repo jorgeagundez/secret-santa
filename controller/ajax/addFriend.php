@@ -20,66 +20,52 @@ if ( !isset($friendname) || !isset($friendemail) ) {
 
     require_once "../conexionDb.php";
     include "../game.php";
-
-    // require_once 'Mail.php';
-    // require_once 'Mail/mime.php';
-
-    // $destinario =  $_SESSION['friendemail' . $i] ;
-    // $from = 'jamedina97@gmail.com';
-    // $asunto = 'Invitation of ' . $_SESSION['user_name'] . ' to play Secret Santa';
-    // $mensaje = '<html>
-    //                 <head>
-    //                     <title>'.$asunto.'</title>
-    //                 </head>'.
-    //             "\n";
-    // $mensaje .= '<body>
-    //                 <h1>Hello ' .    $_SESSION['friendname' . $i] .', you have been invited to join a Secret Santa Game.</h1>
-    //                 <p>This is the message of ' . $_SESSION['user_name'] . 'to you:  </p>
-    //                 <p>' . $_SESSION['game_description'] . '</p>
-    //                 <p>If you are agree with the conditions of the game. Please, confirm following this.</p>
-    //                 <a href="http://www.jorgeagundez.com/confirmation.php?gameKey='. $_SESSION['game_key'] . '&friendemail=' . $_SESSION['friendemail' . $i] . '"> link </a>
-    //             </body>
-    //             </html>';
-    // $mime = new Mail_mime("\n");
-    // $mime->setTXTBody(strip_tags($mensaje));
-    // $mime->setHTMLBody($mensaje);
-
-    // $body = $mime->get();
-    // $hdrs = array('From' => $from, 'Subject' => $asunto);
-    // $hdrs = $mime->headers($hdrs);
-    // $mail =& Mail::factory('mail');
-    // $res = $mail->send($destinario, $hdrs, $body);
-
-    $invitation = true;
-
-        // if (PEAR::isError($res)) {  
-
-        //     $_SESSION['error'] = 'There was a problem sending invitations. Please, try it later.';
-               // $invitation = false;
-
-        // }else{
+    require_once 'Mail.php';
+    require_once 'Mail/mime.php';
 
             try { 
 
                 $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $stmt = $conn->prepare("SELECT idgame, title, description, confirmed, gamekey FROM game WHERE user_idusuario = :user_id");
+                $stmt = $conn->prepare("SELECT idgame, title, description, confirmed, gamekey, ended FROM game WHERE user_idusuario = :user_id");
                 $stmt->bindParam(':user_id', $_SESSION['user_id'] , PDO::PARAM_STR);
-
                 $stmt->execute();
 
                 while( $datos = $stmt->fetch() ) {
-                    $game = new Game($datos['idgame'], $datos['title'], $datos['description'], $datos['confirmed'], $datos['gamekey']);
+                    $game = new Game($datos['idgame'], $datos['title'], $datos['description'], $datos['confirmed'], $datos['gamekey'], $datos['ended']);
                 }; 
 
-                if (!$game->getIdgame()) {
+                    if (!$game->getIdgame()) {
 
                         $resultado['error'] = true;
                         $resultado['mensaje'] = 'Hubo un problema con el servidor, por favor, inténtelo más tarde';
 
                     }else{
 
-                        try {
+                        $gamekey = $game->getGamekey();
+
+                        $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $stmt = $conn->prepare("SELECT friendemail FROM friend WHERE gamekey = :game_key");
+                        $stmt->bindParam(':game_key',  $gamekey , PDO::PARAM_STR);
+
+                        $stmt->execute();
+
+                        $allemails = $stmt->fetchAll();
+                        $valid = true;
+
+                        foreach ( $allemails as $email) {
+                            if( $email['friendemail'] == $friendemail) {
+                                $valid = false;
+                            };
+                        }
+                    
+
+                        if ($valid) {
+
+                            try {
+
+                            $invitation = true;
 
                             $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
                             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -97,6 +83,32 @@ if ( !isset($friendname) || !isset($friendemail) ) {
                             $resultado['error'] = false;
                             $resultado['mensaje'] = 'Email enviado correctamente';
 
+                                // $destinario =  $_SESSION['friendemail' . $i] ;
+                                // $from = 'jamedina97@gmail.com';
+                                // $asunto = 'Invitation of ' . $_SESSION['user_name'] . ' to play Secret Santa';
+                                // $mensaje = '<html>
+                                //                 <head>
+                                //                     <title>'.$asunto.'</title>
+                                //                 </head>'.
+                                //             "\n";
+                                // $mensaje .= '<body>
+                                //                 <h1>Hello ' .    $_SESSION['friendname' . $i] .', you have been invited to join a Secret Santa Game.</h1>
+                                //                 <p>This is the message of ' . $_SESSION['user_name'] . 'to you:  </p>
+                                //                 <p>' . $_SESSION['game_description'] . '</p>
+                                //                 <p>If you are agree with the conditions of the game. Please, confirm following this.</p>
+                                //                 <a href="http://www.jorgeagundez.com/confirmation.php?gameKey='. $_SESSION['game_key'] . '&friendemail=' . $_SESSION['friendemail' . $i] . '"> link </a>
+                                //             </body>
+                                //             </html>';
+                                // $mime = new Mail_mime("\n");
+                                // $mime->setTXTBody(strip_tags($mensaje));
+                                // $mime->setHTMLBody($mensaje);
+
+                                // $body = $mime->get();
+                                // $hdrs = array('From' => $from, 'Subject' => $asunto);
+                                // $hdrs = $mime->headers($hdrs);
+                                // $mail =& Mail::factory('mail');
+                                // $res = $mail->send($destinario, $hdrs, $body);
+
                             }catch(Exception $e){
 
                                 $resultado['error'] = true;
@@ -104,6 +116,16 @@ if ( !isset($friendname) || !isset($friendemail) ) {
                                 $resultado['type'] = $e;
 
                         }//end try
+
+                        }else{
+
+                            $resultado['error'] = true;
+                            $resultado['mensaje'] = 'No puedes añadir a un amigo dos veces. Asegurate que estás introduciendo el email correcto';
+
+                        }
+                    
+
+                        
                     }
 
                 }catch(Exception $e){
@@ -113,8 +135,6 @@ if ( !isset($friendname) || !isset($friendemail) ) {
                     $resultado['type'] = $e;
 
             }//End try
-
-        // }
 
 }
 

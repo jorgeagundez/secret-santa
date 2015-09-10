@@ -13,20 +13,27 @@ if ( !isset($_GET['gameKey']) || !isset($_GET['friendemail']) ){
 
   require_once "controller/conexionDb.php";
 
+  $gamekey = strip_tags($_GET['gameKey']);
+  $friendemail = strip_tags($_GET['friendemail']);
+
+  $gamekey = filter_var($gamekey,FILTER_SANITIZE_STRING);
+  $friendemail = filter_var($friendemail, FILTER_SANITIZE_EMAIL);
+
   try { 
 
     $conn = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $conn->prepare("SELECT idfriend, friendname, friendemail FROM friend WHERE gamekey = :game_key AND friendemail = :friend_email");
-    $stmt->bindParam(':game_key',$_GET['gameKey'], PDO::PARAM_INT);
-    $stmt->bindParam(':friend_email',$_GET['friendemail'], PDO::PARAM_STR);
+    $stmt->bindParam(':game_key',$gamekey, PDO::PARAM_INT);
+    $stmt->bindParam(':friend_email',$friendemail, PDO::PARAM_STR);
 
     $stmt->execute();
     $_SESSION['confirmation_friend'] = $stmt->fetch(PDO::FETCH_ASSOC);
 
     }catch(Exception $e){
       
-      header('Location:/index.php?error=' . 'You can not confirm your game. Please, try it later');
+      $_SESSION['error'] = 'You can not confirm your game. Please, try it later';
+      header('Location:/index.php');
 
   }//End Try
 
@@ -36,32 +43,57 @@ include "includes/header.php";
 ?>
 
   <body>
-    <div class="container">
-      <header>
-        <h1>CONFIRMATION</h1>
-      </header>
-    </div>
-    <div class="container">
-      <form role="form" id="stepTwo" method="post" action="controller/confirmation.php">
-        <div class="col-md-5 well">
+
+    <header class="pass-page">
+      <div class="fullwidth_wraper white">
+        <div class="container">
           <div class="row">
-            <div class="col-md-12">
-              <?php if (isset($_GET['error'])){ echo $_GET['error'];}?>
+            <div class="col-xs-12">
+              <nav class="main_nav" role="navigation">
+                <a class="top_bar" href="/">Secret <span class="red">Santa</span></a>
+                <a class="top_bar pull-right" href="#"><small>About</small></a>
+              </nav>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <label for="title">To confirm press the button</label>
-              <input type="hidden" name="form_token" value="<?php echo $_SESSION['form_token']; ?>" />
-              <button type="submit" class="btn btn-default">Confirm</button>
-            </div>
-          </div>
+          </div>  
+        </div><!--/.container-->
+      </div><!--/.fullwidth_wraper-->
+    </header>
+      
+    <section class="pass-wrap">
+      <form role="form" id="confirm" method="post" action="controller/confirmation.php" class="pass-form">  
+        <div class="pass_header blue">
+          <p class="white">A Jugar!</p>
+        </div>
+        <div class="input_wrapper">
+          <label for="title"></label>
+        </div>
+        <div class=" input_wrapper">
+          <input type="hidden" name="form_token" value="<?php echo $_SESSION['form_token']; ?>" />
+          <button type="submit" class="btn btn-default">Confirmar Participación</button>
         </div>
       </form>
-    </div>
+    </section>  
 
-<?php 
-include "includes/footer.php";
-?>
+    <section class="blue ribbon info-wrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 text-center"> 
+            <?php if (isset($_SESSION['error'])) { ?>
+            <p class="white">
+              <a name="info"></a>
+              <?php 
+              echo $_SESSION['error']; 
+              unset($_SESSION['error']);
+              ?>
+            </p>
+            <?php } ?>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+ 
+<?php include 'includes/footer.php';?>
 
  

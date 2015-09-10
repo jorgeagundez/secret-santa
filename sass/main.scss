@@ -133,6 +133,16 @@ small {
 	}
 }
 
+.info-wrap {
+	@extend .message-error;
+    display: block;
+    margin: 0 auto;
+
+    .btn {
+    	width: 150px;
+    }
+}
+
 // Colours Fonts
 // **************
 
@@ -765,7 +775,7 @@ footer {
 	background: $ligthgray;
 	display: inline-block;
 	vertical-align: middle;
-	width: 80%;
+	width: 250px;
 	border-radius: 10px;
 	overflow: hidden;
 }

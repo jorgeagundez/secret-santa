@@ -7,18 +7,20 @@ class Game {
 	private $description;
 	private $confirmed;
 	private $gamekey;
+	private $ended;
 
-	public function __construct($id, $name, $email, $confirmed, $gamekey ) {
-		$this->setGame($id, $name, $email, $confirmed, $gamekey);
+	public function __construct($id, $name, $email, $confirmed, $gamekey, $ended ) {
+		$this->setGame($id, $name, $email, $confirmed, $gamekey, $ended);
 		$this->getGame();
 	}
 
-	public function setGame($id, $name, $email, $confirmed, $gamekey) {
+	public function setGame($id, $name, $email, $confirmed, $gamekey, $ended) {
 		$this->idgame = $id;
 		$this->title = $name;
 		$this->description = $email;
 		$this->confirmed = $confirmed;
 		$this->gamekey = $gamekey;
+		$this->ended = $ended;
 
 	}
 
@@ -28,7 +30,8 @@ class Game {
 			'title' => $this->title,
 			'description' => $this->description,
 			'confirmed' => $this->confirmed,
-			'gamekey' => $this->gamekey
+			'gamekey' => $this->gamekey,
+			'ended' => $this->ended
 			);
 	}
 
@@ -74,6 +77,14 @@ class Game {
 
 	public function getGamekey() {
 		return $this->gamekey;
+	}
+
+	public function setEnded($ended) {
+		$this->ended = $ended;
+	}
+
+	public function getEnded() {
+		return $this->ended;
 	}
 
 }

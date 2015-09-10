@@ -26,7 +26,7 @@ include 'includes/header.php';
 		</header>
 			
 		<section class="pass-wrap">
-			<form role="form" id="pass" method="post" action="controller/pass.php" class="pass-form">	
+			<form role="form" id="pass" method="post" action="controller/fpass.php" class="pass-form">	
 				<div class="pass_header blue">
 					<p class="white">Recuperar Contraseña</p>
 				</div>
@@ -40,25 +40,21 @@ include 'includes/header.php';
 				</div>
 			</form>
 		</section>	
-		
-			
-		
 
-		
-		<?php if (isset($_SESSION['error'])){ 
-			echo '<div class="message-error">';
-			echo '<span>Error:</span></br>';
-			echo '<p>' . $_SESSION['error'] . '</p>'; 
-			unset($_SESSION['error']);}
-			echo '</div>';
-		?>
-	
-
-		<section class="blue ribbon">
+		<section class="blue ribbon info-wrap">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-12">
-						<p></p>
+					<div class="col-xs-12 text-center">
+						<?php if (isset($_SESSION['info'])) { ?>
+						<p class="white">
+							<a name="info"></a>
+							<?php 
+								echo $_SESSION['info']; 
+								unset($_SESSION['info']);
+							?>
+						</p>
+						<a type="button" href="index.php" class="btn btn-red">Volver</a>
+						<?php } ?>
 					</div>
 				</div>
 			</div>

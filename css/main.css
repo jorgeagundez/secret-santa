@@ -52,13 +52,13 @@ body {
 small {
   font-size: 65%; }
 
-.message-error {
+.message-error, .info-wrap {
   text-align: center;
   padding: 10px;
   background-color: #EDEDED;
   color: #0F3E5A;
   font-size: 16px; }
-  .message-error span {
+  .message-error span, .info-wrap span {
     color: #EC6645; }
 
 .error-wrap {
@@ -68,6 +68,12 @@ small {
     color: #EC6645; }
   .error-wrap i {
     font-size: 20px; }
+
+.info-wrap {
+  display: block;
+  margin: 0 auto; }
+  .info-wrap .btn {
+    width: 150px; }
 
 .white {
   color: white; }
@@ -499,7 +505,7 @@ footer {
   background: #FAF9F9;
   display: inline-block;
   vertical-align: middle;
-  width: 80%;
+  width: 250px;
   border-radius: 10px;
   overflow: hidden; }
 
