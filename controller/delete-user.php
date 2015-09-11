@@ -15,13 +15,13 @@ try {
     $stmt->execute();
 
     unset( $_SESSION['form_token'] );
-    header('Location:logout.php');
+    header('Location:/secret_santa/controller/logout.php');
 
 
 }catch(Exception $e){
         
     $_SESSION['error'] = 'We are unable to process your request. Please try again later';
-    header('Location:/user/dashboard.php');
+    header('Location:/secret_santa/user/dashboard.php');
 
 
 }

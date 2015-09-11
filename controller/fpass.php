@@ -4,7 +4,7 @@ session_start();
 
 if(isset($_SESSION['user_id']))
 {
-    header('Location:/controller/logout.php');
+    header('Location:/secret_santa/controller/logout.php');
 
 }elseif(!isset( $_POST['useremail'])){
 
@@ -61,7 +61,7 @@ if(isset($_SESSION['user_id']))
         // $res = $mail->send($destinario, $hdrs, $body);
 
         $_SESSION['info'] = 'Su contraseña ha sido actualizada automáticamente. Recibirá un email donde podrá acceder a ella y cambiarla automáticamente desde su panel de usuario';
-        header('Location: /pass.php#info');
+        header('Location: /secret_santa/pass.php#info');
 
 
      
@@ -75,7 +75,7 @@ if(isset($_SESSION['user_id']))
 
 if (isset($_SESSION['error'])) {
 
-    header('Location:/index.php');
+    header('Location:/secret_santa/index.php');
 
 }
 

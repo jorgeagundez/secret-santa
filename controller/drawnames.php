@@ -4,12 +4,12 @@ session_start();
 
 if(!isset($_SESSION['user_id'])) {
     $_SESSION['error'] = 'You must be logged in to visit this page';
-    header('Location:/controller/logout.php');
+    header('Location:/secret_santa/controller/logout.php');
 }
 
 $_SESSION['id_session'] = session_id();
 
-include "../controller/dashboard.php";
+include "dashboard.php";
 include "../includes/header.php";
 require_once 'Mail.php';
 require_once 'Mail/mime.php';
@@ -84,7 +84,7 @@ require_once 'Mail/mime.php';
         if (PEAR::isError($res)) {  
 
             $_SESSION['error'] = 'Ha habido un problema con el envio de las invitaciones. Por favor, intentalo mas tarde';
-            header('Location:../user/dashboard.php');
+            header('Location:/secret_santa/user/dashboard.php');
 
         }
 	}//End Foreach
@@ -99,8 +99,6 @@ require_once 'Mail/mime.php';
 	$stmt3->execute();
 
 
-	header('Location:../user/dashboard.php');
-
-
+	header('Location:/secret_santa/user/dashboard.php');
 
 ?>

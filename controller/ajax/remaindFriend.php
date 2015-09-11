@@ -4,7 +4,7 @@ session_start();
 
 if(!isset($_SESSION['user_id']))
 {
-    header('Location:../logout.php');
+    header('Location:/secret_santa/controller/logout.php');
 }
 
 if( isset($_POST["friendid"]) || isset($_POST["friendname"]) || isset($_POST["friendemail"]) ) {

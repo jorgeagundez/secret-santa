@@ -4,6 +4,7 @@ session_start();
 $form_token = md5( uniqid('auth', true) );
 $_SESSION['form_token'] = $form_token;
 
+
 include 'includes/header.php';
 $template = 'frontpage';
 
@@ -135,7 +136,7 @@ $template = 'frontpage';
 				</div>
 				<div class="row">
 					<div class="col-xs-6 col-xs-offset-3">
-						<a href="/stepOne.php" type="button" class="btn btn-red">Nuevo Juego</a>
+						<a href="/secret_santa/stepOne.php" type="button" class="btn btn-red">Nuevo Juego</a>
 					</div>
 				</div>
 			</div>

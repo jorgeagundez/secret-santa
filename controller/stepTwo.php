@@ -6,7 +6,7 @@ if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_
 
     // $_SESSION['error'] = 'There was a problem, please start again or login if you have an account already';
     
-    header('Location:/controller/logout.php');
+    header('Location:/secret_santa/controller/logout.php');
 
 }elseif(!isset($_POST['title'],$_POST['description'])){
 
@@ -55,7 +55,7 @@ if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_
             unset( $_SESSION['form_token'] );
             unset( $_SESSION['form_token_step1'] );
             unset( $_SESSION['form_token_step2'] );
-            header('Location:/user/dashboard.php');
+            header('Location:/secret_santa/user/dashboard.php');
                
         }catch(Exception $e){
                     
@@ -65,7 +65,7 @@ if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_
     }catch(Exception $e){
 
         $_SESSION['error'] = 'Ya existe un usuario con su email. Por favor, introduzca otro diferente';
-        header('Location:/stepOne.php');
+        header('Location:/secret_santa/stepOne.php');
     }
 
     
@@ -74,7 +74,7 @@ if( isset($_SESSION['user_id']) || !isset($_POST['form_token']) || $_POST['form_
 
 if (isset($_SESSION['error'])) {
     
-    header('Location:/stepTwo.php');
+    header('Location:/secret_santa/stepTwo.php');
 }
 
 ?>

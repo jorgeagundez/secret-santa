@@ -3,10 +3,10 @@ session_start();
 
 if(!isset($_SESSION['user_id'])) {
   $_SESSION['error'] = 'You must be logged in to visit this page';
-  header('Location:/index.php');
+  header('Location:/secret_santa/index.php');
 }else if($_SESSION['id_session'] != session_id()) {
   $_SESSION['error'] = 'There was a mistake in the session, please, login again';
-  header('Location:/index.php');;
+  header('Location:/secret_santa/index.php');;
 }
 
 $form_token = md5( uniqid('auth', true) );
@@ -34,8 +34,8 @@ include "../includes/header.php";
                             </div>
                             <nav id="collapseOne" class="panel-collapse collapse mobile_nav" role="tabpanel" aria-labelledby="headingOne">
                                 <ul class="list-group">
-                                    <li><span class="glyphicon glyphicon-off red" aria-hidden="true"></span><a href="dashboard.php"> Panel de Control</a></li>
-                                    <li><span class="glyphicon glyphicon-off red" aria-hidden="true"></span><a href="/controller/logout.php"> Salir de la sesión</a></li>
+                                    <li><span class="glyphicon glyphicon-cog red" aria-hidden="true"></span><a href="dashboard.php"> Panel de Control</a></li>
+                                    <li><span class="glyphicon glyphicon-off red" aria-hidden="true"></span><a href="/secret_santa/controller/logout.php"> Salir de la sesión</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -94,7 +94,7 @@ include "../includes/header.php";
             <div class="row">
                 <div class="col-xs-12 d col-sm-6 col-md-4 col-md-offset-0 add-friend-wrap" id="add-friend-wrap">
                     <div class="friend-wrap">
-                        <form role="form" id="update_form" method="post" action="../controller/upd.php">
+                        <form role="form" id="update_form" method="post" action="/secret_santa/controller/upd.php">
                             <input type="password" name="password" class="form-control" id="password" placeholder="Escriba su nueva contraseña" required="true"/>
                             <input type="password" name="rPassword" class="form-control" id="rPassword" placeholder="Repita la contraseña" required="true"/>
                             <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
@@ -126,7 +126,7 @@ include "../includes/header.php";
                 <div class="col-xs-12 d col-sm-6 col-md-4 col-md-offset-0 add-friend-wrap" id="add-friend-wrap">
                     <div class="friend-wrap">
                         <p class="text-center">Para borrar su cuenta de forma permanente, por favor, pulse el siguiente enlace.</p>
-                        <a class="btn delete_account" href="/controller/delete-user.php"><span class="glyphicon glyphicon-erase red" aria-hidden="true"></span> Borrar cuenta</a>
+                        <a class="btn delete_account" href="/secret_santa/controller/delete-user.php"><span class="glyphicon glyphicon-erase red" aria-hidden="true"></span> Borrar cuenta</a>
                     </div>
                 </div>
             </div>

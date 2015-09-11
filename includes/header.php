@@ -10,7 +10,7 @@
     <!-- <link href="/css/bootstrap.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- Styles -->
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/secret_santa/css/main.css">
     <!-- Google font -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700,300,600,400' rel='stylesheet' type='text/css'>
     <!-- Font Awesome -->

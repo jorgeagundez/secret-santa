@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-04-2015 a las 14:25:18
+-- Tiempo de generación: 10-09-2015 a las 22:48:48
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.5.19
 
@@ -34,16 +34,19 @@ CREATE TABLE IF NOT EXISTS `friend` (
   `gamekey` varchar(50) NOT NULL,
   `invitation` tinyint(1) NOT NULL,
   `confirmation` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=268 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `friend`
 --
 
 INSERT INTO `friend` (`idfriend`, `friendname`, `friendemail`, `game_idgame`, `gamekey`, `invitation`, `confirmation`) VALUES
-(96, 'adria', 'secretsanta.adria@gmail.com', 36, 'ea5d2f1c4608232e07d3aa3d998e5135', 1, 1),
-(97, 'Clara', 'secretsanta.clara@gmail.com', 36, 'ea5d2f1c4608232e07d3aa3d998e5135', 1, 0),
-(98, 'Keyvan', 'secretsanta.keyvan@gmail.com', 36, 'ea5d2f1c4608232e07d3aa3d998e5135', 1, 1);
+(233, 'jorgito', 'jorgito@mail.com', 51, 'fe9fc289c3ff0af142b6d3bead98a923', 1, 1),
+(234, 'laura', 'laura@mail.com', 51, 'fe9fc289c3ff0af142b6d3bead98a923', 1, 1),
+(236, 'oscar', 'oscar@mail.com', 51, 'fe9fc289c3ff0af142b6d3bead98a923', 1, 1),
+(265, 'pepito', 'prueba@mail.com', 51, 'fe9fc289c3ff0af142b6d3bead98a923', 1, 1),
+(266, 'maria', 'maria@mail.com', 54, '93db85ed909c13838ff95ccfa94cebd9', 1, 0),
+(267, 'Vera', 'vera@mail.com', 54, '93db85ed909c13838ff95ccfa94cebd9', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -55,21 +58,19 @@ CREATE TABLE IF NOT EXISTS `game` (
 `idgame` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
   `description` mediumtext NOT NULL,
-  `price` int(11) NOT NULL,
-  `gameplace` varchar(45) NOT NULL,
-  `gamedate` date NOT NULL,
   `user_idusuario` int(11) DEFAULT NULL,
-  `gamenumberfriends` int(11) NOT NULL,
   `confirmed` tinyint(1) NOT NULL DEFAULT '0',
-  `gamekey` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
+  `gamekey` varchar(50) NOT NULL,
+  `ended` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `game`
 --
 
-INSERT INTO `game` (`idgame`, `title`, `description`, `price`, `gameplace`, `gamedate`, `user_idusuario`, `gamenumberfriends`, `confirmed`, `gamekey`) VALUES
-(36, 'Juego de Jorge', 'Juego bla bla bla bla', 5, 'London', '2015-04-25', '2015-04-25', 64, 3, 0, 'ea5d2f1c4608232e07d3aa3d998e5135');
+INSERT INTO `game` (`idgame`, `title`, `description`, `user_idusuario`, `confirmed`, `gamekey`, `ended`) VALUES
+(51, 'Amigo Invisible Navidades 2015', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu tempus velit. Phasellus eu ex ut tellus rutrum vestibulum quis sed justo. Aliquam euismod tellus et purus lobortis vulputate. Praesent convallis accumsan risus. Maecenas mollis turpis consequat, dapibus sapien eu, consequat velit. Nam hendrerit metus et molestie vestibulum. Vestibulum placerat neque quam, vitae laoreet orci accumsan a. ', 83, 0, 'fe9fc289c3ff0af142b6d3bead98a923', 1),
+(54, 'Amigo Invisible Armonicos!', 'Hola!! Esto es una prueba para el amigo invisible que podemos hacer el dia 24 de diciembre por la tarde. Os gustaria? Propongo 5 euros de media.\r\nBesitos!', 86, 0, '93db85ed909c13838ff95ccfa94cebd9', 0);
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`idusuario`, `nombreusuario`, `email`, `password`, `cookie`, `tempkey`) VALUES
-(64, 'jorge', 'jorge@mail.com', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', NULL, NULL);
+(83, 'test', 'test@email.com', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', NULL, NULL),
+(86, 'Jorge', 'jorge@mail.com', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -113,7 +115,7 @@ ALTER TABLE `game`
 -- Indices de la tabla `user`
 --
 ALTER TABLE `user`
- ADD PRIMARY KEY (`idusuario`), ADD UNIQUE KEY `idusuario_UNIQUE` (`idusuario`);
+ ADD PRIMARY KEY (`idusuario`), ADD UNIQUE KEY `idusuario_UNIQUE` (`idusuario`), ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -123,12 +125,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `friend`
 --
 ALTER TABLE `friend`
-MODIFY `idfriend` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=154;
+MODIFY `idfriend` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=268;
 --
 -- AUTO_INCREMENT de la tabla `game`
 --
 ALTER TABLE `game`
-MODIFY `idgame` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=58;
+MODIFY `idgame` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT de la tabla `user`
 --

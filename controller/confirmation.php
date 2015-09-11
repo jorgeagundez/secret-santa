@@ -22,20 +22,20 @@ if($_POST['form_token'] != $_SESSION['form_token']){
 
         $stmt->execute();
 
-        header('Location:/posts/confirmation.php');
+        header('Location:/secret_santa/posts/confirmation.php');
 
     }catch(Exception $e){
             
         $_SESSION['error'] = 'There was a problem sending the confirmation. Please, try it later.';
-        header('Location:/index.php');
+        header('Location:/secret_santa/index.php');
 
     }//end try
 }
 
-if (isset($error)) {
+if (isset($_SESSION['error'])) {
     
-   	header('Location:/user/dashboard.php?&error=' . $error);
-    unset($error);
+   	header('Location:/secret_santa/user/dashboard.php');
+    
 }
 
 ?>

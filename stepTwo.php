@@ -4,7 +4,7 @@ session_start();
 
 if ( !isset($_SESSION['form_token_step1'])){
 
-  header('Location:/controller/logout.php');
+  header('Location:/secret_santa/controller/logout.php');
 
 }
 
@@ -64,9 +64,6 @@ include "includes/header.php";
         </div>
     </section>
 
-           <!--  <div class="go_back">
-                <a href="/controller/logout.php" class="" ><span class="gray">Reset</span></a></p>
-            </div> -->
 
             <?php 
             include "includes/footer.php";

@@ -65,12 +65,8 @@ include "includes/header.php";
             </div>
             <div class="go_back">
                 <p>*Tienes una cuenta?</p>
-                <p>Haz login <a href="/controller/logout.php" class="" ><span class="gray">Aquí</span></a></p>
+                <p>Haz login <a href="/secret_santa/controller/logout.php" class="" ><span class="gray">Aquí</span></a></p>
             </div>
-
-           <!--  <div class="go_back">
-                <a href="/controller/logout.php" class="" ><span class="gray">Reset</span></a></p>
-            </div> -->
             
         </div>
     </section>

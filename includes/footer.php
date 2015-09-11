@@ -10,7 +10,7 @@
 		</div>
 	</footer>
 	
-    <script src="/js/controller.js"></script>
-    <script type="text/javascript" src="/js/validation.js"></script>
+    <script src="/secret_santa/js/controller.js"></script>
+    <script type="text/javascript" src="/secret_santa/js/validation.js"></script>
   </body>
 </html>

@@ -4,7 +4,7 @@ session_start();
 
 if(isset($_SESSION['user_id']))
 {
-    header('Location:/controller/logout.php');
+    header('Location:/secret_santa/controller/logout.php');
 
 }elseif(!isset( $_POST['useremail'],$_POST['password'])){
 
@@ -59,7 +59,7 @@ if(isset($_SESSION['user_id']))
             $_SESSION['user_name'] = $user_name;
             $_SESSION['user_email'] = $user_email;
 
-            header('Location:/user/dashboard.php');
+            header('Location:/secret_santa/user/dashboard.php');
 
         }//End Else
 
@@ -72,7 +72,7 @@ if(isset($_SESSION['user_id']))
 
 if (isset($_SESSION['error'])) {
 
-    header('Location:/index.php');
+    header('Location:/secret_santa/index.php');
 
 }
 

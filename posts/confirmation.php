@@ -22,7 +22,7 @@ include "../includes/header.php";
     </header>
       
     <section class="pass-wrap">
-      <form role="form" id="confirm" method="post" action="controller/confirmation.php" class="pass-form">  
+      <form role="form" id="confirm" method="post" action="/secret_santa/controller/confirmation.php" class="pass-form">  
         <div class="pass_header blue">
           <p class="white">CONFIRMACIÓN ACEPTADA</p>
         </div>

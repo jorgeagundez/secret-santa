@@ -32,7 +32,7 @@
         if (PEAR::isError($res)) {  
 
             $error= 'There was a problem sending invitations. Please, try it later.';
-            header('Location:../user/dashboard.php?&error=' . $error);
+            header('Location:/secret_santa/user/dashboard.php');
 
         }else{
 

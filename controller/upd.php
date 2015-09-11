@@ -5,13 +5,13 @@ session_start();
 if(!isset($_SESSION['user_id']))
 {
     $_SESSION['error'] = 'You must be logged in to updated your details';
-    header('Location:/index.php');
+    header('Location:/secret_santa/index.php');
    
 
 }elseif($_SESSION['id_session'] != session_id()){
 
     $_SESSION['error'] = 'There was a mistake in the session, please, login again';
-    header('Location:/controller/logout.php');
+    header('Location:/secret_santa/controller/logout.php');
 
 }elseif(!isset($_POST['password'],$_POST['rPassword'],$_POST['form_token'])){
 
@@ -60,7 +60,7 @@ if(!isset($_SESSION['user_id']))
         }else{
 
             $_SESSION['info'] = 'Su contraseña ha sido actualizada';
-            header('Location:/user/up-pass.php');
+            header('Location:/secret_santa/user/up-pass.php');
 
         }
 
@@ -79,7 +79,7 @@ if(!isset($_SESSION['user_id']))
 
 if (isset($_SESSION['error'])) {
 
-    header('Location:/user/up-pass.php');
+    header('Location:/secret_santa/user/up-pass.php');
 
 }
 

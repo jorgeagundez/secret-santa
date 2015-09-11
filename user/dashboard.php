@@ -4,7 +4,7 @@ session_start();
 
 if(!isset($_SESSION['user_id'])) {
     $_SESSION['error'] = 'You must be logged in to visit this page';
-    header('Location:/controller/logout.php');
+    header('Location:/secret_santa/controller/logout.php');
 }
 
 $_SESSION['id_session'] = session_id();
@@ -33,7 +33,7 @@ include "../includes/header.php";
                             <nav id="collapseOne" class="panel-collapse collapse mobile_nav" role="tabpanel" aria-labelledby="headingOne">
                                 <ul class="list-group">
                                     <li><i class="red fa fa-key"></i><a class="update_account" href="up-pass.php"> Ajustes</a></li>
-                                    <li><span class="glyphicon glyphicon-off red" aria-hidden="true"></span><a href="/controller/logout.php"> Salir de la sesión</a></li>
+                                    <li><span class="glyphicon glyphicon-off red" aria-hidden="true"></span><a href="/secret_santa/controller/logout.php"> Salir de la sesión</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -50,7 +50,7 @@ include "../includes/header.php";
                     <div class="col-xs-12 text-center">
                         <p>Todos los miembros del grupo han confirmado.</p> 
                         <p><span class="bold green">¿Listo para realizar el sorteo?</span></p>
-                        <p><a class="btn make-draw" href="/controller/drawnames.php"><span class="fa fa-magic" aria-hidden="true"></span> Realizar Sorteo</a></p><br/>
+                        <p><a class="btn make-draw" href="/secret_santa/controller/drawnames.php"><span class="fa fa-magic" aria-hidden="true"></span> Realizar Sorteo</a></p><br/>
                         <p><span class="bold yellow">¿O quizás has olvidado a alguien?</span></p>
                         <p><a class="btn continue" href="#add-friend"><span class="fa fa-plus" aria-hidden="true"></span> Añadir Amigo</a></p>
 
@@ -67,7 +67,7 @@ include "../includes/header.php";
                     <div class="col-xs-12 text-center">
                         <p><span class="bold green">El sorteo ha sido realizado con éxito.<br /> Por favor, consulta tu correo electrónico para averiguar quien te ha tocado!</span></p>
                         <p><span class="bold yellow">Gracias por jugar. Nos vemos a la próxima!</span></p>
-                        <a class="btn delete_account" href="/controller/delete-user.php"><span class="glyphicon glyphicon-erase red" aria-hidden="true"></span><span class="red"> Borrar cuenta</span></a>
+                        <a class="btn delete_account" href="/secret_santa/controller/delete-user.php"><span class="glyphicon glyphicon-erase red" aria-hidden="true"></span><span class="red"> Borrar cuenta</span></a>
                     </div>
                 </div>
             </div>
