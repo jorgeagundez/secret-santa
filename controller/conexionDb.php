@@ -1,15 +1,11 @@
 <?php 
 
 
-
- 	$mysql_hostname = 'db572200012.db.1and1.com';
-    $mysql_username = 'dbo572200012';
-    $mysql_password = 'Jam19977';
-    $mysql_dbname = 'db572200012';
+	//DATAS FOR CONEXION WITH DATABASE UPDATED AND REMOVED FROM REPOSITORY
+ 	$mysql_hostname = '';
+    $mysql_username = '';
+    $mysql_password = '';
+    $mysql_dbname = '';
     
-  // $mysql_hostname = 'localhost';
-  // $mysql_username = 'root';
-  // $mysql_password = 'jam19977';
-  // $mysql_dbname = 'secretsanta';
   
 ?>
